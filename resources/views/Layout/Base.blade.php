@@ -2,29 +2,23 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Spica Admin</title>
-    <!-- base:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
-    <!-- endinject -->
-    <!-- plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.18/dist/sweetalert2.css"
+        integrity="sha256-AAqx1xXi9Bf0sAjL1wva6EMJ2z+rtAeSNSRRqVpN8cw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <!-- endinject -->
+
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
 </head>
 
 <body>
     <div class="container-scroller d-flex">
-        <!-- partial:./partials/_sidebar.html -->
         @include('Layout.Sidebar')
-        <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-            <!-- partial:./partials/_navbar.html -->
             <nav class="navbar col-lg-12 col-12 px-0 py-0 py-lg-4 d-flex flex-row" style="height: 120px;">
                 <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
                     <ul class="navbar-nav navbar-nav-right">
@@ -45,15 +39,12 @@
                     </ul>
                 </div>
             </nav>
-            <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
                         @yield('content')
                     </div>
                 </div>
-                <!-- content-wrapper ends -->
-                <!-- partial:./partials/_footer.html -->
                 <footer class="footer">
                     <div class="card">
                         <div class="card-body">
@@ -69,30 +60,50 @@
                         </div>
                     </div>
                 </footer>
-                <!-- partial -->
-            </div>
-            <!-- main-panel ends -->
-        </div>
-        <!-- page-body-wrapper ends -->
-    </div>
-    <!-- container-scroller -->
+                <div class="modal fade" id="modal-univ">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
 
-    <!-- base:js -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Modal Heading</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <div class="modal-body">
+                                <form id="form-univ" action="" enctype="multipart/form-data"></form>
+                                Modal body..
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Proses</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page-->
+
     <script src="{{ asset('assets/vendors/chart.js/Chart.min.js') }}"></script>
-    <!-- End plugin js for this page-->
-    <!-- inject:js -->
+
     <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
     <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
     <script src="{{ asset('assets/js/template.js') }}"></script>
-    <!-- endinject -->
-    <!-- plugin js for this page -->
-    <!-- End plugin js for this page -->
-    <!-- Custom js for this page-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.18/dist/sweetalert2.js"
+        integrity="sha256-5fTxrI0C59yjHqwVoE/140DZIq/FVIm+f634AN9a/W8=" crossorigin="anonymous"></script>
+
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
-    <!-- End custom js for this page-->
     @yield('script')
 </body>
 
