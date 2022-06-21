@@ -1,2 +1,5 @@
-# SiAdes
-Aplikasi pengolahan data administrasi Desa Taripa
+# SIADES
+
+## Sistem Informasi Desa
+
+Sistem untuk pengolahan data administrasi desa
