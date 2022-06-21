@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CMS;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PendudukRequest;
 use App\Models\PendudukModel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PendudukController extends Controller
@@ -58,6 +59,52 @@ class PendudukController extends Controller
                         'icon' => 'success',
                         'title' => 'Ditemukan',
                         'message' => 'Data berhasil ditemukan',
+                    ),
+                    'code' => 201
+                );
+            } else {
+                $penduduk = array(
+                    'data' => null,
+                    'response' => array(
+                        'icon' => 'warning',
+                        'title' => 'Not Found',
+                        'message' => 'Data tidak tersedia',
+                    ),
+                    'code' => 404
+                );
+            }
+        } catch (\Throwable $th) {
+            $penduduk = array(
+                'data' => null,
+                'response' => array(
+                    'icon' => 'error',
+                    'title' => 'Gagal',
+                    'message' => $th->getMessage(),
+                ),
+                'code' => 500
+            );
+        }
+
+        return $penduduk;
+    }
+
+    public function updatePenduduk($penduduk_id,Request $request)
+    {
+        
+        // return response()->json($request);
+        $date = Carbon::now();
+        $request->all()['updated_at'] = $date;
+
+        try {
+            $dbResult = PendudukModel::whereId($penduduk_id);
+            $findId = $dbResult->first();
+            if ($findId) {
+                $penduduk = array(
+                    'data' => $dbResult->update($request),
+                    'response' => array(
+                        'icon' => 'success',
+                        'title' => 'Tersimpan',
+                        'message' => 'Data berhasil diperbaharui',
                     ),
                     'code' => 201
                 );
