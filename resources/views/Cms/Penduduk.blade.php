@@ -365,6 +365,41 @@
 
                 });
             });
+            $('#btnUpdate').on('click', function() {
+                let dataId = $('#pendudukId').val();
+                let url = `{{ config('app.url') }}` + "/penduduk/" + dataId;
+                let data = $('#form-univ').serialize();
+                let modalClose = () => {
+                    $('#modal-univ').modal('hide');
+                }
+                $.ajax({
+                    url: url,
+                    method: "patch",
+                    data: data,
+                    success: function(result) {
+                        console.log(result);
+                        modalClose();
+                        Swal.fire({
+                            title: result.response.title,
+                            text: result.response.message,
+                            icon: result.response.icon,
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Oke'
+                        }).then((result) => {
+                            location.reload();
+                        });
+                    },
+                    error: function(result) {
+                        let data = result.responseJSON
+                        modalClose();
+                        Swal.fire({
+                            icon: data.response.icon,
+                            title: data.response.title,
+                            text: data.response.message,
+                        });
+                    }
+                });
+            });
 
         })
 </script>
