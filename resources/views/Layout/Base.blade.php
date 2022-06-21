@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Spica Admin</title>
     <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
@@ -23,8 +24,7 @@
                 <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
                     <ul class="navbar-nav navbar-nav-right">
                         <li class="nav-item nav-profile dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-                                id="profileDropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                                 <img src="{{ asset('assets/images/faces/face5.jpg') }}" alt="profile" />
                                 <span class="nav-profile-name">Fullname User</span>
                             </a>
@@ -70,12 +70,13 @@
                             </div>
 
                             <div class="modal-body">
-                                <form id="form-univ" action="" enctype="multipart/form-data"></form>
-                                Modal body..
+                                <form id="form-univ" action="" enctype="multipart/form-data">
+                                    @csrf
+                                </form>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary">Proses</button>
+                                <button type="button" id="btnUpdate" class="btn btn-primary">Proses</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
                             </div>
 
