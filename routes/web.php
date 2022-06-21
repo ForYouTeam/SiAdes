@@ -9,8 +9,8 @@ Route::get('/', function () {
 });
 
 Route::prefix('penduduk')->group(function () {
-    Route::get('/',[PendudukController::class, 'getAllPenduduk']);
+    Route::get('/', [PendudukController::class, 'getAllPenduduk']);
     Route::post('/', [PendudukController::class, 'createPenduduk']);
     Route::get('/{id}', [PendudukController::class, 'getPendudukById']);
-    Route::patch('/{id}', [PendudukController::class, 'updateDataPenduduk']);
+    Route::patch('/{id}', [PendudukController::class, 'updatePenduduk']);
 });

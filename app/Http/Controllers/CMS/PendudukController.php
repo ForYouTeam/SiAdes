@@ -13,7 +13,7 @@ class PendudukController extends Controller
     public function getAllPenduduk()
     {
         try {
-            $penduduk= PendudukModel::all();
+            $penduduk = PendudukModel::all();
         } catch (\Throwable $th) {
             $penduduk = $th->getMessage();
         }
@@ -88,19 +88,19 @@ class PendudukController extends Controller
         return $penduduk;
     }
 
-    public function updatePenduduk($penduduk_id,Request $request)
+    public function updatePenduduk($penduduk_id, Request $request)
     {
-        
-        // return response()->json($request);
+
         $date = Carbon::now();
-        $request->all()['updated_at'] = $date;
+        $pendudukDetails = $request->all();
+        $pendudukDetails['updated_at'] = $date;
 
         try {
             $dbResult = PendudukModel::whereId($penduduk_id);
             $findId = $dbResult->first();
             if ($findId) {
                 $penduduk = array(
-                    'data' => $dbResult->update($request),
+                    'data' => $dbResult->update($pendudukDetails),
                     'response' => array(
                         'icon' => 'success',
                         'title' => 'Tersimpan',
