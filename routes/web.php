@@ -13,4 +13,5 @@ Route::prefix('penduduk')->group(function () {
     Route::post('/', [PendudukController::class, 'createPenduduk']);
     Route::get('/{id}', [PendudukController::class, 'getPendudukById']);
     Route::patch('/{id}', [PendudukController::class, 'updatePenduduk']);
+    Route::delete('/{id}', [PendudukController::class, 'deletePenduduk']);
 });
