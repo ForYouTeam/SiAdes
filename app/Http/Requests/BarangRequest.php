@@ -16,13 +16,14 @@ class BarangRequest extends FormRequest
     public function rules()
     {
         return [
-            'jenisBarang' => 'requaired',
-            'namaBarang' => 'requaired',
-            'jumlahBarang' => 'requaired',
-            'tahunPerolehan' => 'requaired',
-            'sumberAnggaran' => 'requaired',
-            'hargaSatuan' => 'requaired',
-            'hargaTotal' => 'requaired',
+            'jenisBarang' => 'required',
+            'namaBarang' => 'required',
+            'jumlahBarang' => 'required',
+            'satuan' => 'required',
+            'tahunPerolehan' => 'required',
+            'sumberAnggaran' => 'required',
+            'hargaSatuan' => 'required',
+            'hargatotal' => 'required',
         ];
     }
 
