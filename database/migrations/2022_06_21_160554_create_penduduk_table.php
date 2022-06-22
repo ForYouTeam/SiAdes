@@ -15,7 +15,7 @@ class CreatePendudukTable extends Migration
             $table->string('nama');
             $table->string('jk');
             $table->string('tmpLahir');
-            $table->string('tglLahir');
+            $table->date('tglLahir');
             $table->string('umur')->nullable();
             $table->string('agama');
             $table->string('statKeluarga');
