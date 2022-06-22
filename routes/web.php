@@ -18,14 +18,14 @@ Route::prefix('/staff')->group(function () {
     Route::delete('/{id}', [StaffController::class, 'deleteStaff']);
 });
 Route::prefix('penduduk')->group(function () {
-    Route::get('/', [PendudukController::class, 'getAllPenduduk']);
+    Route::get('/', [PendudukController::class, 'getAllPenduduk'])->name('penduduk.all');
     Route::post('/', [PendudukController::class, 'createPenduduk']);
     Route::get('/{id}', [PendudukController::class, 'getPendudukById']);
     Route::patch('/{id}', [PendudukController::class, 'updatePenduduk']);
     Route::delete('/{id}', [PendudukController::class, 'deletePenduduk']);
 });
 Route::prefix('barang')->group(function () {
-    Route::get('/', [BarangController::class, 'getAllBarang']);
+    Route::get('/', [BarangController::class, 'getAllBarang'])->name('barang.all');
     Route::post('/', [BarangController::class, 'createBarang']);
     Route::get('/{id}', [BarangController::class, 'getBarangById']);
     Route::patch('/{id}', [BarangController::class, 'updateBarang']);
