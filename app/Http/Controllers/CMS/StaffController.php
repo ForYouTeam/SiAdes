@@ -3,29 +3,35 @@
 namespace App\Http\Controllers\CMS;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PendudukRequest;
-use App\Models\PendudukModel;
+use App\Http\Requests\StaffRequest;
+use App\Models\StaffModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class PendudukController extends Controller
+class StaffController extends Controller
 {
-    public function getAllPenduduk()
+    public function getAllStaff()
     {
         try {
-            $penduduk = PendudukModel::all();
+            $staff = array(
+                'data' => StaffModel::all(),
+                'message' => 'success'
+            );
         } catch (\Throwable $th) {
-            $penduduk = $th->getMessage();
+            $staff = array(
+                'data' => null,
+                'message' => $th->getMessage()
+            );
         }
 
-        return view('Page.Penduduk')->with('penduduk', $penduduk);
+        return view('Page.Staff')->with('data', $staff);
     }
 
-    public function createPenduduk(PendudukRequest $request)
+    public function createStaff(StaffRequest $request)
     {
         try {
-            $dbResult = PendudukModel::create($request->all());
-            $penduduk = array(
+            $dbResult = StaffModel::create($request->all());
+            $staff = array(
                 'data' => $dbResult,
                 'response' => array(
                     'icon' => 'success',
@@ -35,7 +41,7 @@ class PendudukController extends Controller
                 'code' => 201
             );
         } catch (\Throwable $th) {
-            $penduduk = array(
+            $staff = array(
                 'data' => null,
                 'response' => array(
                     'icon' => 'error',
@@ -45,25 +51,26 @@ class PendudukController extends Controller
                 'code' => 500
             );
         }
-        return response()->json($penduduk, $penduduk['code']);
+
+        return response()->json($staff, $staff['code']);
     }
 
-    public function getPendudukById($penduduk_id)
+    public function getStaffById($id)
     {
         try {
-            $dbResult = PendudukModel::whereId($penduduk_id)->first();
+            $dbResult = StaffModel::whereId($id)->first();
             if ($dbResult) {
-                $penduduk = array(
+                $staff = array(
                     'data' => $dbResult,
                     'response' => array(
                         'icon' => 'success',
-                        'title' => 'Ditemukan',
-                        'message' => 'Data berhasil ditemukan',
+                        'title' => 'Tersimpan',
+                        'message' => 'Data berhasil disimpan',
                     ),
                     'code' => 201
                 );
             } else {
-                $penduduk = array(
+                $staff = array(
                     'data' => null,
                     'response' => array(
                         'icon' => 'warning',
@@ -74,7 +81,7 @@ class PendudukController extends Controller
                 );
             }
         } catch (\Throwable $th) {
-            $penduduk = array(
+            $staff = array(
                 'data' => null,
                 'response' => array(
                     'icon' => 'error',
@@ -84,32 +91,29 @@ class PendudukController extends Controller
                 'code' => 500
             );
         }
-
-        return $penduduk;
+        return response()->json($staff, $staff['code']);
     }
 
-    public function updatePenduduk($penduduk_id, Request $request)
+    public function updateStaff($id, StaffRequest $request)
     {
-
         $date = Carbon::now();
-        $pendudukDetails = $request->all();
-        $pendudukDetails['updated_at'] = $date;
-
+        $staffDetails = $request->all();
+        $staffDetails['updated_at'] = $date;
         try {
-            $dbResult = PendudukModel::whereId($penduduk_id);
-            $findId = $dbResult->first();
+            $dbConnect = StaffModel::whereId($id);
+            $findId = $dbConnect->first();
             if ($findId) {
-                $penduduk = array(
-                    'data' => $dbResult->update($pendudukDetails),
+                $staff = array(
+                    'data' => $dbConnect->update($staffDetails),
                     'response' => array(
                         'icon' => 'success',
                         'title' => 'Tersimpan',
-                        'message' => 'Data berhasil diperbaharui',
+                        'message' => 'Data berhasil disimpan',
                     ),
                     'code' => 201
                 );
             } else {
-                $penduduk = array(
+                $staff = array(
                     'data' => null,
                     'response' => array(
                         'icon' => 'warning',
@@ -120,7 +124,7 @@ class PendudukController extends Controller
                 );
             }
         } catch (\Throwable $th) {
-            $penduduk = array(
+            $staff = array(
                 'data' => null,
                 'response' => array(
                     'icon' => 'error',
@@ -130,18 +134,17 @@ class PendudukController extends Controller
                 'code' => 500
             );
         }
-
-        return $penduduk;
+        return response()->json($staff, $staff['code']);
     }
 
-    public function deletePenduduk($penduduk_id)
+    public function deleteStaff($id)
     {
         try {
-            $dbResult = PendudukModel::whereId($penduduk_id);
-            $findId = $dbResult->first();
+            $dbConnect = StaffModel::whereId($id);
+            $findId = $dbConnect->first();
             if ($findId) {
-                $penduduk = array(
-                    'data' => $dbResult->delete(),
+                $staff = array(
+                    'data' => $dbConnect->delete(),
                     'response' => array(
                         'icon' => 'success',
                         'title' => 'Terhapus',
@@ -150,7 +153,7 @@ class PendudukController extends Controller
                     'code' => 201
                 );
             } else {
-                $penduduk = array(
+                $staff = array(
                     'data' => null,
                     'response' => array(
                         'icon' => 'warning',
@@ -161,7 +164,7 @@ class PendudukController extends Controller
                 );
             }
         } catch (\Throwable $th) {
-            $penduduk = array(
+            $staff = array(
                 'data' => null,
                 'response' => array(
                     'icon' => 'error',
@@ -171,7 +174,6 @@ class PendudukController extends Controller
                 'code' => 500
             );
         }
-
-        return $penduduk;
+        return response()->json($staff, $staff['code']);
     }
 }

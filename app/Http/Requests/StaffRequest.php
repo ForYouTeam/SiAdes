@@ -22,7 +22,7 @@ class StaffRequest extends FormRequest
             'tglLahir' => 'required',
             'jk' => 'required',
             'pendidikan' => 'required',
-            'noSK' => 'required',
+            'noSk' => 'required',
             'alamat' => 'required',
         ];
     }
