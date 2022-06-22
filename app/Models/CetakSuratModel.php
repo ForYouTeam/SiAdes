@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CatakSuratModel extends Model
+class CetakSuratModel extends Model
 {
     use HasFactory;
     protected $table = "cetak_surat";
