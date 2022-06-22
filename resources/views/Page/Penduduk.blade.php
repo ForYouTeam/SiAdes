@@ -49,7 +49,7 @@
                                     <td>{{ $d->kk }}</td>
                                     <td>{{ $d->nama }}</td>
                                     <td>{{ $d->jk }}</td>
-                                    <td>{{ $d->tglLahir }}</td> 
+                                    <td>{{ $d->tglLahir }}</td>
                                     <td>{{ $d->umur }}</td>
                                     <td>{{ $d->agama }}</td>
                                     <td>{{ $d->pekerjaan }}</td>
@@ -76,113 +76,128 @@
                         <h4 class="card-title">Input Data Penduduk</h4>
                         <form class="forms-sample" id="formSimpan">
                             @csrf
-                            <div class="form-group row">
-                                <label for="kk" class="col-sm-3 col-form-label">No KK</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="kk" name="kk" placeholder="No KK">
-                                    <p class="text-danger miniAlert text-capitalize" id="alertKK"></p>
+                            <div class="row">
+                                <div class="form-group row col-6">
+                                    <label for="kk" class="col-sm-3 col-form-label">No KK</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control costume-outline" id="kk" name="kk" placeholder="No KK">
+                                        <p class="text-danger miniAlert text-capitalize" id="alertKK"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group row col-6">
+                                    <label for="nik" class="col-sm-3 col-form-label">NIK</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control costume-outline" id="nik" name="nik" placeholder="NIK">
+                                        <p class="text-danger miniAlert text-capitalize" id="alertNIK"></p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="nik" class="col-sm-3 col-form-label">NIK</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="nik" name="nik" placeholder="NIK">
-                                    <p class="text-danger miniAlert text-capitalize" id="alertNIK"></p>
+                            <div class="row">
+                                <div class="form-group row col-6">
+                                    <label for="nama" class="col-sm-3 col-form-label">Nama</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control costume-outline" id="nama" name="nama"
+                                            placeholder="nama">
+                                        <p class="text-danger miniAlert text-capitalize" id="alertNama"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group row col-6">
+                                    <label for="jk" class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control costume-outline" id="jk" name="jk">
+                                            <option selected disabled>Pilih Jenis kelamin</option>
+                                            <option value="Laki-Laki">Laki-Laki</option>
+                                            <option value="Perempuan">Perempuan</option>
+                                        </select>
+                                        <p class="text-danger miniAlert text-capitalize" id="alertJk"></p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="nama" class="col-sm-3 col-form-label">Nama</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="nama" name="nama" placeholder="nama">
-                                    <p class="text-danger miniAlert text-capitalize" id="alertNama"></p>
+                            <div class="row">
+                                <div class="form-group row col-6">
+                                    <label for="tmpLahir" class="col-sm-3 col-form-label">Tempat Lahir</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control costume-outline" id="tmpLahir" name="tmpLahir"
+                                            placeholder="Tempat Lahir">
+                                        <p class="text-danger miniAlert text-capitalize" id="alerTmpLahir"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group row col-6">
+                                    <label for="tglLahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control costume-outline" id="tglLahir" name="tglLahir"
+                                            placeholder="Tanggal Lahir">
+                                        <p class="text-danger miniAlert text-capitalize" id="alertTglLahir"></p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="jk" class="col-sm-3 col-form-label">Jenis Kelamin</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" id="jk" name="jk">
-                                        <option selected disabled>Pilih Jenis kelamin</option>
-                                        <option value="Laki-Laki">Laki-Laki</option>
-                                        <option value="Perempuan">Perempuan</option>
-                                    </select>
-                                    <p class="text-danger miniAlert text-capitalize" id="alertJk"></p>
+                            <div class="row">
+                                <div class="form-group row col-6">
+                                    <label for="agama" class="col-sm-3 col-form-label">Agama</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control costume-outline" id="agama" name="agama">
+                                            <option selected disabled>Pilih Agama</option>
+                                            <option value="Islam">Islam</option>
+                                            <option value="Kristen">Kristen</option>
+                                            <option value="Hindu">Hindu</option>
+                                            <option value="Budha">Budha</option>
+                                            <option value="Katolik">Katolik</option>
+                                            <option value="Konghucu">Konghucu</option>
+                                        </select>
+                                        <p class="text-danger miniAlert text-capitalize" id="alertAgama"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group row col-6">
+                                    <label for="statKeluarga" class="col-sm-3 col-form-label">Status Keluarga</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control costume-outline" id="statKeluarga" name="statKeluarga"
+                                            placeholder="Status Keluarga">
+                                        <p class="text-danger miniAlert text-capitalize" id="alertStatKeluarga"></p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="tmpLahir" class="col-sm-3 col-form-label">Tempat Lahir</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="tmpLahir" name="tmpLahir"
-                                        placeholder="Tempat Lahir">
-                                    <p class="text-danger miniAlert text-capitalize" id="alerTmpLahir"></p>
+                            <div class="row">
+                                <div class="form-group row col-6">
+                                    <label for="pekerjaan" class="col-sm-3 col-form-label">Pekerjaan</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control costume-outline" id="pekerjaan" name="pekerjaan"
+                                            placeholder="Pekerjaan">
+                                        <p class="text-danger miniAlert text-capitalize" id="alertPekerjaan"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group row col-6">
+                                    <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control costume-outline" id="alamat" name="alamat"
+                                            placeholder="Alamat">
+                                        <p class="text-danger miniAlert text-capitalize" id="alertAlamat"></p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="tglLahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
-                                <div class="col-sm-9">
-                                    <input type="date" class="form-control" id="tglLahir" name="tglLahir"
-                                        placeholder="Tanggal Lahir">
-                                    <p class="text-danger miniAlert text-capitalize" id="alertTglLahir"></p>
+                            <div class="row">
+                                <div class="form-group row col-3">
+                                    <label for="suku" class="col-sm-3 col-form-label">Suku</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control costume-outline" id="suku" name="suku"
+                                            placeholder="Suku">
+                                        <p class="text-danger miniAlert text-capitalize" id="alertSuku"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="agama" class="col-sm-3 col-form-label">Agama</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" id="agama" name="agama">
-                                        <option selected disabled>Pilih Agama</option>
-                                        <option value="Islam">Islam</option>
-                                        <option value="Kristen">Kristen</option>
-                                        <option value="Hindu">Hindu</option>
-                                        <option value="Budha">Budha</option>
-                                        <option value="Katolik">Katolik</option>
-                                        <option value="Konghucu">Konghucu</option>
-                                    </select>
-                                    <p class="text-danger miniAlert text-capitalize" id="alertAgama"></p>
+                                <div class="form-group row col-4">
+                                    <label for="hidup" class="col-sm-3 col-form-label">Hidup</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control costume-outline" id="hidup" name="hidup"
+                                            placeholder="Hidup">
+                                        <p class="text-danger miniAlert text-capitalize" id="alertHidup"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="statKeluarga" class="col-sm-3 col-form-label">Status Keluarga</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="statKeluarga" name="statKeluarga"
-                                        placeholder="Status Keluarga">
-                                    <p class="text-danger miniAlert text-capitalize" id="alertStatKeluarga"></p>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="pekerjaan" class="col-sm-3 col-form-label">Pekerjaan</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"
-                                        placeholder="Pekerjaan">
-                                    <p class="text-danger miniAlert text-capitalize" id="alertPekerjaan"></p>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="alamat" name="alamat"
-                                        placeholder="Alamat">
-                                    <p class="text-danger miniAlert text-capitalize" id="alertAlamat"></p>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="suku" class="col-sm-3 col-form-label">Suku</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="suku" name="suku" placeholder="Suku">
-                                    <p class="text-danger miniAlert text-capitalize" id="alertSuku"></p>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="hidup" class="col-sm-3 col-form-label">Hidup</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="hidup" name="hidup" placeholder="Hidup">
-                                    <p class="text-danger miniAlert text-capitalize" id="alertHidup"></p>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="ket" class="col-sm-3 col-form-label">Keterangan</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="ket" name="ket"
-                                        placeholder="Keterangan">
-                                    <p class="text-danger miniAlert text-capitalize" id="alertKet"></p>
+                                <div class="form-group row col-5">
+                                    <label for="ket" class="col-sm-3 col-form-label">Keterangan</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control costume-outline" id="ket" name="ket"
+                                            placeholder="Keterangan">
+                                        <p class="text-danger miniAlert text-capitalize" id="alertKet"></p>
+                                    </div>
                                 </div>
                             </div>
                             <button type="button" id="btnSave" class="btn btn-primary mr-2">Submit</button>
