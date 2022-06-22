@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CMS\BarangController;
 use App\Http\Controllers\CMS\StaffController;
 use App\Http\Controllers\CMS\PendudukController;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +23,11 @@ Route::prefix('penduduk')->group(function () {
     Route::get('/{id}', [PendudukController::class, 'getPendudukById']);
     Route::patch('/{id}', [PendudukController::class, 'updatePenduduk']);
     Route::delete('/{id}', [PendudukController::class, 'deletePenduduk']);
+});
+Route::prefix('barang')->group(function () {
+    Route::get('/', [BarangController::class, 'getAllBarang']);
+    Route::post('/', [BarangController::class, 'createBarang']);
+    Route::get('/{id}', [BarangController::class, 'getBarangById']);
+    Route::patch('/{id}', [BarangController::class, 'updateBarang']);
+    Route::delete('/{id}', [BarangController::class, 'deleteBarang']);
 });
