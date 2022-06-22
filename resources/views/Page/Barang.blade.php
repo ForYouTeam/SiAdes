@@ -78,16 +78,16 @@
                                 <div class="form-group row col-6">
                                     <label for="jenisBarang" class="col-sm-3 col-form-label">Jenis Barang</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="jenisBarang" name="jenisBarang"
-                                            placeholder="Jenis Barang">
+                                        <input type="text" class="form-control costume-outline" id="jenisBarang"
+                                            name="jenisBarang" placeholder="Jenis Barang">
                                         <p class="text-danger miniAlert text-capitalize" id="alertJenisBarang"></p>
                                     </div>
                                 </div>
                                 <div class="form-group row col-6">
                                     <label for="namaBarang" class="col-sm-3 col-form-label">Nama Barang</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="namaBarang" name="namaBarang"
-                                            placeholder="Nama Barang">
+                                        <input type="text" class="form-control costume-outline" id="namaBarang"
+                                            name="namaBarang" placeholder="Nama Barang">
                                         <p class="text-danger miniAlert text-capitalize" id="alertNamaBarang"></p>
                                     </div>
                                 </div>
@@ -96,16 +96,16 @@
                                 <div class="form-group row col-6">
                                     <label for="jumlahBarang" class="col-sm-3 col-form-label">Jumlah Barang</label>
                                     <div class="col-sm-9">
-                                        <input type="number" class="form-control" id="jumlahBarang" name="jumlahBarang"
-                                            placeholder="jumlahBarang">
+                                        <input type="number" class="form-control costume-outline" id="jumlahBarang"
+                                            name="jumlahBarang" placeholder="jumlahBarang">
                                         <p class="text-danger miniAlert text-capitalize" id="alertJumlahBarang"></p>
                                     </div>
                                 </div>
                                 <div class="form-group row col-6">
                                     <label for="satuan" class="col-sm-3 col-form-label">Satuan</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="satuan" name="satuan"
-                                            placeholder="Satuan">
+                                        <input type="text" class="form-control costume-outline" id="satuan"
+                                            name="satuan" placeholder="Satuan">
                                         <p class="text-danger miniAlert text-capitalize" id="alertSatuan"></p>
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@
                                 <div class="form-group row col-6">
                                     <label for="tahunPerolehan" class="col-sm-3 col-form-label">Tahun Perolehan</label>
                                     <div class="col-sm-9">
-                                        <input type="year" class="form-control" id="tahunPerolehan"
+                                        <input type="year" class="form-control costume-outline" id="tahunPerolehan"
                                             name="tahunPerolehan" placeholder="Tahun Perolehan">
                                         <p class="text-danger miniAlert text-capitalize" id="alertTahunPerolehan"></p>
                                     </div>
@@ -122,7 +122,7 @@
                                 <div class="form-group row col-6">
                                     <label for="sumberAnggaran" class="col-sm-3 col-form-label">Sumber Anggaran</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="sumberAnggaran"
+                                        <input type="text" class="form-control costume-outline" id="sumberAnggaran"
                                             name="sumberAnggaran" placeholder="Sumber Anggaran">
                                         <p class="text-danger miniAlert text-capitalize" id="alerSumberAnggaran"></p>
                                     </div>
@@ -132,8 +132,8 @@
                                 <div class="form-group row col-6">
                                     <label for="hargaSatuan" class="col-sm-3 col-form-label">Harga Satuan</label>
                                     <div class="col-sm-9">
-                                        <input type="number" class="form-control" id="hargaSatuan" name="hargaSatuan"
-                                            value="0" placeholder="Harga Satuan">
+                                        <input type="number" class="form-control costume-outline" id="hargaSatuan"
+                                            name="hargaSatuan" value="0" placeholder="Harga Satuan">
                                         <p class="text-danger miniAlert text-capitalize" id="alertHargaSatuan"></p>
                                     </div>
                                 </div>
@@ -141,8 +141,8 @@
                                     <label for="hargatotal" class="col-sm-3 col-form-label">Harga Total</label>
                                     <div class="col-sm-9">
                                         <input type="hidden" class="form-control" id="hargaDB" name="hargatotal">
-                                        <input type="string" class="form-control" id="hargatotal" value=""
-                                            placeholder="Harga Total">
+                                        <input type="string" class="form-control costume-outline" id="hargatotal"
+                                            value="" placeholder="Harga Total">
                                         <p class="text-danger miniAlert text-capitalize" id="alertHargaTotal"></p>
                                     </div>
                                 </div>
@@ -248,37 +248,45 @@
                             <div class="row mr-2 ml-2">
                                 <div class="form-group col-6">
                                 <label>Jumlah Barang</label>
-                                    <input type="number" class="form-control" id="jumlahBarang" name="jumlahBarang" value="` + data
-                            .jumlahBarang + `">
+                                    <input type="number" class="form-control" id="jumlahBarang1" name="jumlahBarang" value="` + data.jumlahBarang + `">
                                 </div>
                                 <div class="form-group col-6">
-                                <label>Tahun Perolehan</label>
-                                    <input type="year" class="form-control" id="tahunPerolehan" name="tahunPerolehan" value="` + data
-                            .tahunPerolehan + `">
+                                <label>Satuan</label>
+                                    <input type="text" class="form-control" id="satuan" name="satuan" value="` + data.satuan + `">
                                 </div>
                             </div>
-                            <div class="form-group col-12">
-                            <label>Sumber Anggaran</label>
-                                <input type="text" class="form-control" id="sumberAnggaran" name="sumberAnggaran" value="` +
-                        data
-                        .sumberAnggaran + `">
+                            <div class="row mr-2 ml-2 mr-2 ml-2">
+                                <div class="form-group col-6">
+                                <label>Tahun Perolehan</label>
+                                    <input type="number" class="form-control" id="tahunPerolehan" name="tahunPerolehan" value="` + data.tahunPerolehan + `">
+                                </div>
+                                <div class="form-group col-6">
+                                <label>Sumber Anggaran</label>
+                                    <input type="text" class="form-control" id="sumberAnggaran" name="sumberAnggaran" value="` +data.sumberAnggaran + `">
+                                </div>
                             </div>
                             <div class="row mr-2 ml-2">
                                 <div class="form-group col-6">
                                 <label>Harga Satuan</label>
-                                    <input type="number" class="form-control" id="hargaSatuan" name="hargaSatuan" value="` +
-                            data
-                            .hargaSatuan + `">
+                                    <input type="number" class="form-control" id="hargaSatuan1" name="hargaSatuan" value="` +data.hargaSatuan + `">
                                 </div>
                                 <div class="form-group col-6">
                                 <label>Harga Total</label>
-                                    <input type="number" class="form-control" id="hargatotal" name="hargatotal" value="` + data
-                            .hargatotal +
-                            `">
+                                    <input type="hidden" class="form-control" id="hargaDB1" name="hargatotal" value="` + data.hargatotal +`">
+                                    <input type="text" class="form-control" id="hargatotal1" value="` + data.hargatotal +`">
                                 </div>
                             </div>
                         </div>
-                    `);
+                        `);
+                        $('#jumlahBarang1, #hargaSatuan1',).keyup(function () {
+                            let jumlah = $('#jumlahBarang1').val();
+                            let harga = $('#hargaSatuan1').val();
+                            let total = parseInt(jumlah) * parseInt(harga);
+                            let rupiah = total.toString().length <= 3 ? total : format(total);
+                            $('#hargatotal1').val(rupiah);
+                            $('#hargaDB1').val(total);
+                        });
+
                     },
                     error: function(result) {
                         let data = result.responseJSON
