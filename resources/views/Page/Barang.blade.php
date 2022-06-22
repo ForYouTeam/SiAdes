@@ -141,8 +141,8 @@
                                     <label for="hargatotal" class="col-sm-3 col-form-label">Harga Total</label>
                                     <div class="col-sm-9">
                                         <input type="hidden" class="form-control" id="hargaDB" name="hargatotal">
-                                        <input type="string" class="form-control costume-outline" id="hargatotal"
-                                            value="" placeholder="Harga Total">
+                                        <input type="text" class="form-control costume-outline" id="hargatotal"
+                                            value="" placeholder="Harga Total" disabled>
                                         <p class="text-danger miniAlert text-capitalize" id="alertHargaTotal"></p>
                                     </div>
                                 </div>
@@ -273,7 +273,7 @@
                                 <div class="form-group col-6">
                                 <label>Harga Total</label>
                                     <input type="hidden" class="form-control" id="hargaDB1" name="hargatotal" value="` + data.hargatotal +`">
-                                    <input type="text" class="form-control" id="hargatotal1" value="` + data.hargatotal +`">
+                                    <input type="text" class="form-control" id="hargatotal1" value="` + data.hargatotal +`" disabled>
                                 </div>
                             </div>
                         </div>

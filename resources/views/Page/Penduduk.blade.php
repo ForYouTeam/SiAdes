@@ -31,7 +31,6 @@
                                     <th>Nama</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Tanggal Lahir</th>
-                                    <th>Umur</th>
                                     <th>Agama</th>
                                     <th>Pekerjaan</th>
                                     <th>Alamat</th>
@@ -50,7 +49,6 @@
                                     <td>{{ $d->nama }}</td>
                                     <td>{{ $d->jk }}</td>
                                     <td>{{ $d->tglLahir }}</td>
-                                    <td>{{ $d->umur }}</td>
                                     <td>{{ $d->agama }}</td>
                                     <td>{{ $d->pekerjaan }}</td>
                                     <td>{{ $d->alamat }}</td>
@@ -80,14 +78,16 @@
                                 <div class="form-group row col-6">
                                     <label for="kk" class="col-sm-3 col-form-label">No KK</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control costume-outline" id="kk" name="kk" placeholder="No KK">
+                                        <input type="text" class="form-control costume-outline" id="kk" name="kk"
+                                            placeholder="No KK">
                                         <p class="text-danger miniAlert text-capitalize" id="alertKK"></p>
                                     </div>
                                 </div>
                                 <div class="form-group row col-6">
                                     <label for="nik" class="col-sm-3 col-form-label">NIK</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control costume-outline" id="nik" name="nik" placeholder="NIK">
+                                        <input type="text" class="form-control costume-outline" id="nik" name="nik"
+                                            placeholder="NIK">
                                         <p class="text-danger miniAlert text-capitalize" id="alertNIK"></p>
                                     </div>
                                 </div>
@@ -117,16 +117,16 @@
                                 <div class="form-group row col-6">
                                     <label for="tmpLahir" class="col-sm-3 col-form-label">Tempat Lahir</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control costume-outline" id="tmpLahir" name="tmpLahir"
-                                            placeholder="Tempat Lahir">
+                                        <input type="text" class="form-control costume-outline" id="tmpLahir"
+                                            name="tmpLahir" placeholder="Tempat Lahir">
                                         <p class="text-danger miniAlert text-capitalize" id="alerTmpLahir"></p>
                                     </div>
                                 </div>
                                 <div class="form-group row col-6">
                                     <label for="tglLahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
                                     <div class="col-sm-9">
-                                        <input type="date" class="form-control costume-outline" id="tglLahir" name="tglLahir"
-                                            placeholder="Tanggal Lahir">
+                                        <input type="date" class="form-control costume-outline" id="tglLahir"
+                                            name="tglLahir" placeholder="Tanggal Lahir">
                                         <p class="text-danger miniAlert text-capitalize" id="alertTglLahir"></p>
                                     </div>
                                 </div>
@@ -150,8 +150,8 @@
                                 <div class="form-group row col-6">
                                     <label for="statKeluarga" class="col-sm-3 col-form-label">Status Keluarga</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control costume-outline" id="statKeluarga" name="statKeluarga"
-                                            placeholder="Status Keluarga">
+                                        <input type="text" class="form-control costume-outline" id="statKeluarga"
+                                            name="statKeluarga" placeholder="Status Keluarga">
                                         <p class="text-danger miniAlert text-capitalize" id="alertStatKeluarga"></p>
                                     </div>
                                 </div>
@@ -160,16 +160,16 @@
                                 <div class="form-group row col-6">
                                     <label for="pekerjaan" class="col-sm-3 col-form-label">Pekerjaan</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control costume-outline" id="pekerjaan" name="pekerjaan"
-                                            placeholder="Pekerjaan">
+                                        <input type="text" class="form-control costume-outline" id="pekerjaan"
+                                            name="pekerjaan" placeholder="Pekerjaan">
                                         <p class="text-danger miniAlert text-capitalize" id="alertPekerjaan"></p>
                                     </div>
                                 </div>
                                 <div class="form-group row col-6">
                                     <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control costume-outline" id="alamat" name="alamat"
-                                            placeholder="Alamat">
+                                        <input type="text" class="form-control costume-outline" id="alamat"
+                                            name="alamat" placeholder="Alamat">
                                         <p class="text-danger miniAlert text-capitalize" id="alertAlamat"></p>
                                     </div>
                                 </div>
