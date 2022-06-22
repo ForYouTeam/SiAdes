@@ -101,12 +101,13 @@
                             </div>
 
                             <div class="modal-body">
-                                <form id="form-univ" action="" enctype="multipart/form-data"></form>
-                                Modal body..
+                                <form id="form-univ" action="" enctype="multipart/form-data">
+                                    @csrf
+                                </form>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary">Proses</button>
+                                <button type="button" id="btnUpdate" class="btn btn-primary">Proses</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
                             </div>
 
