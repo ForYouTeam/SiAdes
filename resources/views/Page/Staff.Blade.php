@@ -200,5 +200,178 @@
                 }
             });
         });
+
+        $(document).on('click', '#btnEdit', function() {
+            let id = $(this).data('id');
+            let url = `{{ config('app.url') }}` + `/staff/${id}`;
+
+            $.get(url, function(result) {
+                let data = result.data;
+                console.log(data);
+                $('#modal-univ').modal('show');
+                $('.modal-title').html('Perubahan Data');
+                $('#form-univ').html('');
+                $('#form-univ').append(`
+                    <div class="card-body">
+                        <div class="form-group row mr-2 ml-2">
+                            <label for="" class="col-sm-3 col-form-label">Nama</label>
+                            <div class="col-sm-9">
+                                <input type="hidden" id="id_staff" value="${data.id}">
+                                <input value="${data.nama}" name="nama" type="text" class="form-control costume-outline"
+                                    id="" placeholder="Klik disini">
+                            </div>
+                        </div>
+                        <div class="form-group row mr-2 ml-2">
+                            <label for="" class="col-sm-3 col-form-label">Jabatan</label>
+                            <div class="col-sm-9">
+                                <input value="${data.jabatan}" name="jabatan" type="text" class="form-control costume-outline"
+                                    id="" placeholder="Klik disini">
+                            </div>
+                        </div>
+                        <div class="form-group row mr-2 ml-2">
+                            <label for="" class="col-sm-3 col-form-label">Tempat Lahir</label>
+                            <div class="col-sm-9">
+                                <input value="${data.tmpLahir}" name="tmpLahir" type="text" class="form-control costume-outline"
+                                    id="" placeholder="Klik disini">
+                            </div>
+                        </div>
+                        <div class="form-group row mr-2 ml-2">
+                            <label for="" class="col-sm-3 col-form-label">Tanggal Lahir</label>
+                            <div class="col-sm-9">
+                                <input value="${data.tglLahir}" name="tglLahir" type="date" class="form-control costume-outline"
+                                    id="">
+                            </div>
+                        </div>
+                        <div class="form-group row mr-2 ml-2">
+                            <label class="col-sm-3 col-form-label" for="">Jenis Kelamin</label>
+                            <div class="col-sm-9">
+                                <select name="jk" class="form-control costume-outline form-control-sm"
+                                    id="jk-input">
+                                    <option selected disabled>Pilih</option>
+                                    <option value="pria">Pria</option>
+                                    <option value="wanita">Wanita</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row mr-2 ml-2">
+                            <label class="col-sm-3 col-form-label" for="">Pendidikan Terakhir</label>
+                            <div class="col-sm-9">
+                                <select name="pendidikan" class="form-control costume-outline form-control-sm"
+                                    id="pendidikan-input">
+                                    <option selected disabled>Pilih</option>
+                                    <option value="S3">Sarjana S3</option>
+                                    <option value="S2">Sarjana S2</option>
+                                    <option value="S1">Sarjana S1</option>
+                                    <option value="smk/slta">SMK/Slta Sederajat</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row mr-2 ml-2">
+                            <label for="" class="col-sm-3 col-form-label">Nomor Sk</label>
+                            <div class="col-sm-9">
+                                <input value="${data.noSk}" name="noSk" type="number" class="form-control costume-outline"
+                                    id="" placeholder="Klik disini">
+                            </div>
+                        </div>
+                        <div class="form-group row mr-2 ml-2">
+                            <label for="" class="col-sm-3 col-form-label">Textarea</label>
+                            <div class="col-sm-9">
+                                <textarea name="alamat" class="form-control costume-outline" id="" rows="4">${data.alamat}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                `);
+                $('#jk-input').val(data.jk);
+                $('#pendidikan-input').val(data.pendidikan);
+            });
+        });
+
+        $(document).on('click', '#btnUpdate', function() {
+            let id = $('#id_staff').val();
+            let url = `{{ config('app.url') }}` + `/staff/${id}`;
+            let data = $('#form-univ').serialize();
+
+            $.ajax({
+                url: url,
+                method: "PATCH",
+                data: data,
+                success: function(result) {
+                    console.log(result);
+                    Swal.fire({
+                        title: result.response.title,
+                        text: result.response.message,
+                        icon: result.response.icon,
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Oke'
+                    }).then((result) => {
+                        location.reload();
+                    });
+                },
+                error: function(result) {
+                    let data = result.responseJSON
+                    console.log(data);
+                    let errorRes = data.errors
+                    Swal.fire({
+                        icon: data.response.icon,
+                        title: data.response.title,
+                        text: data.response.message,
+                    });
+                    if (errorRes.length >= 1) {
+                        $('.miniAlert').html('');
+                        $('#alert-nama').html(errorRes.data.nama);
+                        $('#alert-jabatan').html(errorRes.data.jabatan);
+                        $('#alert-tmpLahir').html(errorRes.data.tmpLahir);
+                        $('#alert-tglLahir').html(errorRes.data.tglLahir);
+                        $('#alert-jk').html(errorRes.data.jk);
+                        $('#alert-pendidikan').html(errorRes.data.pendidikan);
+                        $('#alert-noSk').html(errorRes.data.noSk);
+                        $('#alert-alamat').html(errorRes.data.alamat);
+                    }
+                }
+            });
+        });
+
+        $(document).on('click', '#btnHapus', function() {
+            let id = $(this).data('id');
+            let url = `{{ config('app.url') }}` + `/staff/${id}`;
+
+            Swal.fire({
+                title: 'Anda Yakin?',
+                text: "Data ini mungkin terhubung ke tabel yang lain!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Batal',
+                confirmButtonText: 'Hapus'
+            }).then((res) => {
+                if (res.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'delete',
+                        success: function(result) {
+                            let data = result.data;
+                            Swal.fire({
+                                title: result.response.title,
+                                text: result.response.message,
+                                icon: result.response.icon,
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Oke'
+                            }).then((result) => {
+                                location.reload();
+                            });
+                        },
+                        error: function(result) {
+                            let data = result.responseJSON
+                            Swal.fire({
+                                icon: data.response.icon,
+                                title: data.response.title,
+                                text: data.response.message,
+                            });
+                        }
+                    });
+                }
+            })
+        })
     </script>
 @endsection
