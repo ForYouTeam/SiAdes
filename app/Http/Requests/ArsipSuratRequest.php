@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class SuratMasukRequest extends FormRequest
+class ArsipSuratRequest extends FormRequest
 {
     public function authorize()
     {
@@ -16,13 +16,10 @@ class SuratMasukRequest extends FormRequest
     public function rules()
     {
         return [
-            'tgl_penerimaan' => 'required',
-            'noSurat' => 'required',
-            'tglSurat' => 'required',
-            'pengirim' => 'required',
-            'isi' => 'required',
+            'jenis_arsip' => 'required',
+            'tgl_surat' => 'required',
+            'no_surat' => 'required',
             'ket' => 'required',
-            'format_file' => 'required',
         ];
     }
 
