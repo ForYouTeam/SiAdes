@@ -56,7 +56,7 @@
     <div id=halaman>
         <h3 id=judul>PEMERINTAH KABUPATEN LUWU TIMUR <br> KECAMATAN ANGKONA <br> DESA TARIPA</h3>
         <div id="gambar">
-            <img src="{{ $data }}" alt="" width="80">
+            <img src="{{ $path }}" alt="" width="80">
         </div>
         <p class="kop">Alamat : Lr. 09, Jl. Poros Desa Taripa, Kode Pos 92985</p>
         <hr>

@@ -16,15 +16,17 @@ class CetakSuratModel extends Model
         'nama_ayah',
         'nama_ibu',
         'id_ctksuratkematian',
+        'alamat_sebelumnya',
+        'keperluan',
         'ttd',
     ];
 
     public function pendudukRole()
     {
-        $this->belongsTo(PendudukModel::class, 'id_penduduk');
+        return $this->belongsTo(PendudukModel::class, 'id_penduduk');
     }
     public function cetaksuratKematianRole()
     {
-        $this->belongsTo(CetaksuratKematianModel::class, 'id_ctksuratkematian');
+        return $this->belongsTo(CetaksuratKematianModel::class, 'id_ctksuratkematian');
     }
 }
