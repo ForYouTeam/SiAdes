@@ -18,10 +18,8 @@ class CetakSuratRequest extends FormRequest
         return [
             'id_penduduk' => 'required',
             'jenis_surat' => 'required',
-            'nama_ayah' => 'required',
-            'nama_ibu' => 'required',
-            'id_ctksuratkematian' => 'required',
             'ttd' => 'required',
+            'no_surat' => 'required',
         ];
     }
 

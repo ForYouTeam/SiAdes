@@ -53,7 +53,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="docs/documentation.html">
+            <a class="nav-link" href="{{ route('cetak.all') }}">
                 <i class="mdi mdi-file-pdf menu-icon"></i>
                 <span class="menu-title">Pembuatan Surat</span>
             </a>
