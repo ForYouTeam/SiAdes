@@ -38,19 +38,10 @@
             <span></span>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-arsip" aria-expanded="false" aria-controls="ui-basic">
-                <i class="mdi mdi-file-document menu-icon"></i>
+            <a class="nav-link" href="{{ route('arsip.all') }}">
+                <i class="mdi mdi-email menu-icon"></i>
                 <span class="menu-title">Arsip Surat</span>
-                <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-arsip">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Surat
-                            Masuk</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Surat
-                            Keluar</a></li>
-                </ul>
-            </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('cetak.all') }}">
