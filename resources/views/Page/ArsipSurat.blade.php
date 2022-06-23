@@ -47,20 +47,21 @@
                                 @php
                                 $no = 1;
                                 @endphp
-                                @foreach ($arsip as $d)
+                                @foreach ($arsip['masuk'] as $d)
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $d->tgl_penerimaan }}</td>
-                                    <td>{{ $d->tgl_surat }}</td>
                                     <td>{{ $d->no_surat }}</td>
+                                    <td>{{ $d->tgl_surat }}</td>
                                     <td>{{ $d->pengirim }}</td>
                                     <td>{{ $d->isi_singkat }}</td>
                                     <td>{{ $d->ket }}</td>
                                     <td>
-                                        <button data-id="{{ $d->id }}" id="btnEdit" type="button"
-                                            class="btn btn-sm btn-rounded btn-primary">
-                                            <i class="mdi mdi-lead-pencil"></i>
-                                        </button>
+                                        <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
+                                            class="btn btn-sm btn-rounded btn-primary" id="InfoId" target="_blank"><i
+                                                class="mdi mdi-cloud-download"></i></a>
+                                    </td>
+                                    <td>
                                         <button data-id="{{ $d->id }}" id="btnHapus" type="button"
                                             class="btn btn-sm btn-rounded btn-danger ml-2">
                                             <i class="mdi mdi-account-remove"></i>
@@ -79,11 +80,10 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">No.</th>
-                                    <th>Tanggal Penerimaan</th>
-                                    <th>Nomor Surat</th>
                                     <th>Tanggal Surat</th>
-                                    <th>Pengirim</th>
-                                    <th>Isi Singkat</th>
+                                    <th>Nomor Surat</th>
+                                    <th>Perihal</th>
+                                    <th>Di Tujukan Kepada</th>
                                     <th>Keterangan</th>
                                     <th>File</th>
                                     <th style="width: 100px">Opsi</th>
@@ -93,7 +93,7 @@
                                 @php
                                 $no = 1;
                                 @endphp
-                                @foreach ($arsip as $d)
+                                @foreach ($arsip['keluar'] as $d)
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $d->tgl_surat }}</td>
@@ -102,10 +102,11 @@
                                     <td>{{ $d->ditujukan_kepada }}</td>
                                     <td>{{ $d->ket }}</td>
                                     <td>
-                                        <button data-id="{{ $d->id }}" id="btnEdit" type="button"
-                                            class="btn btn-sm btn-rounded btn-primary">
-                                            <i class="mdi mdi-lead-pencil"></i>
-                                        </button>
+                                        <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
+                                            class="btn btn-sm btn-rounded btn-primary" id="InfoId" target="_blank"><i
+                                                class="mdi mdi-cloud-download"></i></a>
+                                    </td>
+                                    <td>
                                         <button data-id="{{ $d->id }}" id="btnHapus" type="button"
                                             class="btn btn-sm btn-rounded btn-danger ml-2">
                                             <i class="mdi mdi-account-remove"></i>
@@ -227,11 +228,14 @@
 
     $(document).on('click', '#btnSave', function() {
         let url = `{{ config('app.url') }}` + "/arsip_surat";
-        let data = $('#formSimpan').serialize();
+        let data = new FormData($('#formSimpan')[0]);
         $.ajax({
             url: url,
             method: "POST",
             data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
             success: function(result) {
                 console.log(result);
                 Swal.fire({
@@ -245,7 +249,6 @@
                 });
             },
             error: function(result) {
-                console.log(result);
                 let data = result.responseJSON
                 let errorRes = data.errors
                 Swal.fire({
@@ -268,6 +271,48 @@
                 }
             }
         });
+    });
+
+    $(document).on('click', '#btnHapus', function() {
+        let dataId = $(this).data('id');
+        let url = `{{ config('app.url') }}` + "/arsip_surat/" + dataId;
+        Swal.fire({
+            title: 'Anda Yakin?',
+            text: "Data ini mungkin terhubung ke tabel yang lain!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Hapus'
+        }).then((res) => {
+            if (res.isConfirmed) {
+                $.ajax({
+                    url: url,
+                    type: 'delete',
+                    success: function(result) {
+                        let data = result.data;
+                        Swal.fire({
+                            title: result.response.title,
+                            text: result.response.message,
+                            icon: result.response.icon,
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Oke'
+                        }).then((result) => {
+                            location.reload();
+                        });
+                    },
+                    error: function(result) {
+                        let data = result.responseJSON
+                        Swal.fire({
+                            icon: data.response.icon,
+                            title: data.response.title,
+                            text: data.response.message,
+                        });
+                    }
+                });
+            }
+        })
     });
 
     $(document).on('change', '#jenis_arsip', function () {
