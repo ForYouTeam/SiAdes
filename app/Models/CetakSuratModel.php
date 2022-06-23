@@ -16,6 +16,8 @@ class CetakSuratModel extends Model
         'nama_ayah',
         'nama_ibu',
         'id_ctksuratkematian',
+        'alamat_sebelumnya',
+        'keperluan',
         'ttd',
     ];
 
