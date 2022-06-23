@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CMS\ArsipSuratController;
 use App\Http\Controllers\CMS\CetakSuratController;
 use App\Http\Controllers\CMS\BarangController;
 use App\Http\Controllers\CMS\StaffController;
@@ -38,4 +39,12 @@ Route::prefix('barang')->group(function () {
     Route::get('/{id}', [BarangController::class, 'getBarangById']);
     Route::patch('/{id}', [BarangController::class, 'updateBarang']);
     Route::delete('/{id}', [BarangController::class, 'deleteBarang']);
+});
+
+Route::prefix('arsip_surat')->group(function () {
+    Route::get('/', [ArsipSuratController::class, 'getAllArsip'])->name('arsip.all');
+    Route::post('/', [ArsipSuratController::class, 'createArsip']);
+    Route::get('/{id}', [ArsipSuratController::class, 'getArsipById']);
+    Route::patch('/{id}', [ArsipSuratController::class, 'updateArsip']);
+    Route::delete('/{id}', [ArsipSuratController::class, 'deleteArsip']);
 });
