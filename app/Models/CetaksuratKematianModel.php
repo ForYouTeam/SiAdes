@@ -16,6 +16,5 @@ class CetaksuratKematianModel extends Model
         'menentukan',
         'sebab',
         'tempat',
-        'ttd',
     ];
 }

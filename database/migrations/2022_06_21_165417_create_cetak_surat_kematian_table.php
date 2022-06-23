@@ -15,7 +15,6 @@ class CreateCetakSuratKematianTable extends Migration
             $table->string('menentukan');
             $table->string('sebab');
             $table->string('tempat');
-            $table->string('ttd');
             $table->timestamps();
         });
     }

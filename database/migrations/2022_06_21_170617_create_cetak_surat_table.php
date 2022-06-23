@@ -12,9 +12,11 @@ class CreateCetakSuratTable extends Migration
             $table->id();
             $table->foreignId('id_penduduk')->constrained('penduduk');
             $table->string('jenis_surat');
-            $table->foreignId('nama_ayah')->constrained('penduduk')->nullable();
-            $table->foreignId('nama_ibu')->constrained('penduduk')->nullable();
-            $table->foreignId('id_ctksuratkematian')->constrained('cetak_surat_kematian')->nullable();
+            $table->foreignId('nama_ayah')->nullable()->constrained('penduduk');
+            $table->foreignId('nama_ibu')->nullable()->constrained('penduduk');
+            $table->foreignId('id_ctksuratkematian')->nullable()->constrained('cetak_surat_kematian');
+            $table->string('alamat_sebelumnya')->nullable();
+            $table->string('keperluan')->nullable();
             $table->string('ttd');
             $table->timestamps();
         });

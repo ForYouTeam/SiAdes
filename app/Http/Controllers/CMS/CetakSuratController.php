@@ -7,7 +7,9 @@ use App\Http\Requests\CetakSuratRequest;
 use App\Interfaces\CetakSuratKematianInterface;
 use App\Models\CetakSuratModel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CetakSuratController extends Controller
 {
@@ -19,7 +21,7 @@ class CetakSuratController extends Controller
     public function getAll()
     {
         try {
-            $dbResult = CetakSuratModel::with('pendudukRole')->get();
+            $dbResult = CetakSuratModel::with('pendudukRole:id,nama')->get();
             $surat = array(
                 'data' => $dbResult,
                 'message' => 'success'
@@ -45,28 +47,85 @@ class CetakSuratController extends Controller
         switch ($jenisSurat) {
             case 'Keterangan kurang Mampu':
             case 'Pengakuan Warga':
-
                 $cetakDetail['nama_ayah'] = $request->nama_ayah;
                 $cetakDetail['nama_ibu'] = $request->nama_ibu;
+
+                $validator = Validator::make($cetakDetail, [
+                    'nama_ayah' => 'required',
+                    'nama_ibu' => 'required',
+                ]);
                 break;
             case 'Domisili':
                 $cetakDetail['alamat_sebelumnya'] = $request->alamat_sebelumnya;
                 $cetakDetail['keperluan'] = $request->keperluan;
+
+                $validator = Validator::make($cetakDetail, [
+                    'alamat_sebelumnya' => 'required',
+                    'keperluan' => 'required',
+                ]);
                 break;
             case 'Surat Kematian':
-                $cetakDetail['tgl_kematian'] = $request->tgl_kematian;
-                $cetakDetail['tempat_kematian'] = $request->tempat_kematian;
-                $cetakDetail['menentukan'] = $request->menentukan;
-                $cetakDetail['sebab'] = $request->sebab;
-                $cetakDetail['tempat'] = $request->tempat;
-                $cetakDetail['ttd'] = $request->ttd;
+                $secondDetail = array(
+                    'tgl_kematian' => $request->tgl_kematian,
+                    'tempat_kematian' => $request->tempat_kematian,
+                    'menentukan' => $request->menentukan,
+                    'sebab' => $request->sebab,
+                    'tempat' => $request->tempat,
+                );
+                $cetakDetail['id_ctksuratkematian'] = $this->suratMati->createData($secondDetail);
+                $validator = Validator::make($secondDetail, [
+                    'tgl_kematian' => 'required',
+                    'tempat_kematian' => 'required',
+                    'menentukan' => 'required',
+                    'sebab' => 'required',
+                    'tempat' => 'required',
+                ]);
                 break;
             default:
-
+                $validator = null;
                 break;
         }
-        return response()->json($cetakDetail, 200);
 
+        if ($validator) {
+            if ($validator->fails()) {
+                throw new HttpResponseException(response()->json([
+                    'response' => array(
+                        'icon' => 'error',
+                        'title' => 'Validasi Gagal',
+                        'message' => 'Data yang di input tidak tervalidasi',
+                    ),
+                    'errors' => array(
+                        'length' => count($validator->errors()),
+                        'data' => $validator->errors()
+                    ),
+                ], 422));
+            }
+        }
+
+        try {
+            $dbResult = CetakSuratModel::create($cetakDetail);
+            $cetak = array(
+                'data' => $dbResult,
+                'response' => array(
+                    'icon' => 'success',
+                    'title' => 'Tersimpan',
+                    'message' => 'Data berhasil disimpan',
+                ),
+                'code' => 201
+            );
+        } catch (\Throwable $th) {
+            $cetak = array(
+                'data' => null,
+                'response' => array(
+                    'icon' => 'error',
+                    'title' => 'Gagal',
+                    'message' => $th->getMessage(),
+                ),
+                'code' => 500
+            );
+        }
+
+        return response()->json($cetak, $cetak['code']);
         $pdf = Pdf::loadView('Pdf.Domisili');
         return $pdf->stream();
     }

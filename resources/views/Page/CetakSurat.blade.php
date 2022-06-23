@@ -206,15 +206,12 @@
             let url = `{{ config('app.url') }}` + `/penduduk/all`;
             $.get(url, function(result) {
                 $.each(result, function(i, value) {
-                    $('.data-penduduk').html(`
-                    <option selected disabled>-Pilih-</option>
-                    `);
                     $('.data-penduduk').append(`
                         <option value="${value.id}" >${value.nama}</option>
                     `);
                 });
-                $('.data-penduduk').prop('disabled', false);
             })
+            $('.data-penduduk').prop('disabled', false);
         }
 
         $(document).ready(function() {
@@ -229,6 +226,9 @@
         $(document).on('change', '#jenisSurat', function() {
             let data = $(this).val();
             $('#formTambahan').html('');
+            $('.data-penduduk').html(`
+                <option selected disabled>-Pilih-</option>
+            `);
             $('#ttdRoom').html('');
             switch (data) {
                 case 'Keterangan kurang Mampu':
