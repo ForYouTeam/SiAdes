@@ -26,9 +26,9 @@
                             Akun</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('staff.all') }}">Data
                             Staff</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Data
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('penduduk.all') }}">Data
                             Penduduk</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Data
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('barang.all') }}">Data
                             Barang</a></li>
                 </ul>
             </div>
