@@ -18,6 +18,7 @@ Route::prefix('/staff')->group(function () {
     Route::delete('/{id}', [StaffController::class, 'deleteStaff']);
 });
 Route::prefix('penduduk')->group(function () {
+    Route::get('/all', [PendudukController::class, 'getAllData']);
     Route::get('/', [PendudukController::class, 'getAllPenduduk']);
     Route::post('/', [PendudukController::class, 'createPenduduk']);
     Route::get('/{id}', [PendudukController::class, 'getPendudukById']);
@@ -27,4 +28,5 @@ Route::prefix('penduduk')->group(function () {
 
 Route::prefix('cetak')->group(function () {
     Route::get('/', [CetakSuratController::class, 'getAll'])->name('cetak.all');
+    Route::post('/', [CetakSuratController::class, 'createCetak']);
 });

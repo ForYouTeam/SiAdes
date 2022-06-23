@@ -21,6 +21,12 @@ class PendudukController extends Controller
         return view('Page.Penduduk')->with('penduduk', $penduduk);
     }
 
+    public function getAllData()
+    {
+        $penduduk = PendudukModel::all();
+        return response()->json($penduduk, 200);
+    }
+
     public function createPenduduk(PendudukRequest $request)
     {
         try {
