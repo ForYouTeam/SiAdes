@@ -17,11 +17,12 @@ class CreateBarangTable extends Migration
             $table->id();
             $table->string('jenisBarang');
             $table->string('namaBarang');
-            $table->string('jumlahBarang');
-            $table->string('tahunPerolehan');
+            $table->integer('jumlahBarang');
+            $table->string('satuan');
+            $table->unsignedInteger('tahunPerolehan');
             $table->string('sumberAnggaran');
-            $table->string('hargaSatuan');
-            $table->string('hargatotal');
+            $table->integer('hargaSatuan');
+            $table->integer('hargatotal');
             $table->timestamps();
         });
     }
