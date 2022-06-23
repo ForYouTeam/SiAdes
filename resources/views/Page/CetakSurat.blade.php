@@ -62,20 +62,20 @@
                     <div class="tab-pane fade p-3" id="tabForm" role="tabpanel" aria-labelledby="tab-form">
                         <div class="card-body" style="margin: 70px 100px 50px 100px;">
                             <h4 class="card-title" style="margin-bottom: 30px;">Cetak Surat</h4>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <label>Nomor Surat</label>
-                                        <input name="no_surat" type="text"
-                                            class="form-control costume-outline form-control-sm" style="height: 30px;"
-                                            placeholder="Klik Disini">
-                                    </div>
-                                </div>
-                                <p class="text-danger miniAlert text-capitalize" id="alert-no_surat"></p>
-                            </div>
                             <hr>
                             <form id="formSimpan" class="forms-sample">
                                 @csrf
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Nomor Surat</label>
+                                            <input name="no_surat" type="text"
+                                                class="form-control costume-outline form-control-sm" style="height: 30px;"
+                                                placeholder="Klik Disini">
+                                            <p class="text-danger miniAlert text-capitalize" id="alert-no_surat"></p>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
@@ -137,6 +137,19 @@
                     </select>
                     <p class="text-danger miniAlert text-capitalize" id="alert-nama_ibu"></p>
                 </div>
+            </div>
+        `;
+
+        let domisili = `
+            <div class="form-group col-md-12">
+                <label>Alamat Sebelumnya</label>
+                <input name="alamat_sebelumnya" type="text" class="form-control form-control-sm costume-outline" placeholder="Klik Disini">
+                <p class="text-danger miniAlert text-capitalize" id="alert-alamat_sebelumnya"></p>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="">Keperluan</label>
+                <textarea name="keperluan" class="form-control costume-outline" id="" rows="7"></textarea>
+                <p class="text-danger miniAlert text-capitalize" id="alert-keperluan"></p>
             </div>
         `;
 
@@ -235,6 +248,14 @@
                         .hide()
                         .fadeIn(300));
                     break;
+                case 'Domisili':
+                    $('#formTambahan').append($(domisili)
+                        .hide()
+                        .fadeIn(300));
+                    $('#ttdRoom').append($(ttd)
+                        .hide()
+                        .fadeIn(300));
+                    break;
                 default:
                     $('#ttdRoom').append($(ttd)
                         .hide()
@@ -276,6 +297,7 @@
                     });
                     if (errorRes.length >= 1) {
                         $('.miniAlert').html('');
+                        $('#alert-no_surat').html(errorRes.data.no_surat);
                         $('#alert-ttd').html(errorRes.data.ttd);
                         $('#alert-no_surat').html(errorRes.data.no_surat);
                         $('#alert-jenis_surat').html(errorRes.data.jenis_surat);
@@ -293,6 +315,10 @@
                                 $('#alert-sebab').html(errorRes.data.sebab);
                                 $('#alert-tempat').html(errorRes.data.tempat);
                                 break;
+                            case 'Domisili':
+                                $('#alert-alamat_sebelumnya').html(errorRes.data.alamat_sebelumnya);
+                                $('#alert-keperluan').html(errorRes.data.keperluan);
+                                break
                             default:
 
                                 break;

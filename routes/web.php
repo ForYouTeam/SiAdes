@@ -20,6 +20,7 @@ Route::prefix('/staff')->group(function () {
 });
 Route::prefix('penduduk')->group(function () {
     Route::get('/', [PendudukController::class, 'getAllPenduduk'])->name('penduduk.all');
+    Route::get('/all', [PendudukController::class, 'getAllData']);
     Route::post('/', [PendudukController::class, 'createPenduduk']);
     Route::get('/{id}', [PendudukController::class, 'getPendudukById']);
     Route::patch('/{id}', [PendudukController::class, 'updatePenduduk']);
