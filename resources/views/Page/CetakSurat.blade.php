@@ -186,7 +186,7 @@
                 <label for="">Yang Bertanda Tangan</label>
                 <div class="row">
                     <div class="col-sm-10">
-                        <select id="ttd" class="form-control costume-outline form-control-sm"
+                        <select name="ttd" id="ttd" class="form-control costume-outline form-control-sm"
                             id="">
                             <option selected disabled>-Pilih-</option>
                             <option value="Kepala Desa">Kepala Desa</option>
