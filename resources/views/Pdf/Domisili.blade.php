@@ -25,6 +25,10 @@
             padding-bottom: 80px;
         }
 
+        #halaman #gambar {
+            margin-top: -80px;
+        }
+
         #halaman .kop {
             text-align: center;
             margin-top: -30px;
@@ -34,7 +38,7 @@
             text-align: center;
         }
 
-        #halaman .isi {
+        #halaman .isi p{
             margin-top: 20px;
             text-align: justify;
         }
@@ -78,53 +82,52 @@
                 <tr>
                     <td style="width: 30%;">Tempat lahir</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['tmpLahir'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Tanggal lahir</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['tglLahir'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">NIK</td>
                     <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['nik'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Jenis Kelamin</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['jk'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Agama</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['agama'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Pekerjaan</td>
                     <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['pekerjaan'] }}</td>
                 </tr>
                 <tr>
-                    <td style="width: 30%;">Status Perkawinan</td>
+                    <td style="width: 30%;">Status Keluarga</td>
                     <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['statKeluarga'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%; vertical-align: top;">Alamat</td>
                     <td style="width: 5%; vertical-align: top;">:</td>
-                    <td style="width: 65%;">Kampung Sambak RT 01 RW 09 Kelurahan Danyang
-                        Kecamatan Purwodadi Kabupaten Grobogan</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['alamat'] }}</td>
                 </tr>
             </table>
 
-            <p>Yang tersebut namanya diatas adalah benar warga desa ......., Kecamatan ....... Kabupaten dan yang
-                bersangkutan bersangkutan saat ini berdomisili di Dusun ....... RT ...., Desa Taripa, Kec. Angkona Kab.
-                Luwu Timur, Provinsi Sulawesi Selatan sejak bulan ...... 2021 sampai sekarang <br> Demikian surat
-                keterangan ini dibuat sebagai ....................</p>
+            <p>Yang tersebut namanya diatas adalah benar warga desa {{ $data['alamat_sebelumnya'] }} dan yang
+                bersangkutan bersangkutan saat ini berdomisili di Desa Taripa, Kec. Angkona Kab.
+                Luwu Timur, Provinsi Sulawesi Selatan. <br> Demikian surat
+                keterangan ini dibuat sebagai Persyaratan untuk {{ $data['keperluan'] }}</p>
         </div>
-        <div class="ttd">Taripa, 22 Juni 2022</div><br>
-        <div class="ttd">Kepala Desa,</div><br><br><br><br>
+        <div class="ttd">Taripa, {{ $data['created_at'] }}</div><br><br>
+        <div class="ttd">{{ $data['ttd'] }},</div><br><br><br><br>
         <div class="ttd"><u>husnul Maniah</u></div>
 
     </div>
