@@ -11,6 +11,7 @@ class CetakSuratModel extends Model
     protected $table = "cetak_surat";
     protected $fillable = [
         'id',
+        'no_surat',
         'id_penduduk',
         'jenis_surat',
         'nama_ayah',
