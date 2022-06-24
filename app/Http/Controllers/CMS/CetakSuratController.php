@@ -109,7 +109,7 @@ class CetakSuratController extends Controller
                 'response' => array(
                     'icon' => 'success',
                     'title' => 'Tersimpan',
-                    'message' => 'Data berhasil disimpan',
+                    'message' => 'Tekan Ok Untuk Mendownload Surat',
                 ),
                 'code' => 201
             );
@@ -126,7 +126,74 @@ class CetakSuratController extends Controller
         }
 
         return response()->json($cetak, $cetak['code']);
-        $pdf = Pdf::loadView('Pdf.Domisili');
-        return $pdf->stream();
+    }
+
+    public function export($id)
+    {
+        $allData = CetakSuratModel::whereId($id)->with('pendudukRole', 'cetaksuratKematianRole')->first();
+        $allData['path'] = public_path('logoLuwuTimur.png');
+
+        switch ($allData['jenis_surat']) {
+            case 'Domisili':
+                $path = 'Pdf.Domisili';
+                break;
+            case 'Keterangan kurang Mampu':
+                $path = 'Pdf.SuratMiskin';
+                break;
+            case 'Pengakuan Warga':
+                $path = 'Pdf.SuratPengakuanWarga';
+                break;
+            case 'Surat Kematian':
+                $path = 'Pdf.SuratMati';
+                break;
+            default:
+                $path = 'Pdf.SuratSkck';
+                break;
+        }
+        $pdf = Pdf::loadView($path, ['data' => $allData]);
+        return $pdf->download('Surat ' . $allData['pendudukRole']['nama'] . '.pdf');
+    }
+
+    public function deleteStaff($id)
+    {
+        try {
+            $dbConnect = CetakSuratModel::whereId($id);
+            $findId = $dbConnect->first();
+            if ($findId) {
+                $staff = array(
+                    'data' => $dbConnect->delete(),
+                    'response' => array(
+                        'icon' => 'success',
+                        'title' => 'Terhapus',
+                        'message' => 'Data berhasil dihapus',
+                    ),
+                    'code' => 201
+                );
+                if ($findId->jenis_surat) {
+                    $this->suratMati->deleteData($findId->id_ctksuratkematian);
+                }
+            } else {
+                $staff = array(
+                    'data' => null,
+                    'response' => array(
+                        'icon' => 'warning',
+                        'title' => 'Not Found',
+                        'message' => 'Data tidak tersedia',
+                    ),
+                    'code' => 404
+                );
+            }
+        } catch (\Throwable $th) {
+            $staff = array(
+                'data' => null,
+                'response' => array(
+                    'icon' => 'error',
+                    'title' => 'Gagal',
+                    'message' => $th->getMessage(),
+                ),
+                'code' => 500
+            );
+        }
+        return response()->json($staff, $staff['code']);
     }
 }

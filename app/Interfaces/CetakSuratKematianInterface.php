@@ -8,4 +8,5 @@ use Illuminate\Http\Request;
 interface CetakSuratKematianInterface
 {
     public function createData(array $newDetails);
+    public function deleteData($id);
 }

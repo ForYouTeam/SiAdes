@@ -37,7 +37,7 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach ($data['data'] as $d)
+                                    @foreach ($staff['data'] as $d)
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $d->nama }}</td>

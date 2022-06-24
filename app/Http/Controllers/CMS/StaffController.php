@@ -23,8 +23,7 @@ class StaffController extends Controller
                 'message' => $th->getMessage()
             );
         }
-
-        return view('Page.Staff')->with('data', $staff);
+        return view('Page.Staff')->with('staff', $staff);
     }
 
     public function createStaff(StaffRequest $request)

@@ -19,10 +19,18 @@
             width: auto;
             height: auto;
             position: absolute;
+            border: 1px solid;
             padding-top: 30px;
             padding-left: 30px;
-            padding-right: 40px;
+            padding-right: 30px;
             padding-bottom: 80px;
+        }
+
+        #halaman #gambar img {
+            width: 80px;
+            margin-left: 17%;
+            margin-top: -90px;
+
         }
 
         #halaman .kop {
@@ -40,9 +48,26 @@
         }
 
         #halaman .ttd {
-            width: 50%;
+            width: 100%;
+            text-align: center;
+        }
+
+        #halaman .ttd1 {
+            width: 48%;
+            text-align: center;
+            float: left;
+        }
+
+        #halaman .ttd2 {
+            width: 49%;
             text-align: center;
             float: right;
+        }
+
+        #halaman .ttd3 {
+            width: 49%;
+            text-align: center;
+            margin-left: 25%;
         }
 
         table {
@@ -56,14 +81,14 @@
     <div id=halaman>
         <h3 id=judul>PEMERINTAH KABUPATEN LUWU TIMUR <br> KECAMATAN ANGKONA <br> DESA TARIPA</h3>
         <div id="gambar">
-            <img src="{{ $data['path'] }}" alt="" width="80">
+            <img src="{{ $data['path'] }}" alt="">
         </div>
         <p class="kop">Alamat : Lr. 09, Jl. Poros Desa Taripa, Kode Pos 92985</p>
         <hr>
         <hr>
         <div class="nama">
-            <h3><u>SURAT DOMISILI</u></h3>
-            <p style="margin-top: -15px;">Nomor : 470/_____ / DT-KA</p>
+            <h3><u>SURAT PERNYATAAN PENGAKUAN WARGA</u></h3>
+            <p style="margin-top: -15px;">Nomor : 291/_____ / DT-KA</p>
         </div>
         <div class="isi">
             <p>Yang bertanda tangan di bawah ini Kepala Desa Taripa Kec. Angkona Kab. Luwu Timur menerangkan dengan
@@ -73,7 +98,7 @@
                 <tr>
                     <td style="width: 30%;">Nama</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['nama'] }}</td>
+                    <td style="width: 65%;">Arbrian Abdul Jamal</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Tempat lahir</td>
@@ -101,31 +126,43 @@
                     <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
                 </tr>
                 <tr>
-                    <td style="width: 30%;">Pekerjaan</td>
-                    <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
-                </tr>
-                <tr>
-                    <td style="width: 30%;">Status Perkawinan</td>
-                    <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
-                </tr>
-                <tr>
                     <td style="width: 30%; vertical-align: top;">Alamat</td>
                     <td style="width: 5%; vertical-align: top;">:</td>
                     <td style="width: 65%;">Kampung Sambak RT 01 RW 09 Kelurahan Danyang
                         Kecamatan Purwodadi Kabupaten Grobogan</td>
                 </tr>
+                <tr>
+                    <td style="width: 30%;">nama Ayah</td>
+                    <td style="width: 5px;">:</td>
+                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%;">nama Ibu</td>
+                    <td style="width: 5px;">:</td>
+                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                </tr>
             </table>
 
-            <p>Yang tersebut namanya diatas adalah benar warga desa ......., Kecamatan ....... Kabupaten dan yang
-                bersangkutan bersangkutan saat ini berdomisili di Dusun ....... RT ...., Desa Taripa, Kec. Angkona Kab.
-                Luwu Timur, Provinsi Sulawesi Selatan sejak bulan ...... 2021 sampai sekarang <br> Demikian surat
-                keterangan ini dibuat sebagai ....................</p>
+            <p>Yang tersebut namanya diatas adalah benar warga kami berdomisili di Dusun ....... RT ...., Desa Taripa,
+                Kec. Angkona Kab. Luwu Timur. <br> Demikian surat pernyataan ini kami buat dengan sebenarnya, apabila
+                keterangan tersebut di atas tidak sesuai dengan keadaan sebenarnya kami bersedia dikenakan sanksi sesuai
+                peraturan yang berlaku</p>
         </div>
-        <div class="ttd">Taripa, 22 Juni 2022</div><br>
-        <div class="ttd">Kepala Desa,</div><br><br><br><br>
-        <div class="ttd"><u>husnul Maniah</u></div>
+        <div class="ttd">
+            <div class="ttd1">
+                <p>Taripa, 22 Juni 2022</p>
+                <p>Kepala Dusun,</p><br>
+                <p><u>husnul Maniah</u></p>
+            </div>
+            <div class="ttd2">
+                <p>Taripa, 22 Juni 2022</p>
+                <p>Ketua RT,</p><br>
+                <p><u>husnul Maniah</u></p>
+            </div>
+        </div>
+        <div class="ttd3">Taripa, 22 Juni 2022</div><br>
+        <div class="ttd3">Kepala Desa,</div><br><br><br><br>
+        <div class="ttd3"><u>husnul Maniah</u></div>
 
     </div>
 </body>

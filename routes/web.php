@@ -31,6 +31,7 @@ Route::prefix('penduduk')->group(function () {
 Route::prefix('cetak')->group(function () {
     Route::get('/', [CetakSuratController::class, 'getAll'])->name('cetak.all');
     Route::post('/', [CetakSuratController::class, 'createCetak']);
+    Route::delete('/{id}', [CetakSuratController::class, 'deleteStaff']);
 });
 
 Route::prefix('barang')->group(function () {
@@ -48,3 +49,5 @@ Route::prefix('arsip_surat')->group(function () {
     Route::patch('/{id}', [ArsipSuratController::class, 'updateArsip']);
     Route::delete('/{id}', [ArsipSuratController::class, 'deleteArsip']);
 });
+
+Route::get('/exportPdf/{id}', [CetakSuratController::class, 'export']);
