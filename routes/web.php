@@ -31,6 +31,7 @@ Route::prefix('penduduk')->group(function () {
 Route::prefix('cetak')->group(function () {
     Route::get('/', [CetakSuratController::class, 'getAll'])->name('cetak.all');
     Route::post('/', [CetakSuratController::class, 'createCetak']);
+    Route::delete('/{id}', [CetakSuratController::class, 'deleteStaff']);
 });
 
 Route::prefix('barang')->group(function () {

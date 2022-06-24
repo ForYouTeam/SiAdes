@@ -153,4 +153,47 @@ class CetakSuratController extends Controller
         $pdf = Pdf::loadView($path, ['data' => $allData]);
         return $pdf->download('Surat ' . $allData['pendudukRole']['nama'] . '.pdf');
     }
+
+    public function deleteStaff($id)
+    {
+        try {
+            $dbConnect = CetakSuratModel::whereId($id);
+            $findId = $dbConnect->first();
+            if ($findId) {
+                $staff = array(
+                    'data' => $dbConnect->delete(),
+                    'response' => array(
+                        'icon' => 'success',
+                        'title' => 'Terhapus',
+                        'message' => 'Data berhasil dihapus',
+                    ),
+                    'code' => 201
+                );
+                if ($findId->jenis_surat) {
+                    $this->suratMati->deleteData($findId->id_ctksuratkematian);
+                }
+            } else {
+                $staff = array(
+                    'data' => null,
+                    'response' => array(
+                        'icon' => 'warning',
+                        'title' => 'Not Found',
+                        'message' => 'Data tidak tersedia',
+                    ),
+                    'code' => 404
+                );
+            }
+        } catch (\Throwable $th) {
+            $staff = array(
+                'data' => null,
+                'response' => array(
+                    'icon' => 'error',
+                    'title' => 'Gagal',
+                    'message' => $th->getMessage(),
+                ),
+                'code' => 500
+            );
+        }
+        return response()->json($staff, $staff['code']);
+    }
 }

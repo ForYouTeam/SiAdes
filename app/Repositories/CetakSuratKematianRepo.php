@@ -20,4 +20,9 @@ class CetakSuratKematianRepo implements CetakSuratKematianInterface
 
         return $result;
     }
+
+    public function deleteData($id)
+    {
+        $staff = CetaksuratKematianModel::whereId($id)->delete();
+    }
 }
