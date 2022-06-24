@@ -15,24 +15,24 @@ class UserSeeder extends Seeder
     {
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        Permission::create(['name' => 'read data']);
-        Permission::create(['name' => 'create data']);
-        Permission::create(['name' => 'update data']);
-        Permission::create(['name' => 'delete data']);
+        Permission::create(['name' => 'read-data']);
+        Permission::create(['name' => 'create-data']);
+        Permission::create(['name' => 'update-data']);
+        Permission::create(['name' => 'delete-data']);
 
         $roleSuAdmin = Role::create(['name' => 'super-admin']);
-        $roleSuAdmin->givePermissionTo('read data');
-        $roleSuAdmin->givePermissionTo('create data');
-        $roleSuAdmin->givePermissionTo('update data');
-        $roleSuAdmin->givePermissionTo('delete data');
+        $roleSuAdmin->givePermissionTo('read-data');
+        $roleSuAdmin->givePermissionTo('create-data');
+        $roleSuAdmin->givePermissionTo('update-data');
+        $roleSuAdmin->givePermissionTo('delete-data');
 
         $roleAdmin = Role::create(['name' => 'admin']);
-        $roleAdmin->givePermissionTo('read data');
-        $roleAdmin->givePermissionTo('create data');
-        $roleAdmin->givePermissionTo('update data');
+        $roleAdmin->givePermissionTo('read-data');
+        $roleAdmin->givePermissionTo('create-data');
+        $roleAdmin->givePermissionTo('update-data');
 
         $roleKades = Role::create(['name' => 'kades']);
-        $roleKades->givePermissionTo('read data');
+        $roleKades->givePermissionTo('read-data');
 
         $data = array(
             [

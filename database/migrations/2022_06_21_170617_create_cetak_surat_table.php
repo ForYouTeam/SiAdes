@@ -10,6 +10,7 @@ class CreateCetakSuratTable extends Migration
     {
         Schema::create('cetak_surat', function (Blueprint $table) {
             $table->id();
+            $table->string('no_surat');
             $table->foreignId('id_penduduk')->constrained('penduduk');
             $table->string('jenis_surat');
             $table->foreignId('nama_ayah')->nullable()->constrained('penduduk');
