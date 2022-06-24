@@ -30,6 +30,8 @@
                             Penduduk</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('barang.all') }}">Data
                             Barang</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('tanda_tangan.all') }}">Data
+                            Tanda Tangan</a></li>
                 </ul>
             </div>
         </li>
