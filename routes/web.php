@@ -48,3 +48,5 @@ Route::prefix('arsip_surat')->group(function () {
     Route::patch('/{id}', [ArsipSuratController::class, 'updateArsip']);
     Route::delete('/{id}', [ArsipSuratController::class, 'deleteArsip']);
 });
+
+Route::get('/exportPdf/{id}', [CetakSuratController::class, 'export']);

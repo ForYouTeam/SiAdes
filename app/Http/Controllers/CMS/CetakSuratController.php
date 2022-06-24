@@ -109,7 +109,7 @@ class CetakSuratController extends Controller
                 'response' => array(
                     'icon' => 'success',
                     'title' => 'Tersimpan',
-                    'message' => 'Data berhasil disimpan',
+                    'message' => 'Tekan Ok Untuk Mendownload Surat',
                 ),
                 'code' => 201
             );
@@ -126,7 +126,31 @@ class CetakSuratController extends Controller
         }
 
         return response()->json($cetak, $cetak['code']);
-        $pdf = Pdf::loadView('Pdf.Domisili');
-        return $pdf->stream();
+    }
+
+    public function export($id)
+    {
+        $allData = CetakSuratModel::whereId($id)->with('pendudukRole', 'cetaksuratKematianRole')->first();
+        $allData['path'] = public_path('logoLuwuTimur.png');
+
+        switch ($allData['jenis_surat']) {
+            case 'Domisili':
+                $path = 'Pdf.Domisili';
+                break;
+            case 'Keterangan kurang Mampu':
+                $path = 'Pdf.SuratMiskin';
+                break;
+            case 'Pengakuan Warga':
+                $path = 'Pdf.SuratPengakuanWarga';
+                break;
+            case 'Surat Kematian':
+                $path = 'Pdf.SuratMati';
+                break;
+            default:
+                $path = 'Pdf.SuratSkck';
+                break;
+        }
+        $pdf = Pdf::loadView($path, ['data' => $allData]);
+        return $pdf->download('Surat ' . $allData['pendudukRole']['nama'] . '.pdf');
     }
 }

@@ -275,20 +275,20 @@
                 method: "POST",
                 data: data,
                 success: function(result) {
-                    console.log(result);
                     Swal.fire({
                         title: result.response.title,
                         text: result.response.message,
                         icon: result.response.icon,
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Oke'
-                    }).then((result) => {
+                    }).then((res) => {
+                        window.open(`{{ config('app.url') }}/exportPdf/` + result.data.id,
+                            "_blank");
                         location.reload();
                     });
                 },
                 error: function(result) {
                     let data = result.responseJSON
-                    console.log(data);
                     let errorRes = data.errors
                     Swal.fire({
                         icon: data.response.icon,
