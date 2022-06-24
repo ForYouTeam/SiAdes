@@ -24,12 +24,16 @@
             padding-left: 30px;
             padding-right: 30px;
             padding-bottom: 80px;
+            font-size: 12pt;
+        }
+
+        #halaman #gambar {
+            margin-top: -80px;
         }
 
         #halaman #gambar img {
             width: 80px;
-            margin-left: 17%;
-            margin-top: -90px;
+            margin-top: -5px;
 
         }
 
@@ -40,6 +44,7 @@
 
         #halaman .kopTanggal {
             float: right;
+            font-size: 12pt;
         }
 
         #halaman .nama {
@@ -48,7 +53,7 @@
         }
 
         #halaman .isi {
-            margin-top: 20px;
+            margin-top: 15px;
             text-align: justify;
         }
 
@@ -75,7 +80,7 @@
         <hr>
         <hr>
         <div class="kopTanggal">
-            <p>Taripa , 26 Juni 2022</p>
+            <p>Taripa , {{ $data['created_at'] }}</p>
             <p>Kepada</p>
             <p class="yth">Yth, Kapolres Luwu Timur</p>
             <p>di-</p>
@@ -93,48 +98,42 @@
                 <tr>
                     <td style="width: 30%;">Nama</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Arbrian Abdul Jamal</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['nama'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Tempat lahir</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['tmpLahir'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Tanggal lahir</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['tglLahir'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">NIK</td>
                     <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['nik'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Jenis Kelamin</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['jk'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Agama</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['agama'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Pekerjaan</td>
                     <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
-                </tr>
-                <tr>
-                    <td style="width: 30%;">Status Perkawinan</td>
-                    <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['pekerjaan'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%; vertical-align: top;">Alamat</td>
                     <td style="width: 5%; vertical-align: top;">:</td>
-                    <td style="width: 65%;">Kampung Sambak RT 01 RW 09 Kelurahan Danyang
-                        Kecamatan Purwodadi Kabupaten Grobogan</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['alamat'] }}</td>
                 </tr>
             </table>
 
@@ -148,7 +147,7 @@
             </p>
         </div>
 
-        <div class="ttd">Kepala Desa,</div><br><br><br><br>
+        <div class="ttd">{{ $data['ttd'] }},</div><br><br><br><br>
         <div class="ttd"><u>husnul Maniah</u></div>
 
     </div>
