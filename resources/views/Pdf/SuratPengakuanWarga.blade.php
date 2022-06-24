@@ -28,7 +28,6 @@
 
         #halaman #gambar img {
             width: 80px;
-            margin-left: 17%;
             margin-top: -90px;
 
         }
@@ -98,70 +97,69 @@
                 <tr>
                     <td style="width: 30%;">Nama</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Arbrian Abdul Jamal</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['nama'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Tempat lahir</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['tmpLahir'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Tanggal lahir</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['tglLahir'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">NIK</td>
                     <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['nik'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Jenis Kelamin</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['jk'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Agama</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['agama'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%; vertical-align: top;">Alamat</td>
                     <td style="width: 5%; vertical-align: top;">:</td>
-                    <td style="width: 65%;">Kampung Sambak RT 01 RW 09 Kelurahan Danyang
-                        Kecamatan Purwodadi Kabupaten Grobogan</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['alamat'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">nama Ayah</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['nama'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">nama Ibu</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['nama'] }}</td>
                 </tr>
             </table>
 
-            <p>Yang tersebut namanya diatas adalah benar warga kami berdomisili di Dusun ....... RT ...., Desa Taripa,
+            <p>Yang tersebut namanya diatas adalah benar warga kami berdomisili di Desa Taripa,
                 Kec. Angkona Kab. Luwu Timur. <br> Demikian surat pernyataan ini kami buat dengan sebenarnya, apabila
                 keterangan tersebut di atas tidak sesuai dengan keadaan sebenarnya kami bersedia dikenakan sanksi sesuai
                 peraturan yang berlaku</p>
         </div>
         <div class="ttd">
             <div class="ttd1">
-                <p>Taripa, 22 Juni 2022</p>
+                <p></p>
                 <p>Kepala Dusun,</p><br>
                 <p><u>husnul Maniah</u></p>
             </div>
             <div class="ttd2">
-                <p>Taripa, 22 Juni 2022</p>
+                <p>Taripa, {{ $data['created_at'] }}</p>
                 <p>Ketua RT,</p><br>
                 <p><u>husnul Maniah</u></p>
             </div>
         </div>
-        <div class="ttd3">Taripa, 22 Juni 2022</div><br>
-        <div class="ttd3">Kepala Desa,</div><br><br><br><br>
+        <div class="ttd3"></div><br>
+        <div class="ttd3">{{ $data['ttd'] }},</div><br><br><br><br>
         <div class="ttd3"><u>husnul Maniah</u></div>
 
     </div>

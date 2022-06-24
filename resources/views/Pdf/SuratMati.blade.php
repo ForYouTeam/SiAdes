@@ -28,7 +28,6 @@
 
         #halaman #gambar img {
             width: 80px;
-            margin-left: 17%;
             margin-top: -90px;
 
         }
@@ -81,48 +80,42 @@
                 <tr>
                     <td style="width: 30%;">Nama</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Arbrian Abdul Jamal</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['nama'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Tempat lahir</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['tmpLahir'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Tanggal lahir</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['tglLahir'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Jenis Kelamin</td>
                     <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['jk'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Kewarganegaraan</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">Indonesia</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Agama</td>
                     <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
-                </tr>
-                <tr>
-                    <td style="width: 30%;">Status Perkawinan</td>
-                    <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['agama'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Pekerjaan</td>
                     <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['pekerjaan'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%; vertical-align: top;">Alamat</td>
                     <td style="width: 5%; vertical-align: top;">:</td>
-                    <td style="width: 65%;">Kampung Sambak RT 01 RW 09 Kelurahan Danyang
-                        Kecamatan Purwodadi Kabupaten Grobogan</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['Alamat'] }}</td>
                 </tr>
             </table>
             <p>Berdasarkan atas keterangan dari ahli waris bahwa yang tersebut namanya diatas telah meninggal pada :</p>
@@ -130,38 +123,38 @@
                 <tr>
                     <td style="width: 30%;">Hari/tanggal</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Arbrian Abdul Jamal</td>
+                    <td style="width: 65%;">{{ $data['cetaksuratKematianRole']['tgl_kematian'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Jam</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['cetaksuratKematianRole']['tgl_kematian'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Tempat Kematian</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['cetaksuratKematianRole']['tempat_kematian'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Sebab Kematian</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['cetaksuratKematianRole']['sebab'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Yang Menentukan</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['cetaksuratKematianRole']['menentukan'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Tempat Pemakaman</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">Grobogan, 3 Maret 1993</td>
+                    <td style="width: 65%;">{{ $data['cetaksuratKematianRole']['tempat'] }}</td>
                 </tr>
             </table>
             <p>Demikian surat keterangan kematian ini dibuat agar dapat digunakan sebagaimana mestinya.</p>
         </div>
-        <div class="ttd">Taripa, 22 Juni 2022</div><br>
-        <div class="ttd">Kepala Desa,</div><br><br><br><br>
+        <div class="ttd">Taripa, {{ $data['created_at'] }}</div><br><br>
+        <div class="ttd">{{ $data['ttd'] }},</div><br><br><br><br>
         <div class="ttd"><u>husnul Maniah</u></div>
 
     </div>
