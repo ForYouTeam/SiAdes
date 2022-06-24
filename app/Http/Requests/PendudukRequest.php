@@ -28,7 +28,6 @@ class PendudukRequest extends FormRequest
             'pekerjaan' => 'required',
             'alamat' => 'required',
             'suku' => 'required',
-            'hidup' => 'required',
             'ket' => 'required',
         ];
         
