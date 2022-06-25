@@ -24,7 +24,15 @@ class AkunController extends Controller
     public function createAkun(AkunRequest $request)
     {
         try {
-            $dbResult = User::create($request->all());
+            $user = $request->only([
+                'nama',
+                'username',
+                'password'
+            ]);
+            $role = $request->role;
+            $dbResult = User::create($user);
+            $dbResult->asignRole($role);
+
             $akun = array(
                 'data' => $dbResult,
                 'response' => array(

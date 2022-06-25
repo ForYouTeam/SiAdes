@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class AkunRequest extends FormRequest
 {
@@ -16,7 +18,22 @@ class AkunRequest extends FormRequest
         return [
             'nama' => 'required',
             'username' => 'required|min:5|max:10',
-            'password' => 'required|min:5',
+            'password' => 'required|min:5|confirmed',
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'response' => array(
+                'icon' => 'error',
+                'title' => 'Validasi Gagal',
+                'message' => 'Data yang di input tidak tervalidasi',
+            ),
+            'errors' => array(
+                'length' => count($validator->errors()),
+                'data' => $validator->errors()
+            ),
+        ], 422));
     }
 }

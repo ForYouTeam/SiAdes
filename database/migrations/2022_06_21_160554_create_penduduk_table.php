@@ -22,7 +22,7 @@ class CreatePendudukTable extends Migration
             $table->string('pekerjaan');
             $table->string('alamat');
             $table->string('suku');
-            $table->tinyInteger('hidup')->default('1');
+            $table->boolean('hidup')->default(true);
             $table->string('ket');
             $table->timestamps();
         });
