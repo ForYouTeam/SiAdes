@@ -53,7 +53,7 @@
                         <li class="nav-item nav-profile dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                                 id="profileDropdown">
-                                <span class="nav-profile-name">{{ Auth::name }}</span>
+                                <span class="nav-profile-name">{{ Auth::user()->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                                 aria-labelledby="profileDropdown">
