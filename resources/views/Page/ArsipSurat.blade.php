@@ -257,7 +257,6 @@
                 contentType: false,
                 processData: false,
                 success: function(result) {
-                    console.log(result);
                     Swal.fire({
                         title: result.response.title,
                         text: result.response.message,

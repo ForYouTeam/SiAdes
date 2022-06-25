@@ -182,7 +182,6 @@
                 method: "POST",
                 data: data,
                 success: function(result) {
-                    console.log(result);
                     Swal.fire({
                         title: result.response.title,
                         text: result.response.message,
@@ -195,7 +194,7 @@
                 },
                 error: function(result) {
                     let data = result.responseJSON
-                    console.log(data);
+
                     let errorRes = data.errors
                     Swal.fire({
                         icon: data.response.icon,
@@ -223,7 +222,7 @@
 
             $.get(url, function(result) {
                 let data = result.data;
-                console.log(data);
+
                 $('#modal-univ').modal('show');
                 $('.modal-title').html('Perubahan Data');
                 $('#form-univ').html('');
@@ -312,7 +311,6 @@
                 method: "PATCH",
                 data: data,
                 success: function(result) {
-                    console.log(result);
                     Swal.fire({
                         title: result.response.title,
                         text: result.response.message,
@@ -325,7 +323,7 @@
                 },
                 error: function(result) {
                     let data = result.responseJSON
-                    console.log(data);
+
                     let errorRes = data.errors
                     Swal.fire({
                         icon: data.response.icon,
