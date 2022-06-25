@@ -7,6 +7,7 @@ use App\Http\Requests\AkunRequest;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AkunController extends Controller
 {
@@ -30,6 +31,7 @@ class AkunController extends Controller
                 'password'
             ]);
             $role = $request->role;
+            $user['password'] = Hash::make($request->password);
             $dbResult = User::create($user);
             $dbResult->assignRole($role);
 
