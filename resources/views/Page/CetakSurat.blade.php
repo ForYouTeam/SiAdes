@@ -42,7 +42,7 @@
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $d->pendudukRole->nama }}</td>
                                             <td>{{ $d->jenis_surat }}</td>
-                                            <td>{{ $d->ttd }}</td>
+                                            <td>{{ $d->ttdRole->nama }}</td>
                                             <td>
                                                 <a href="{{ route('export.pdf', $d->id) }}" type="button" target="_blank"
                                                     class="btn btn-sm btn-rounded btn-info ml-2">

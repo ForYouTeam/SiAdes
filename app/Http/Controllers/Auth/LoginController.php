@@ -16,6 +16,7 @@ class LoginController extends Controller
         return view('Auth.Login');
     }
 
+
     public function process(Request $request)
     {
         $credentials = $request->validate([

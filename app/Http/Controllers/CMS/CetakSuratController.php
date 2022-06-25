@@ -22,7 +22,7 @@ class CetakSuratController extends Controller
     public function getAll()
     {
         try {
-            $dbResult = CetakSuratModel::with('pendudukRole', 'ayahRole', 'ibuRole')->get();
+            $dbResult = CetakSuratModel::with('pendudukRole', 'ttdRole', 'ayahRole', 'ibuRole')->get();
             $surat = array(
                 'data' => $dbResult,
                 'message' => 'success'
@@ -133,7 +133,7 @@ class CetakSuratController extends Controller
     {
         $allData = CetakSuratModel::whereId($id)->with('pendudukRole', 'cetaksuratKematianRole', 'ttdRole:id,nama,jabatan', 'ayahRole', 'ibuRole')->first();
 
-        $allData['path'] = public_path('logoLuwuTimur.png');
+        $allData['path'] = env('APP_URL') . '/logoLuwuTimur.png';
         $allData['dateNow'] = Carbon::now()->isoFormat('D MMMM Y');
 
         switch ($allData['jenis_surat']) {
