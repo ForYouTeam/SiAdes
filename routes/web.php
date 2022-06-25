@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CMS\ArsipSuratController;
 use App\Http\Controllers\CMS\CetakSuratController;
 use App\Http\Controllers\CMS\BarangController;
+use App\Http\Controllers\CMS\DashboardController;
 use App\Http\Controllers\CMS\StaffController;
 use App\Http\Controllers\CMS\PendudukController;
 use App\Http\Controllers\CMS\TandaTanganController;
@@ -17,9 +18,7 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'role:super-admin|admin|kades'])->group(function () {
-    Route::get('/', function () {
-        return view('example');
-    });
+    Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::middleware(['auth', 'role:super-admin|kades'])->group(function () {
