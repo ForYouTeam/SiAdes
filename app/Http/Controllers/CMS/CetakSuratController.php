@@ -22,7 +22,7 @@ class CetakSuratController extends Controller
     public function getAll()
     {
         try {
-            $dbResult = CetakSuratModel::with('pendudukRole', 'ayahRole', 'ibuRole')->get();
+            $dbResult = CetakSuratModel::with('pendudukRole', 'ttdRole', 'ayahRole', 'ibuRole')->get();
             $surat = array(
                 'data' => $dbResult,
                 'message' => 'success'
