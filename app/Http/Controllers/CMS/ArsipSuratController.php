@@ -63,7 +63,7 @@ class ArsipSuratController extends Controller
         try {
             $dbResult = ArsipSuratModel::whereId($arsip_id);
             $findId = $dbResult->first();
-            File::delete(env('APP_URL') . '/storage/format_file/' . $findId->value('format_file'));
+            File::delete(public_path('storage/format_file/' . $findId->value('format_file')));
             if ($findId) {
                 $arsip = array(
                     'data' => $dbResult->delete(),
