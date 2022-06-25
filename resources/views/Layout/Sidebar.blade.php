@@ -5,7 +5,7 @@
             <span></span>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="../../index.html">
+            <a class="nav-link" href="#">
                 <i class="mdi mdi-view-quilt menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
@@ -22,16 +22,21 @@
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{route ('akun.all')}}">Data
-                            Akun</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('staff.all') }}">Data
-                            Staff</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('penduduk.all') }}">Data
-                            Penduduk</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('barang.all') }}">Data
-                            Barang</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('tanda_tangan.all') }}">Data
-                            Tanda Tangan</a></li>
+                    @hasrole('super-admin')
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('akun.all') }}">Data
+                                Akun</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('staff.all') }}">Data
+                                Staff</a></li>
+                    @endhasrole
+                    @hasrole('super-admin|admin')
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('penduduk.all') }}">Data
+                                Penduduk</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('barang.all') }}">Data
+                                Barang</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('tanda_tangan.all') }}">Data
+                                Tanda Tangan</a></li>
+                    @endhasrole
+
                 </ul>
             </div>
         </li>

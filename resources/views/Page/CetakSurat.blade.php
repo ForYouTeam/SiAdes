@@ -1,125 +1,127 @@
 @extends('Layout.Base')
 @section('content')
-<div class="col-lg-12 grid-margin stretch-card mt-2">
-    <div class="card">
-        <div class="card-header tab-card-header">
-            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="tab-tabel" data-toggle="tab" href="#tabTabel" role="tab"
-                        aria-controls="Tabel" aria-selected="true">
-                        <h5>Tabel History Cetakan</h5>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab" aria-controls="Form"
-                        aria-selected="false">
-                        <h5>Formulir</h5>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="card-body">
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active p-3" id="tabTabel" role="tabpanel" aria-labelledby="tab-tabel">
+    <div class="col-lg-12 grid-margin stretch-card mt-2">
+        <div class="card">
+            <div class="card-header tab-card-header">
+                <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="tab-tabel" data-toggle="tab" href="#tabTabel" role="tab"
+                            aria-controls="Tabel" aria-selected="true">
+                            <h5>Tabel History Cetakan</h5>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab"
+                            aria-controls="Form" aria-selected="false">
+                            <h5>Formulir</h5>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active p-3" id="tabTabel" role="tabpanel" aria-labelledby="tab-tabel">
 
-                    <div class="table-responsive">
-                        <table id="myTable" class="table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 10px">No.</th>
-                                    <th>Penduduk</th>
-                                    <th>Jenis Surat</th>
-                                    <th>Tanda Tangan</th>
-                                    <th style="width: 100px">Opsi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                $no = 1;
-                                @endphp
-                                @foreach ($data['data'] as $d)
-                                <tr>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $d->pendudukRole->nama }}</td>
-                                    <td>{{ $d->jenis_surat }}</td>
-                                    <td>{{ $d->ttd }}</td>
-                                    <td>
-                                        <button data-id="{{ $d->id }}" id="btnEdit" type="button"
-                                            class="btn btn-sm btn-rounded btn-primary">
-                                            <i class="mdi mdi-lead-pencil"></i>
-                                        </button>
-                                        <button data-id="{{ $d->id }}" id="btnHapus" type="button"
-                                            class="btn btn-sm btn-rounded btn-danger ml-2">
-                                            <i class="mdi mdi-account-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table id="myTable" class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10px">No.</th>
+                                        <th>Penduduk</th>
+                                        <th>Jenis Surat</th>
+                                        <th>Tanda Tangan</th>
+                                        <th style="width: 100px">Opsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach ($data['data'] as $d)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $d->pendudukRole->nama }}</td>
+                                            <td>{{ $d->jenis_surat }}</td>
+                                            <td>{{ $d->ttd }}</td>
+                                            <td>
+                                                <a href="{{ route('export.pdf', $d->id) }}" type="button" target="_blank"
+                                                    class="btn btn-sm btn-rounded btn-info ml-2">
+                                                    <i class="mdi mdi-printer"></i>
+                                                </a>
+                                                @hasrole('super-admin')
+                                                    <button data-id="{{ $d->id }}" id="btnHapus" type="button"
+                                                        class="btn btn-sm btn-rounded btn-danger ml-2">
+                                                        <i class="mdi mdi-account-remove"></i>
+                                                    </button>
+                                                @endhasrole
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="tab-pane fade p-3" id="tabForm" role="tabpanel" aria-labelledby="tab-form">
-                    <div class="card-body" style="margin: 70px 100px 50px 100px;">
-                        <h4 class="card-title" style="margin-bottom: 30px;">Cetak Surat</h4>
-                        <hr>
-                        <form id="formSimpan" class="forms-sample">
-                            @csrf
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <label>Nomor Surat</label>
-                                        <input name="no_surat" type="text"
-                                            class="form-control costume-outline form-control-sm" style="height: 30px;"
-                                            placeholder="Klik Disini">
-                                        <p class="text-danger miniAlert text-capitalize" id="alert-no_surat"></p>
+                    <div class="tab-pane fade p-3" id="tabForm" role="tabpanel" aria-labelledby="tab-form">
+                        <div class="card-body" style="margin: 70px 100px 50px 100px;">
+                            <h4 class="card-title" style="margin-bottom: 30px;">Cetak Surat</h4>
+                            <hr>
+                            <form id="formSimpan" class="forms-sample">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>Nomor Surat</label>
+                                            <input name="no_surat" type="text"
+                                                class="form-control costume-outline form-control-sm" style="height: 30px;"
+                                                placeholder="Klik Disini">
+                                            <p class="text-danger miniAlert text-capitalize" id="alert-no_surat"></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="form-group col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Pilih Jenis Surat</label>
-                                        <select name="jenis_surat" id="jenisSurat"
-                                            class="form-control costume-outline form-control-sm">
-                                            <option selected disabled>-Pilih-</option>
-                                            <option value="Domisili">Domisili</option>
-                                            <option value="Pengakuan Warga">Pengakuan Warga</option>
-                                            <option value="Pengantar SKCK">Pengatar SKCK</option>
-                                            <option value="Keterangan kurang Mampu">Keterangan Kurang Mampu</option>
-                                            <option value="Surat Kematian">Surat Kematian</option>
-                                        </select>
+                                <div class="form-group row">
+                                    <div class="form-group col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Pilih Jenis Surat</label>
+                                            <select name="jenis_surat" id="jenisSurat"
+                                                class="form-control costume-outline form-control-sm">
+                                                <option selected disabled>-Pilih-</option>
+                                                <option value="Domisili">Domisili</option>
+                                                <option value="Pengakuan Warga">Pengakuan Warga</option>
+                                                <option value="Pengantar SKCK">Pengatar SKCK</option>
+                                                <option value="Keterangan kurang Mampu">Keterangan Kurang Mampu</option>
+                                                <option value="Surat Kematian">Surat Kematian</option>
+                                            </select>
+                                        </div>
+                                        <p class="text-danger miniAlert text-capitalize" id="alert-jenis_surat"></p>
                                     </div>
-                                    <p class="text-danger miniAlert text-capitalize" id="alert-jenis_surat"></p>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Pilih Data Penduduk</label>
-                                        <select name="id_penduduk" disabled
-                                            class="form-control costume-outline form-control-sm data-penduduk">
-                                            <option selected disabled>-Pilih-</option>
-                                        </select>
-                                        <p class="text-danger miniAlert text-capitalize" id="alert-id_penduduk"></p>
+                                    <div class="form-group col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Pilih Data Penduduk</label>
+                                            <select name="id_penduduk" disabled
+                                                class="form-control costume-outline form-control-sm data-penduduk">
+                                                <option selected disabled>-Pilih-</option>
+                                            </select>
+                                            <p class="text-danger miniAlert text-capitalize" id="alert-id_penduduk"></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div id="formTambahan" class="form-group row" style="margin-top: -50px">
+                                <div id="formTambahan" class="form-group row" style="margin-top: -50px">
 
-                            </div>
-                            <div class="row" id="ttdRoom">
+                                </div>
+                                <div class="row" id="ttdRoom">
 
-                            </div>
-                        </form>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
 @section('script')
-<script>
-    let surat1 = `
+    <script>
+        let surat1 = `
             <div class="form-group col-md-6">
                 <div class="form-group">
                     <label for="">Pilih Data Ayah</label>
@@ -186,11 +188,8 @@
                 <label for="">Yang Bertanda Tangan</label>
                 <div class="row">
                     <div class="col-sm-10">
-                        <select name="ttd" id="ttd" class="form-control costume-outline form-control-sm"
-                            id="">
-                            <option selected disabled>-Pilih-</option>
-                            <option value="Kepala Desa">Kepala Desa</option>
-                            <option value="Wakil Kepala Desa">Wakil Kepala Desa</option>
+                        <select name="ttd" id="ttdSel" class="form-control costume-outline form-control-sm">
+                            
                         </select>
                         <p class="text-danger miniAlert text-capitalize" id="alert-ttd"></p>
                     </div>
@@ -203,7 +202,7 @@
         `;
 
         const ortu = () => {
-            let url = `{{ config('app.url') }}` + `/penduduk/all`;
+            let url = `{{ config('app.url') }}` + `/penduduk/all/data`;
             $.get(url, function(result) {
                 $.each(result, function(i, value) {
                     $('.data-penduduk').append(`
@@ -212,6 +211,18 @@
                 });
             })
             $('.data-penduduk').prop('disabled', false);
+        }
+
+        const ttdfunc = () => {
+            let url2 = `{{ config('app.url') }}` + `/tanda_tangan/all/data`
+            $('#ttdSel').html('<option selected disabled>-Pilih-</option>');
+            $.get(url2, function(result) {
+                $.each(result, function(i, value) {
+                    $('#ttdSel').append(`
+                        <option value="${value.id}" >${value.nama}</option>
+                    `);
+                });
+            })
         }
 
         $(document).ready(function() {
@@ -264,12 +275,29 @@
             }
 
             ortu();
+            ttdfunc();
         });
 
         $(document).on('click', '#btnSave', function() {
             let url = `{{ config('app.url') }}` + "/cetak";
             let data = $('#formSimpan').serialize();
-
+            let timerInterval
+            Swal.fire({
+                title: 'Sedang Menyimpan',
+                html: 'Ini akan menutup sendiri',
+                timer: 2000,
+                timerProgressBar: false,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            })
             $.ajax({
                 url: url,
                 method: "POST",
@@ -369,5 +397,5 @@
                 }
             })
         });
-</script>
+    </script>
 @endsection

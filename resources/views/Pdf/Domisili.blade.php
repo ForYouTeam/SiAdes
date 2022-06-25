@@ -38,7 +38,7 @@
             text-align: center;
         }
 
-        #halaman .isi p{
+        #halaman .isi p {
             margin-top: 20px;
             text-align: justify;
         }
@@ -67,7 +67,7 @@
         <hr>
         <div class="nama">
             <h3><u>SURAT DOMISILI</u></h3>
-            <p style="margin-top: -15px;">Nomor : 470/_____ / DT-KA</p>
+            <p style="margin-top: -15px;">Nomor : 470/{{ $data['no_surat'] }}/ DT-KA</p>
         </div>
         <div class="isi">
             <p>Yang bertanda tangan di bawah ini Kepala Desa Taripa Kec. Angkona Kab. Luwu Timur menerangkan dengan
@@ -126,9 +126,9 @@
                 Luwu Timur, Provinsi Sulawesi Selatan. <br> Demikian surat
                 keterangan ini dibuat sebagai Persyaratan untuk {{ $data['keperluan'] }}</p>
         </div>
-        <div class="ttd">Taripa, {{ $data['created_at'] }}</div><br><br>
-        <div class="ttd">{{ $data['ttd'] }},</div><br><br><br><br>
-        <div class="ttd"><u>husnul Maniah</u></div>
+        <div class="ttd">Taripa, {{ $data['dateNow'] }}</div><br><br>
+        <div class="ttd">{{ $data['ttdRole']['jabatan'] }},</div><br><br><br><br>
+        <div class="ttd"><u>{{ $data['ttdRole']['nama'] }}</u></div>
 
     </div>
 </body>

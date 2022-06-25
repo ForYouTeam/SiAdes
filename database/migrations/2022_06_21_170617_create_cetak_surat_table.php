@@ -18,7 +18,7 @@ class CreateCetakSuratTable extends Migration
             $table->foreignId('id_ctksuratkematian')->nullable()->constrained('cetak_surat_kematian');
             $table->string('alamat_sebelumnya')->nullable();
             $table->string('keperluan')->nullable();
-            $table->string('ttd');
+            $table->foreignId('ttd')->constrained('tanda_tangan');
             $table->timestamps();
         });
     }

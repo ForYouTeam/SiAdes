@@ -26,8 +26,20 @@ class CetakSuratModel extends Model
     {
         return $this->belongsTo(PendudukModel::class, 'id_penduduk');
     }
+    public function ayahRole()
+    {
+        return $this->belongsTo(PendudukModel::class, 'nama_ayah');
+    }
+    public function ibuRole()
+    {
+        return $this->belongsTo(PendudukModel::class, 'nama_ibu');
+    }
     public function cetaksuratKematianRole()
     {
         return $this->belongsTo(CetaksuratKematianModel::class, 'id_ctksuratkematian');
+    }
+    public function ttdRole()
+    {
+        return $this->belongsTo(TandaTanganModel::class, 'ttd');
     }
 }

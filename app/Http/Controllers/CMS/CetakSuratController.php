@@ -7,6 +7,7 @@ use App\Http\Requests\CetakSuratRequest;
 use App\Interfaces\CetakSuratKematianInterface;
 use App\Models\CetakSuratModel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +22,7 @@ class CetakSuratController extends Controller
     public function getAll()
     {
         try {
-            $dbResult = CetakSuratModel::with('pendudukRole:id,nama')->get();
+            $dbResult = CetakSuratModel::with('pendudukRole', 'ayahRole', 'ibuRole')->get();
             $surat = array(
                 'data' => $dbResult,
                 'message' => 'success'
@@ -130,8 +131,10 @@ class CetakSuratController extends Controller
 
     public function export($id)
     {
-        $allData = CetakSuratModel::whereId($id)->with('pendudukRole', 'cetaksuratKematianRole')->first();
+        $allData = CetakSuratModel::whereId($id)->with('pendudukRole', 'cetaksuratKematianRole', 'ttdRole:id,nama,jabatan', 'ayahRole', 'ibuRole')->first();
+
         $allData['path'] = public_path('logoLuwuTimur.png');
+        $allData['dateNow'] = Carbon::now()->isoFormat('D MMMM Y');
 
         switch ($allData['jenis_surat']) {
             case 'Domisili':

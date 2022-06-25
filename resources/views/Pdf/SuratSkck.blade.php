@@ -88,7 +88,7 @@
         </div>
         <div class="nama">
             <h3><u>SURAT PENGANTAR SKCK</u></h3>
-            <p style="margin-top: -15px;">Nomor : 331/_____ /DT-KA</p>
+            <p style="margin-top: -15px;">Nomor : 331/{{ $data['no_surat'] }}/DT-KA</p>
         </div>
         <div class="isi">
             <p>Yang bertanda tangan di bawah ini Pemerintah Desa Taripa Kec. Angkona Kab. Luwu Timur menerangkan dengan
@@ -147,8 +147,8 @@
             </p>
         </div>
 
-        <div class="ttd">{{ $data['ttd'] }},</div><br><br><br><br>
-        <div class="ttd"><u>husnul Maniah</u></div>
+        <div class="ttd">{{ $data['ttdRole']['jabatan'] }},</div><br><br><br><br>
+        <div class="ttd"><u>{{ $data['ttdRole']['nama'] }}</u></div>
 
     </div>
 </body>

@@ -71,7 +71,7 @@
         <hr>
         <div class="nama">
             <h3><u>SURAT KETERANGAN KURANG MAMPU</u></h3>
-            <p style="margin-top: -15px;">Nomor : 401/_____ / DT-KA</p>
+            <p style="margin-top: -15px;">Nomor : 401/{{ $data['no_surat'] }}/ DT-KA</p>
         </div>
         <div class="isi">
             <p>Yang bertanda tangan dibawah ini Pemerintah Desa Taripa Kecamatan Angkona Kabupaten Luwu Timur
@@ -81,72 +81,72 @@
                 <tr>
                     <td style="width: 30%;">I. Nama Ayah</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">{{ $data['nama_ayah'] }}</td>
+                    <td style="width: 65%;">{{ $data['ayahRole']['nama'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Tempat lahir</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['tmpLahir'] }}</td>
+                    <td style="width: 65%;">{{ $data['ayahRole']['tmpLahir'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Tanggal lahir</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['tglLahir'] }}</td>
+                    <td style="width: 65%;">{{ $data['ayahRole']['tglLahir'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">NIK</td>
                     <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['nik'] }}</td>
+                    <td style="width: 65%;">{{ $data['ayahRole']['nik'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Agama</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['agama'] }}</td>
+                    <td style="width: 65%;">{{ $data['ayahRole']['agama'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Pekerjaan</td>
                     <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['pekerjaan'] }}</td>
+                    <td style="width: 65%;">{{ $data['ayahRole']['pekerjaan'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%; vertical-align: top;">Alamat</td>
                     <td style="width: 5%; vertical-align: top;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['alamat'] }}</td>
+                    <td style="width: 65%;">{{ $data['ayahRole']['alamat'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">II. Nama Ibu</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">{{ $data['nama_ibu'] }}</td>
+                    <td style="width: 65%;">{{ $data['ibuRole']['nama'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Tempat lahir</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['tmpLahir'] }}</td>
+                    <td style="width: 65%;">{{ $data['ibuRole']['tmpLahir'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Tanggal lahir</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['tglLahir'] }}</td>
+                    <td style="width: 65%;">{{ $data['ibuRole']['tglLahir'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">NIK</td>
                     <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['nik'] }}</td>
+                    <td style="width: 65%;">{{ $data['ibuRole']['nik'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Agama</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['agama'] }}</td>
+                    <td style="width: 65%;">{{ $data['ibuRole']['agama'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Pekerjaan</td>
                     <td style="width: 5%;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['pekerjaan'] }}</td>
+                    <td style="width: 65%;">{{ $data['ibuRole']['pekerjaan'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%; vertical-align: top;">Alamat</td>
                     <td style="width: 5%; vertical-align: top;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['alamat'] }}</td>
+                    <td style="width: 65%;">{{ $data['ibuRole']['alamat'] }}</td>
                 </tr>
                 <tr>
                     <td>Adalah Orang Tua/Wali Dari</td>
@@ -194,9 +194,9 @@
                 sebagai persyaratan untuk kepengurusan beasiswa.
             </p>
         </div>
-        <div class="ttd">Taripa, {{ $data['created_at'] }}</div><br><br>
-        <div class="ttd">{{ $data['ttd'] }},</div><br><br><br><br>
-        <div class="ttd"><u>husnul Maniah</u></div>
+        <div class="ttd">Taripa, {{ $data['dateNow'] }}</div><br><br>
+        <div class="ttd">{{ $data['ttdRole']['jabatan'] }},</div><br><br><br><br>
+        <div class="ttd"><u>{{ $data['ttdRole']['nama'] }}</u></div>
 
     </div>
 </body>

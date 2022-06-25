@@ -87,7 +87,7 @@
         <hr>
         <div class="nama">
             <h3><u>SURAT PERNYATAAN PENGAKUAN WARGA</u></h3>
-            <p style="margin-top: -15px;">Nomor : 291/_____ / DT-KA</p>
+            <p style="margin-top: -15px;">Nomor : 291/{{ $data['no_surat'] }}/ DT-KA</p>
         </div>
         <div class="isi">
             <p>Yang bertanda tangan di bawah ini Kepala Desa Taripa Kec. Angkona Kab. Luwu Timur menerangkan dengan
@@ -132,12 +132,12 @@
                 <tr>
                     <td style="width: 30%;">nama Ayah</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['nama'] }}</td>
+                    <td style="width: 65%;">{{ $data['ayahRole']['nama'] }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">nama Ibu</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['nama'] }}</td>
+                    <td style="width: 65%;">{{ $data['ibuRole']['nama'] }}</td>
                 </tr>
             </table>
 
@@ -150,17 +150,17 @@
             <div class="ttd1">
                 <p></p>
                 <p>Kepala Dusun,</p><br>
-                <p><u>husnul Maniah</u></p>
+                <p><u>___________</u></p>
             </div>
             <div class="ttd2">
-                <p>Taripa, {{ $data['created_at'] }}</p>
+                <p>Taripa, {{ $data['dateNow'] }}</p>
                 <p>Ketua RT,</p><br>
-                <p><u>husnul Maniah</u></p>
+                <p><u>___________</u></p>
             </div>
         </div>
         <div class="ttd3"></div><br>
-        <div class="ttd3">{{ $data['ttd'] }},</div><br><br><br><br>
-        <div class="ttd3"><u>husnul Maniah</u></div>
+        <div class="ttd3">{{ $data['ttdRole']['jabatan'] }},</div><br><br><br><br>
+        <div class="ttd3"><u>{{ $data['ttdRole']['nama'] }}</u></div>
 
     </div>
 </body>

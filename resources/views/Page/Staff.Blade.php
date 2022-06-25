@@ -160,7 +160,23 @@
         $(document).on('click', '#btnSave', function() {
             let url = `{{ config('app.url') }}` + "/staff";
             let data = $('#formSimpan').serialize();
-
+            let timerInterval
+            Swal.fire({
+                title: 'Sedang Menyimpan',
+                html: 'Ini akan menutup sendiri',
+                timer: 2000,
+                timerProgressBar: false,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            })
             $.ajax({
                 url: url,
                 method: "POST",

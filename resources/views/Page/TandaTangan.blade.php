@@ -1,95 +1,98 @@
 @extends('Layout.Base')
 @section('content')
-<div class="col-lg-12 grid-margin stretch-card mt-2">
-    <div class="card">
-        <div class="card-header tab-card-header">
-            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="tab-tabel" data-toggle="tab" href="#tabTabel" role="tab"
-                        aria-controls="Tabel" aria-selected="true">
-                        <h5>Tabel Tanda Tangan</h5>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab" aria-controls="Form"
-                        aria-selected="false">
-                        <h5>Formulir</h5>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="card-body">
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active p-3" id="tabTabel" role="tabpanel" aria-labelledby="tab-tabel">
+    <div class="col-lg-12 grid-margin stretch-card mt-2">
+        <div class="card">
+            <div class="card-header tab-card-header">
+                <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="tab-tabel" data-toggle="tab" href="#tabTabel" role="tab"
+                            aria-controls="Tabel" aria-selected="true">
+                            <h5>Tabel Tanda Tangan</h5>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab"
+                            aria-controls="Form" aria-selected="false">
+                            <h5>Formulir</h5>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active p-3" id="tabTabel" role="tabpanel" aria-labelledby="tab-tabel">
 
-                    <div class="table-responsive">
-                        <table id="myTable" class="table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 10px">No.</th>
-                                    <th>Nama</th>
-                                    <th>Jabatan</th>
-                                    <th style="width: 100px">Opsi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                $no = 1;
-                                @endphp
-                                @foreach ($ttd as $d)
-                                <tr>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $d->nama }}</td>
-                                    <td>{{ $d->jabatan }}</td>
-                                    <td>
-                                        <button data-id="{{ $d->id }}" id="btnEdit" type="button"
-                                            class="btn btn-sm btn-rounded btn-primary">
-                                            <i class="mdi mdi-lead-pencil"></i>
-                                        </button>
-                                        <button data-id="{{ $d->id }}" id="btnHapus" type="button"
-                                            class="btn btn-sm btn-rounded btn-danger ml-2">
-                                            <i class="mdi mdi-account-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table id="myTable" class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10px">No.</th>
+                                        <th>Nama</th>
+                                        <th>Jabatan</th>
+                                        <th style="width: 100px">Opsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach ($ttd as $d)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $d->nama }}</td>
+                                            <td>{{ $d->jabatan }}</td>
+                                            <td>
+                                                <button data-id="{{ $d->id }}" id="btnEdit" type="button"
+                                                    class="btn btn-sm btn-rounded btn-primary">
+                                                    <i class="mdi mdi-lead-pencil"></i>
+                                                </button>
+                                                @hasrole('super-admin')
+                                                    <button data-id="{{ $d->id }}" id="btnHapus" type="button"
+                                                        class="btn btn-sm btn-rounded btn-danger ml-2">
+                                                        <i class="mdi mdi-account-remove"></i>
+                                                    </button>
+                                                @endhasrole
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="tab-pane fade p-3" id="tabForm" role="tabpanel" aria-labelledby="tab-form">
-                    <div class="card-body">
-                        <h4 class="card-title">Input Data Tanda Tangan</h4>
-                        <form id="formSimpan" class="forms-sample">
-                            @csrf
-                            <div class="form-group row">
-                                <label for="" class="col-sm-3 col-form-label">Nama</label>
-                                <div class="col-sm-9">
-                                    <input name="nama" type="text" class="form-control costume-outline" id=""
-                                        placeholder="Klik disini">
-                                    <p class="text-danger miniAlert text-capitalize" id="alert-nama"></p>
+                    <div class="tab-pane fade p-3" id="tabForm" role="tabpanel" aria-labelledby="tab-form">
+                        <div class="card-body">
+                            <h4 class="card-title">Input Data Tanda Tangan</h4>
+                            <form id="formSimpan" class="forms-sample">
+                                @csrf
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-3 col-form-label">Nama</label>
+                                    <div class="col-sm-9">
+                                        <input name="nama" type="text" class="form-control costume-outline"
+                                            id="" placeholder="Klik disini">
+                                        <p class="text-danger miniAlert text-capitalize" id="alert-nama"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="" class="col-sm-3 col-form-label">Jabatan</label>
-                                <div class="col-sm-9">
-                                    <input name="jabatan" type="text" class="form-control costume-outline" id=""
-                                        placeholder="Klik disini">
-                                    <p class="text-danger miniAlert text-capitalize" id="alert-jabatan"></p>
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-3 col-form-label">Jabatan</label>
+                                    <div class="col-sm-9">
+                                        <input name="jabatan" type="text" class="form-control costume-outline"
+                                            id="" placeholder="Klik disini">
+                                        <p class="text-danger miniAlert text-capitalize" id="alert-jabatan"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <button id="btnSave" type="button" class="btn btn-sm btn-primary mr-2">Submit</button>
-                        </form>
+                                <button id="btnSave" type="button" class="btn btn-sm btn-primary mr-2">Submit</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
 @section('script')
-<script>
-    $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
             $('#myTable').DataTable();
             $.ajaxSetup({
                 headers: {
@@ -101,7 +104,23 @@
         $(document).on('click', '#btnSave', function() {
             let url = `{{ config('app.url') }}` + "/tanda_tangan";
             let data = $('#formSimpan').serialize();
-
+            let timerInterval
+            Swal.fire({
+                title: 'Sedang Menyimpan',
+                html: 'Ini akan menutup sendiri',
+                timer: 2000,
+                timerProgressBar: false,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            })
             $.ajax({
                 url: url,
                 method: "POST",
@@ -172,7 +191,23 @@
             let id = $('#id_ttd').val();
             let url = `{{ config('app.url') }}` + `/tanda_tangan/${id}`;
             let data = $('#form-univ').serialize();
-
+            let timerInterval
+            Swal.fire({
+                title: 'Sedang Menyimpan',
+                html: 'Ini akan menutup sendiri',
+                timer: 2000,
+                timerProgressBar: false,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            })
             $.ajax({
                 url: url,
                 method: "PATCH",
@@ -249,5 +284,5 @@
                 }
             })
         })
-</script>
+    </script>
 @endsection

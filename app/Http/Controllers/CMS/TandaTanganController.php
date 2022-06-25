@@ -21,6 +21,12 @@ class TandaTanganController extends Controller
         return view('Page.TandaTangan')->with('ttd', $ttd);
     }
 
+    public function getAllData()
+    {
+        $ttd = TandaTanganModel::all();
+        return response()->json($ttd, 200);
+    }
+
     public function createTandaTangan(TandaTanganRequest $request)
     {
         try {
