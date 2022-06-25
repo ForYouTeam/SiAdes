@@ -127,7 +127,6 @@
                 method: "POST",
                 data: data,
                 success: function(result) {
-
                     Swal.fire({
                         title: result.response.title,
                         text: result.response.message,
