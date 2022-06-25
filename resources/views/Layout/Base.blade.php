@@ -32,10 +32,10 @@
                         <span class="mdi mdi-menu"></span>
                     </button>
                     <div class="navbar-brand-wrapper">
-                        <a class="navbar-brand brand-logo" href="../../index.html"><img
+                        <a class="navbar-brand brand-logo" href="#"><img
                                 src="{{ asset('assets/images/logo.svg') }}" alt="logo"></a>
-                        <a class="navbar-brand brand-logo-mini" href="../../index.html"><img
-                                src="../../images/logo-mini.svg" alt="logo"></a>
+                        <a class="navbar-brand brand-logo-mini" href="#"><img src="../../images/logo-mini.svg"
+                                alt="logo"></a>
                     </div>
                     <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Sistem Informasi Desa</h4>
                     <ul class="navbar-nav navbar-nav-right">
@@ -53,7 +53,7 @@
                         <li class="nav-item nav-profile dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                                 id="profileDropdown">
-                                <span class="nav-profile-name">Eleanor Richardson</span>
+                                <span class="nav-profile-name">{{ Auth::name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                                 aria-labelledby="profileDropdown">
@@ -61,7 +61,7 @@
                                     <i class="mdi mdi-settings text-primary"></i>
                                     Settings
                                 </a>
-                                <a class="dropdown-item">
+                                <a class="dropdown-item" href="{{ route('logout') }}">
                                     <i class="mdi mdi-logout text-primary"></i>
                                     Logout
                                 </a>
