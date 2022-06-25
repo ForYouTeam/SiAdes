@@ -6,9 +6,8 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class PendudukRequest extends FormRequest
+class TandaTanganRequest extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -17,20 +16,9 @@ class PendudukRequest extends FormRequest
     public function rules()
     {
         return [
-            'kk' => 'required|numeric',
-            'nik' => 'required|numeric',
             'nama' => 'required',
-            'jk' => 'required',
-            'tmpLahir' => 'required',
-            'tglLahir' => 'required',
-            'agama' => 'required',
-            'statKeluarga' => 'required',
-            'pekerjaan' => 'required',
-            'alamat' => 'required',
-            'suku' => 'required',
-            'ket' => 'required',
+            'jabatan' => 'required'
         ];
-        
     }
 
     protected function failedValidation(Validator $validator)

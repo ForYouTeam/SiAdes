@@ -175,7 +175,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group row col-3">
+                                <div class="form-group row col-6">
                                     <label for="suku" class="col-sm-3 col-form-label">Suku</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control costume-outline" id="suku" name="suku"
@@ -183,15 +183,7 @@
                                         <p class="text-danger miniAlert text-capitalize" id="alertSuku"></p>
                                     </div>
                                 </div>
-                                <div class="form-group row col-4">
-                                    <label for="hidup" class="col-sm-3 col-form-label">Hidup</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control costume-outline" id="hidup" name="hidup"
-                                            placeholder="Hidup">
-                                        <p class="text-danger miniAlert text-capitalize" id="alertHidup"></p>
-                                    </div>
-                                </div>
-                                <div class="form-group row col-5">
+                                <div class="form-group row col-6">
                                     <label for="ket" class="col-sm-3 col-form-label">Keterangan</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control costume-outline" id="ket" name="ket"
@@ -257,7 +249,7 @@
                             $('#alertNIK').html(errorRes.data.nik);
                             $('#alertNama').html(errorRes.data.nama);
                             $('#alertJk').html(errorRes.data.jk);
-                            $('#alertTempLahir').html(errorRes.data.tempLahir);
+                            $('#alertTmpLahir').html(errorRes.data.tmpLahir);
                             $('#alertTglLahir').html(errorRes.data.tglLahir);
                             $('#alertAgama').html(errorRes.data.agama);
                             $('#alertStatKeluarga').html(errorRes.data.statKeluarga);

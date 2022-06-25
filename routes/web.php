@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Auth\AkunController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CMS\ArsipSuratController;
 use App\Http\Controllers\CMS\CetakSuratController;
 use App\Http\Controllers\CMS\BarangController;
 use App\Http\Controllers\CMS\StaffController;
 use App\Http\Controllers\CMS\PendudukController;
+use App\Http\Controllers\CMS\TandaTanganController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
@@ -58,6 +60,20 @@ Route::middleware(['auth', 'role:super-admin|admin'])->group(function () {
         Route::get('/{id}', [ArsipSuratController::class, 'getArsipById']);
         Route::patch('/{id}', [ArsipSuratController::class, 'updateArsip'])->middleware('permission:update-data');
         Route::delete('/{id}', [ArsipSuratController::class, 'deleteArsip'])->middleware('permission:delete-data');
+    });
+
+    Route::prefix('tanda_tangan')->group(function () {
+        Route::get('/', [TandaTanganController::class, 'getAllTandaTangan'])->middleware('permission:read-data')->name('tanda_tangan.all');
+        Route::post('/', [TandaTanganController::class, 'createTandaTangan'])->middleware('permission:create-data');
+        Route::get('/{id}', [TandaTanganController::class, 'getTandaTanganById']);
+        Route::patch('/{id}', [TandaTanganController::class, 'updateTandaTangan'])->middleware('permission:update-data');
+        Route::delete('/{id}', [TandaTanganController::class, 'deleteTandaTangan'])->middleware('permission:delete-data');
+    });
+
+    Route::prefix('akun')->group(function () {
+        Route::get('/', [AkunController::class, 'getAllAkun'])->middleware('permission:read-data')->name('akun.all');
+        Route::post('/', [AkunController::class, 'createAkun'])->middleware('permission:create-data');
+        Route::delete('/{id}', [AkunController::class, 'deleteAkun'])->middleware('permission:delete-data');
     });
 
     Route::get('/exportPdf/{id}', [CetakSuratController::class, 'export'])->middleware('permission:create-data');

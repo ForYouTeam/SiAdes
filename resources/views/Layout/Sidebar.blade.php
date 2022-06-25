@@ -22,7 +22,7 @@
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Data
+                    <li class="nav-item"> <a class="nav-link" href="{{route ('akun.all')}}">Data
                             Akun</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('staff.all') }}">Data
                             Staff</a></li>
@@ -30,6 +30,8 @@
                             Penduduk</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('barang.all') }}">Data
                             Barang</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('tanda_tangan.all') }}">Data
+                            Tanda Tangan</a></li>
                 </ul>
             </div>
         </li>
