@@ -32,8 +32,8 @@
                         <span class="mdi mdi-menu"></span>
                     </button>
                     <div class="navbar-brand-wrapper">
-                        <a class="navbar-brand brand-logo" href="#"><img
-                                src="{{ asset('assets/images/logo.svg') }}" alt="logo"></a>
+                        <a class="navbar-brand brand-logo" href="#"><img src="{{ asset('assets/images/logo.svg') }}"
+                                alt="logo"></a>
                         <a class="navbar-brand brand-logo-mini" href="#"><img src="../../images/logo-mini.svg"
                                 alt="logo"></a>
                     </div>
@@ -51,8 +51,7 @@
                     </ul>
                     <ul class="navbar-nav navbar-nav-right">
                         <li class="nav-item nav-profile dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
-                                id="profileDropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                                 <span class="nav-profile-name">{{ Auth::user()->nama }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown"

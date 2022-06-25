@@ -122,7 +122,7 @@
             </table>
 
             <p>Yang tersebut namanya diatas adalah benar warga desa {{ $data['alamat_sebelumnya'] }} dan yang
-                bersangkutan bersangkutan saat ini berdomisili di Desa Taripa, Kec. Angkona Kab.
+                bersangkutan saat ini berdomisili di Desa Taripa, Kec. Angkona Kab.
                 Luwu Timur, Provinsi Sulawesi Selatan. <br> Demikian surat
                 keterangan ini dibuat sebagai Persyaratan untuk {{ $data['keperluan'] }}</p>
         </div>
