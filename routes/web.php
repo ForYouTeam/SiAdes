@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AkunController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CMS\ArsipSuratController;
 use App\Http\Controllers\CMS\CetakSuratController;
@@ -67,6 +68,12 @@ Route::middleware(['auth', 'role:super-admin|admin'])->group(function () {
         Route::get('/{id}', [TandaTanganController::class, 'getTandaTanganById']);
         Route::patch('/{id}', [TandaTanganController::class, 'updateTandaTangan'])->middleware('permission:update-data');
         Route::delete('/{id}', [TandaTanganController::class, 'deleteTandaTangan'])->middleware('permission:delete-data');
+    });
+
+    Route::prefix('akun')->group(function () {
+        Route::get('/', [AkunController::class, 'getAllAkun'])->middleware('permission:read-data')->name('akun.all');
+        Route::post('/', [AkunController::class, 'createAkun'])->middleware('permission:create-data');
+        Route::delete('/{id}', [AkunController::class, 'deleteAkun'])->middleware('permission:delete-data');
     });
 
     Route::get('/exportPdf/{id}', [CetakSuratController::class, 'export'])->middleware('permission:create-data');

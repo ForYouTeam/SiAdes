@@ -22,7 +22,7 @@
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Data
+                    <li class="nav-item"> <a class="nav-link" href="{{route ('akun.all')}}">Data
                             Akun</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('staff.all') }}">Data
                             Staff</a></li>
