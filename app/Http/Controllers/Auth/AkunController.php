@@ -31,7 +31,7 @@ class AkunController extends Controller
             ]);
             $role = $request->role;
             $dbResult = User::create($user);
-            $dbResult->asignRole($role);
+            $dbResult->assignRole($role);
 
             $akun = array(
                 'data' => $dbResult,
