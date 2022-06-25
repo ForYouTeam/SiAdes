@@ -62,7 +62,7 @@
                                                     target="_blank"><i class="mdi mdi-cloud-download"></i></a>
                                             </td>
                                             <td>
-                                                @hasrole('writer')
+                                                @hasrole('super-admin')
                                                     <button data-id="{{ $d->id }}" id="btnHapus" type="button"
                                                         class="btn btn-sm btn-rounded btn-danger ml-2">
                                                         <i class="mdi mdi-account-remove"></i>
@@ -109,7 +109,7 @@
                                                     target="_blank"><i class="mdi mdi-cloud-download"></i></a>
                                             </td>
                                             <td>
-                                                @hasrole('writer')
+                                                @hasrole('super-admin')
                                                     <button data-id="{{ $d->id }}" id="btnHapus" type="button"
                                                         class="btn btn-sm btn-rounded btn-danger ml-2">
                                                         <i class="mdi mdi-account-remove"></i>
