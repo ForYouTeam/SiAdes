@@ -10,12 +10,14 @@
                             <h5>Tabel History Cetakan</h5>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab"
-                            aria-controls="Form" aria-selected="false">
-                            <h5>Formulir</h5>
-                        </a>
-                    </li>
+                    @can('create-data')
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab"
+                                aria-controls="Form" aria-selected="false">
+                                <h5>Formulir</h5>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </div>
             <div class="card-body">
@@ -30,7 +32,9 @@
                                         <th>Penduduk</th>
                                         <th>Jenis Surat</th>
                                         <th>Tanda Tangan</th>
-                                        <th style="width: 100px">Opsi</th>
+                                        @can('update-data', 'delete-data')
+                                            <th style="width: 100px">Opsi</th>
+                                        @endcan
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,18 +47,21 @@
                                             <td>{{ $d->pendudukRole->nama }}</td>
                                             <td>{{ $d->jenis_surat }}</td>
                                             <td>{{ $d->ttdRole->nama }}</td>
-                                            <td>
-                                                <a href="{{ route('export.pdf', $d->id) }}" type="button" target="_blank"
-                                                    class="btn btn-sm btn-rounded btn-info ml-2">
-                                                    <i class="mdi mdi-printer"></i>
-                                                </a>
-                                                @hasrole('super-admin')
-                                                    <button data-id="{{ $d->id }}" id="btnHapus" type="button"
-                                                        class="btn btn-sm btn-rounded btn-danger ml-2">
-                                                        <i class="mdi mdi-account-remove"></i>
-                                                    </button>
-                                                @endhasrole
-                                            </td>
+                                            @can('update-data', 'delete-data')
+                                                <td>
+                                                    @can('update-data')
+                                                        <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
+                                                            class="btn btn-sm btn-rounded btn-primary" id="InfoId"
+                                                            target="_blank"><i class="mdi mdi-cloud-download"></i></a>
+                                                    @endcan
+                                                    @can('delete-data')
+                                                        <button data-id="{{ $d->id }}" id="btnHapus" type="button"
+                                                            class="btn btn-sm btn-rounded btn-danger ml-2">
+                                                            <i class="mdi mdi-account-remove"></i>
+                                                        </button>
+                                                    @endcan
+                                                </td>
+                                            @endcan
                                         </tr>
                                     @endforeach
                                 </tbody>

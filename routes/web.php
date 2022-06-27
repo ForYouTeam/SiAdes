@@ -18,7 +18,14 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'role:super-admin|admin|kades'])->group(function () {
-    Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::prefix('barang')->group(function () {
+        Route::get('/', [BarangController::class, 'getAllBarang'])->middleware('permission:read-data')->name('barang.all');
+        Route::post('/', [BarangController::class, 'createBarang'])->middleware('permission:create-data');
+        Route::get('/{id}', [BarangController::class, 'getBarangById']);
+        Route::patch('/{id}', [BarangController::class, 'updateBarang'])->middleware('permission:update-data');
+        Route::delete('/{id}', [BarangController::class, 'deleteBarang'])->middleware('permission:delete-data');
+    });
 });
 
 Route::middleware(['auth', 'role:super-admin|kades'])->group(function () {
@@ -31,7 +38,7 @@ Route::middleware(['auth', 'role:super-admin|kades'])->group(function () {
     });
 });
 
-Route::middleware(['auth', 'role:super-admin|admin|kades'])->group(function () {
+Route::middleware(['auth', 'role:super-admin|admin'])->group(function () {
     Route::prefix('penduduk')->group(function () {
         Route::get('/all/data', [PendudukController::class, 'getAllData']);
         Route::get('/', [PendudukController::class, 'getAllPenduduk'])->middleware('permission:read-data')->name('penduduk.all');
@@ -46,14 +53,6 @@ Route::middleware(['auth', 'role:super-admin|admin'])->group(function () {
         Route::get('/', [CetakSuratController::class, 'getAll'])->middleware('permission:read-data')->name('cetak.all');
         Route::post('/', [CetakSuratController::class, 'createCetak'])->middleware('permission:create-data');
         Route::delete('/{id}', [CetakSuratController::class, 'deleteStaff'])->middleware('permission:delete-data');
-    });
-
-    Route::prefix('barang')->group(function () {
-        Route::get('/', [BarangController::class, 'getAllBarang'])->middleware('permission:read-data')->name('barang.all');
-        Route::post('/', [BarangController::class, 'createBarang'])->middleware('permission:create-data');
-        Route::get('/{id}', [BarangController::class, 'getBarangById']);
-        Route::patch('/{id}', [BarangController::class, 'updateBarang'])->middleware('permission:update-data');
-        Route::delete('/{id}', [BarangController::class, 'deleteBarang'])->middleware('permission:delete-data');
     });
 
     Route::prefix('arsip_surat')->group(function () {

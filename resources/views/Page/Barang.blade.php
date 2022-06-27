@@ -1,169 +1,176 @@
 @extends('Layout.Base')
 @section('content')
-<div class="col-lg-12 grid-margin stretch-card mt-2">
-    <div class="card">
-        <div class="card-header tab-card-header">
-            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="tab-tabel" data-toggle="tab" href="#tabTabel" role="tab"
-                        aria-controls="Tabel" aria-selected="true">
-                        <h5>Tabel Barang</h5>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab" aria-controls="Form"
-                        aria-selected="false">
-                        <h5>Formulir</h5>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="card-body">
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active p-3" id="tabTabel" role="tabpanel" aria-labelledby="tab-tabel">
-                    <h4 class="card-title">Data Barang</h4>
-                    <div class="table-responsive">
-                        <table id="myTable" class="table">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Jenis Barang</th>
-                                    <th>Nama Barang</th>
-                                    <th>Jumlah Barang</th>
-                                    <th>Satuan</th>
-                                    <th>Tahun Perolehan</th>
-                                    <th>Sumber Anggaran</th>
-                                    <th>Harga Satuan</th>
-                                    <th>Harga Total</th>
-                                    <th>Opsi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                $no = 1;
-                                @endphp
-                                @foreach ($barang as $d)
-                                <tr>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $d->jenisBarang }}</td>
-                                    <td>{{ $d->namaBarang }}</td>
-                                    <td>{{ $d->jumlahBarang }}</td>
-                                    <td>{{ $d->satuan }}</td>
-                                    <td>Tahun {{ $d->tahunPerolehan }}</td>
-                                    <td>{{ $d->sumberAnggaran }}</td>
-                                    <td>Rp. @currency($d->hargaSatuan)</td>
-                                    <td>Rp. @currency($d->hargatotal)</td>
-                                    <td>
-                                        <button type="button" id="btnEdit" data-id="{{ $d->id }}" data-bs-toggle="modal"
-                                            data-bs-target="#modal-univ" class="btn btn-primary btn-rounded btn-icon">
-                                            <i class="mdi mdi-lead-pencil"></i>
-                                        </button>
-                                        @hasrole('super-admin')
-                                        <button type="button" id="btnDelete" data-id="{{ $d->id }}"
-                                            class="btn btn-danger btn-rounded btn-icon">
-                                            <i class="mdi mdi-account-remove"></i>
-                                        </button>
-                                        @endhasrole
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+    <div class="col-lg-12 grid-margin stretch-card mt-2">
+        <div class="card">
+            <div class="card-header tab-card-header">
+                <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="tab-tabel" data-toggle="tab" href="#tabTabel" role="tab"
+                            aria-controls="Tabel" aria-selected="true">
+                            <h5>Tabel Barang</h5>
+                        </a>
+                    </li>
+                    @can('create-data')
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab"
+                                aria-controls="Form" aria-selected="false">
+                                <h5>Formulir</h5>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active p-3" id="tabTabel" role="tabpanel" aria-labelledby="tab-tabel">
+                        <h4 class="card-title">Data Barang</h4>
+                        <div class="table-responsive">
+                            <table id="myTable" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Jenis Barang</th>
+                                        <th>Nama Barang</th>
+                                        <th>Jumlah Barang</th>
+                                        <th>Satuan</th>
+                                        <th>Tahun Perolehan</th>
+                                        <th>Sumber Anggaran</th>
+                                        <th>Harga Satuan</th>
+                                        <th>Harga Total</th>
+                                        @can('update-data', 'delete-data')
+                                            <th style="width: 100px">Opsi</th>
+                                        @endcan
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach ($barang as $d)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $d->jenisBarang }}</td>
+                                            <td>{{ $d->namaBarang }}</td>
+                                            <td>{{ $d->jumlahBarang }}</td>
+                                            <td>{{ $d->satuan }}</td>
+                                            <td>Tahun {{ $d->tahunPerolehan }}</td>
+                                            <td>{{ $d->sumberAnggaran }}</td>
+                                            <td>Rp. @currency($d->hargaSatuan)</td>
+                                            <td>Rp. @currency($d->hargatotal)</td>
+                                            @can('update-data', 'delete-data')
+                                                <td>
+                                                    @can('update-data')
+                                                        <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
+                                                            class="btn btn-sm btn-rounded btn-primary" id="InfoId"
+                                                            target="_blank"><i class="mdi mdi-cloud-download"></i></a>
+                                                    @endcan
+                                                    @can('delete-data')
+                                                        <button data-id="{{ $d->id }}" id="btnHapus" type="button"
+                                                            class="btn btn-sm btn-rounded btn-danger ml-2">
+                                                            <i class="mdi mdi-account-remove"></i>
+                                                        </button>
+                                                    @endcan
+                                                </td>
+                                            @endcan
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="tab-pane fade p-3" id="tabForm" role="tabpanel" aria-labelledby="tab-form">
-                    <div class="card-body">
-                        <h4 class="card-title">Input Data Barang</h4>
-                        <form class="forms-sample" id="formSimpan">
-                            @csrf
-                            <div class="row">
-                                <div class="form-group row col-6">
-                                    <label for="jenisBarang" class="col-sm-3 col-form-label">Jenis Barang</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control costume-outline" id="jenisBarang"
-                                            name="jenisBarang" placeholder="Jenis Barang">
-                                        <p class="text-danger miniAlert text-capitalize" id="alertJenisBarang"></p>
+                    <div class="tab-pane fade p-3" id="tabForm" role="tabpanel" aria-labelledby="tab-form">
+                        <div class="card-body">
+                            <h4 class="card-title">Input Data Barang</h4>
+                            <form class="forms-sample" id="formSimpan">
+                                @csrf
+                                <div class="row">
+                                    <div class="form-group row col-6">
+                                        <label for="jenisBarang" class="col-sm-3 col-form-label">Jenis Barang</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control costume-outline" id="jenisBarang"
+                                                name="jenisBarang" placeholder="Jenis Barang">
+                                            <p class="text-danger miniAlert text-capitalize" id="alertJenisBarang"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-6">
+                                        <label for="namaBarang" class="col-sm-3 col-form-label">Nama Barang</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control costume-outline" id="namaBarang"
+                                                name="namaBarang" placeholder="Nama Barang">
+                                            <p class="text-danger miniAlert text-capitalize" id="alertNamaBarang"></p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group row col-6">
-                                    <label for="namaBarang" class="col-sm-3 col-form-label">Nama Barang</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control costume-outline" id="namaBarang"
-                                            name="namaBarang" placeholder="Nama Barang">
-                                        <p class="text-danger miniAlert text-capitalize" id="alertNamaBarang"></p>
+                                <div class="row">
+                                    <div class="form-group row col-6">
+                                        <label for="jumlahBarang" class="col-sm-3 col-form-label">Jumlah Barang</label>
+                                        <div class="col-sm-9">
+                                            <input type="number" class="form-control costume-outline" id="jumlahBarang"
+                                                name="jumlahBarang" placeholder="jumlahBarang">
+                                            <p class="text-danger miniAlert text-capitalize" id="alertJumlahBarang"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-6">
+                                        <label for="satuan" class="col-sm-3 col-form-label">Satuan</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control costume-outline" id="satuan"
+                                                name="satuan" placeholder="Satuan">
+                                            <p class="text-danger miniAlert text-capitalize" id="alertSatuan"></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group row col-6">
-                                    <label for="jumlahBarang" class="col-sm-3 col-form-label">Jumlah Barang</label>
-                                    <div class="col-sm-9">
-                                        <input type="number" class="form-control costume-outline" id="jumlahBarang"
-                                            name="jumlahBarang" placeholder="jumlahBarang">
-                                        <p class="text-danger miniAlert text-capitalize" id="alertJumlahBarang"></p>
+                                <div class="row">
+                                    <div class="form-group row col-6">
+                                        <label for="tahunPerolehan" class="col-sm-3 col-form-label">Tahun
+                                            Perolehan</label>
+                                        <div class="col-sm-9">
+                                            <input type="year" class="form-control costume-outline"
+                                                id="tahunPerolehan" name="tahunPerolehan" placeholder="Tahun Perolehan">
+                                            <p class="text-danger miniAlert text-capitalize" id="alertTahunPerolehan"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-6">
+                                        <label for="sumberAnggaran" class="col-sm-3 col-form-label">Sumber
+                                            Anggaran</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control costume-outline"
+                                                id="sumberAnggaran" name="sumberAnggaran" placeholder="Sumber Anggaran">
+                                            <p class="text-danger miniAlert text-capitalize" id="alerSumberAnggaran"></p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group row col-6">
-                                    <label for="satuan" class="col-sm-3 col-form-label">Satuan</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control costume-outline" id="satuan"
-                                            name="satuan" placeholder="Satuan">
-                                        <p class="text-danger miniAlert text-capitalize" id="alertSatuan"></p>
+                                <div class="row">
+                                    <div class="form-group row col-6">
+                                        <label for="hargaSatuan" class="col-sm-3 col-form-label">Harga Satuan</label>
+                                        <div class="col-sm-9">
+                                            <input type="number" class="form-control costume-outline" id="hargaSatuan"
+                                                name="hargaSatuan" value="0" placeholder="Harga Satuan">
+                                            <p class="text-danger miniAlert text-capitalize" id="alertHargaSatuan"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-6">
+                                        <label for="hargatotal" class="col-sm-3 col-form-label">Harga Total</label>
+                                        <div class="col-sm-9">
+                                            <input type="hidden" class="form-control" id="hargaDB" name="hargatotal">
+                                            <input type="text" class="form-control costume-outline" id="hargatotal"
+                                                value="" placeholder="Harga Total" disabled>
+                                            <p class="text-danger miniAlert text-capitalize" id="alertHargaTotal"></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group row col-6">
-                                    <label for="tahunPerolehan" class="col-sm-3 col-form-label">Tahun
-                                        Perolehan</label>
-                                    <div class="col-sm-9">
-                                        <input type="year" class="form-control costume-outline" id="tahunPerolehan"
-                                            name="tahunPerolehan" placeholder="Tahun Perolehan">
-                                        <p class="text-danger miniAlert text-capitalize" id="alertTahunPerolehan"></p>
-                                    </div>
-                                </div>
-                                <div class="form-group row col-6">
-                                    <label for="sumberAnggaran" class="col-sm-3 col-form-label">Sumber
-                                        Anggaran</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control costume-outline" id="sumberAnggaran"
-                                            name="sumberAnggaran" placeholder="Sumber Anggaran">
-                                        <p class="text-danger miniAlert text-capitalize" id="alerSumberAnggaran"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group row col-6">
-                                    <label for="hargaSatuan" class="col-sm-3 col-form-label">Harga Satuan</label>
-                                    <div class="col-sm-9">
-                                        <input type="number" class="form-control costume-outline" id="hargaSatuan"
-                                            name="hargaSatuan" value="0" placeholder="Harga Satuan">
-                                        <p class="text-danger miniAlert text-capitalize" id="alertHargaSatuan"></p>
-                                    </div>
-                                </div>
-                                <div class="form-group row col-6">
-                                    <label for="hargatotal" class="col-sm-3 col-form-label">Harga Total</label>
-                                    <div class="col-sm-9">
-                                        <input type="hidden" class="form-control" id="hargaDB" name="hargatotal">
-                                        <input type="text" class="form-control costume-outline" id="hargatotal" value=""
-                                            placeholder="Harga Total" disabled>
-                                        <p class="text-danger miniAlert text-capitalize" id="alertHargaTotal"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" id="btnSave" class="btn btn-primary mr-2">Submit</button>
-                            <button class="btn btn-light">Cancel</button>
-                        </form>
+                                <button type="button" id="btnSave" class="btn btn-primary mr-2">Submit</button>
+                                <button class="btn btn-light">Cancel</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
 @section('script')
-<script>
-    $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -442,5 +449,5 @@
                 return ("" + formatted + ((parts) ? "." + parts[1].substr(0, 2) : ""));
             };
         })
-</script>
+    </script>
 @endsection

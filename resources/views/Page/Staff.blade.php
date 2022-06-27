@@ -10,12 +10,14 @@
                             <h5>Tabel Staff</h5>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab"
-                            aria-controls="Form" aria-selected="false">
-                            <h5>Formulir</h5>
-                        </a>
-                    </li>
+                    @can('create-data')
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab"
+                                aria-controls="Form" aria-selected="false">
+                                <h5>Formulir</h5>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </div>
             <div class="card-body">
@@ -30,7 +32,9 @@
                                         <th>Nama</th>
                                         <th>Jabatan.</th>
                                         <th>Nomor Sk</th>
-                                        <th style="width: 100px">Opsi</th>
+                                        @can('update-data', 'delete-data')
+                                            <th style="width: 100px">Opsi</th>
+                                        @endcan
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,16 +47,21 @@
                                             <td>{{ $d->nama }}</td>
                                             <td>{{ $d->jabatan }}</td>
                                             <td>{{ $d->noSk }}</td>
-                                            <td>
-                                                <button data-id="{{ $d->id }}" id="btnEdit" type="button"
-                                                    class="btn btn-sm btn-rounded btn-primary">
-                                                    <i class="mdi mdi-lead-pencil"></i>
-                                                </button>
-                                                <button data-id="{{ $d->id }}" id="btnHapus" type="button"
-                                                    class="btn btn-sm btn-rounded btn-danger ml-2">
-                                                    <i class="mdi mdi-account-remove"></i>
-                                                </button>
-                                            </td>
+                                            @can('update-data', 'delete-data')
+                                                <td>
+                                                    @can('update-data')
+                                                        <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
+                                                            class="btn btn-sm btn-rounded btn-primary" id="InfoId"
+                                                            target="_blank"><i class="mdi mdi-cloud-download"></i></a>
+                                                    @endcan
+                                                    @can('delete-data')
+                                                        <button data-id="{{ $d->id }}" id="btnHapus" type="button"
+                                                            class="btn btn-sm btn-rounded btn-danger ml-2">
+                                                            <i class="mdi mdi-account-remove"></i>
+                                                        </button>
+                                                    @endcan
+                                                </td>
+                                            @endcan
                                         </tr>
                                     @endforeach
                                 </tbody>
