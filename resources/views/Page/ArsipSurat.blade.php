@@ -27,107 +27,106 @@
                 </ul>
             </div>
             <div class="card-body">
-                <div class="tab-pane fade show active p-3" id="tabTabel" role="tabpanel" aria-labelledby="tab-tabel">
-                    <div class="table-responsive">
-                        <table id="myTable" class="table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 10px">No.</th>
-                                    <th>Tanggal Penerimaan</th>
-                                    <th>Nomor Surat</th>
-                                    <th>Tanggal Surat</th>
-                                    <th>Pengirim</th>
-                                    <th>Isi Singkat</th>
-                                    <th>Keterangan</th>
-                                    <th>File</th>
-                                    @can('update-data', 'delete-data')
-                                        <th style="width: 100px">Opsi</th>
-                                    @endcan
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $no = 1;
-                                @endphp
-                                @foreach ($arsip['masuk'] as $d)
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active p-3" id="tabTabel" role="tabpanel" aria-labelledby="tab-tabel">
+                        <div class="table-responsive">
+                            <table id="myTable" class="table">
+                                <thead>
                                     <tr>
-                                        <td>{{ $no++ }}</td>
-                                        <td>{{ $d->tgl_penerimaan }}</td>
-                                        <td>{{ $d->no_surat }}</td>
-                                        <td>{{ $d->tgl_surat }}</td>
-                                        <td>{{ $d->pengirim }}</td>
-                                        <td>{{ $d->isi_singkat }}</td>
-                                        <td>{{ $d->ket }}</td>
+                                        <th style="width: 10px">No.</th>
+                                        <th>Tanggal Penerimaan</th>
+                                        <th>Nomor Surat</th>
+                                        <th>Tanggal Surat</th>
+                                        <th>Pengirim</th>
+                                        <th>Isi Singkat</th>
+                                        <th>Keterangan</th>
+                                        <th>File</th>
                                         @can('update-data', 'delete-data')
+                                            <th style="width: 100px">Opsi</th>
+                                        @endcan
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach ($arsip['masuk'] as $d)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $d->tgl_penerimaan }}</td>
+                                            <td>{{ $d->no_surat }}</td>
+                                            <td>{{ $d->tgl_surat }}</td>
+                                            <td>{{ $d->pengirim }}</td>
+                                            <td>{{ $d->isi_singkat }}</td>
+                                            <td>{{ $d->ket }}</td>
+                                            @can('update-data', 'delete-data')
+                                                <td>
+                                                    @can('update-data')
+                                                        <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
+                                                            class="btn btn-sm btn-rounded btn-primary" id="InfoId"
+                                                            target="_blank"><i class="mdi mdi-cloud-download"></i></a>
+                                                    @endcan
+                                                    @can('delete-data')
+                                                        <button data-id="{{ $d->id }}" id="btnHapus" type="button"
+                                                            class="btn btn-sm btn-rounded btn-danger ml-2">
+                                                            <i class="mdi mdi-account-remove"></i>
+                                                        </button>
+                                                    @endcan
+                                                </td>
+                                            @endcan
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade p-3" id="tabTabel1" role="tabpanel" aria-labelledby="tab-tabel1">
+                        <div class="table-responsive">
+                            <table id="myTable1" class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10px">No.</th>
+                                        <th>Tanggal Surat</th>
+                                        <th>Nomor Surat</th>
+                                        <th>Perihal</th>
+                                        <th>Di Tujukan Kepada</th>
+                                        <th>Keterangan</th>
+                                        <th>File</th>
+                                        <th style="width: 100px">Opsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach ($arsip['keluar'] as $d)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $d->tgl_surat }}</td>
+                                            <td>{{ $d->no_surat }}</td>
+                                            <td>{{ $d->perihal }}</td>
+                                            <td>{{ $d->ditujukan_kepada }}</td>
+                                            <td>{{ $d->ket }}</td>
                                             <td>
-                                                @can('update-data')
-                                                    <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
-                                                        class="btn btn-sm btn-rounded btn-primary" id="InfoId" target="_blank"><i
-                                                            class="mdi mdi-cloud-download"></i></a>
-                                                @endcan
-                                                @can('delete-data')
+                                                <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
+                                                    class="btn btn-sm btn-rounded btn-primary" id="InfoId"
+                                                    target="_blank"><i class="mdi mdi-cloud-download"></i></a>
+                                            </td>
+                                            <td>
+                                                @hasrole('super-admin')
                                                     <button data-id="{{ $d->id }}" id="btnHapus" type="button"
                                                         class="btn btn-sm btn-rounded btn-danger ml-2">
                                                         <i class="mdi mdi-account-remove"></i>
                                                     </button>
-                                                @endcan
+                                                @endhasrole
                                             </td>
-                                        @endcan
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="tab-pane fade p-3" id="tabTabel1" role="tabpanel" aria-labelledby="tab-tabel1">
-
-                    <div class="table-responsive">
-                        <table id="myTable1" class="table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 10px">No.</th>
-                                    <th>Tanggal Surat</th>
-                                    <th>Nomor Surat</th>
-                                    <th>Perihal</th>
-                                    <th>Di Tujukan Kepada</th>
-                                    <th>Keterangan</th>
-                                    <th>File</th>
-                                    <th style="width: 100px">Opsi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $no = 1;
-                                @endphp
-                                @foreach ($arsip['keluar'] as $d)
-                                    <tr>
-                                        <td>{{ $no++ }}</td>
-                                        <td>{{ $d->tgl_surat }}</td>
-                                        <td>{{ $d->no_surat }}</td>
-                                        <td>{{ $d->perihal }}</td>
-                                        <td>{{ $d->ditujukan_kepada }}</td>
-                                        <td>{{ $d->ket }}</td>
-                                        <td>
-                                            <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
-                                                class="btn btn-sm btn-rounded btn-primary" id="InfoId" target="_blank"><i
-                                                    class="mdi mdi-cloud-download"></i></a>
-                                        </td>
-                                        <td>
-                                            @hasrole('super-admin')
-                                                <button data-id="{{ $d->id }}" id="btnHapus" type="button"
-                                                    class="btn btn-sm btn-rounded btn-danger ml-2">
-                                                    <i class="mdi mdi-account-remove"></i>
-                                                </button>
-                                            @endhasrole
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="tab-pane fade p-3" id="tabForm" role="tabpanel" aria-labelledby="tab-form">
-                    <div class="card-body">
+                    <div class="tab-pane fade p-3" id="tabForm" role="tabpanel" aria-labelledby="tab-form">
                         <form id="formSimpan" class="forms-sample" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
