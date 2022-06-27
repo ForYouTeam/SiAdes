@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}" />
     <style>
         .costume-outline {
             border: 2px solid #AEDBCE;
