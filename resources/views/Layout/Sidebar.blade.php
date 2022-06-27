@@ -25,14 +25,20 @@
                     @hasrole('super-admin')
                         <li class="nav-item"> <a class="nav-link" href="{{ route('akun.all') }}">Data
                                 Akun</a></li>
+                    @endhasrole
+                    @hasrole('super-admin|kades')
                         <li class="nav-item"> <a class="nav-link" href="{{ route('staff.all') }}">Data
                                 Staff</a></li>
                     @endhasrole
                     @hasrole('super-admin|admin')
                         <li class="nav-item"> <a class="nav-link" href="{{ route('penduduk.all') }}">Data
                                 Penduduk</a></li>
+                    @endhasrole
+                    @hasrole('super-admin|admin|kades')
                         <li class="nav-item"> <a class="nav-link" href="{{ route('barang.all') }}">Data
                                 Barang</a></li>
+                    @endhasrole
+                    @hasrole('super-admin|admin')
                         <li class="nav-item"> <a class="nav-link" href="{{ route('tanda_tangan.all') }}">Data
                                 Tanda Tangan</a></li>
                     @endhasrole
@@ -44,18 +50,20 @@
             <p>Apps</p>
             <span></span>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('arsip.all') }}">
-                <i class="mdi mdi-email menu-icon"></i>
-                <span class="menu-title">Arsip Surat</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('cetak.all') }}">
-                <i class="mdi mdi-file-pdf menu-icon"></i>
-                <span class="menu-title">Pembuatan Surat</span>
-            </a>
-        </li>
+        @hasrole('super-admin|admin')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('arsip.all') }}">
+                    <i class="mdi mdi-email menu-icon"></i>
+                    <span class="menu-title">Arsip Surat</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('cetak.all') }}">
+                    <i class="mdi mdi-file-pdf menu-icon"></i>
+                    <span class="menu-title">Pembuatan Surat</span>
+                </a>
+            </li>
+        @endhasrole
         <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}">
                 <i class="mdi mdi-power menu-icon"></i>
