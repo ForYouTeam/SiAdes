@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}" />
     <style>
         .costume-outline {
             border: 2px solid #AEDBCE;
