@@ -1,163 +1,173 @@
 @extends('Layout.Base')
 @section('content')
-    <div class="col-lg-12 grid-margin stretch-card mt-2">
-        <div class="card">
-            <div class="card-header tab-card-header">
-                <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="tab-tabel" data-toggle="tab" href="#tabTabel" role="tab"
-                            aria-controls="Tabel" aria-selected="true">
-                            <h5>Tabel Staff</h5>
-                        </a>
-                    </li>
-                    @can('create-data')
-                        <li class="nav-item">
-                            <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab"
-                                aria-controls="Form" aria-selected="false">
-                                <h5>Formulir</h5>
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </div>
-            <div class="card-body">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active p-3" id="tabTabel" role="tabpanel" aria-labelledby="tab-tabel">
+<div class="col-lg-12 grid-margin stretch-card mt-2">
+    <div class="card">
+        <div class="card-header tab-card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="tab-tabel" data-toggle="tab" href="#tabTabel" role="tab"
+                        aria-controls="Tabel" aria-selected="true">
+                        <h5>Tabel Staff</h5>
+                    </a>
+                </li>
+                @can('create-data')
+                <li class="nav-item">
+                    <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab" aria-controls="Form"
+                        aria-selected="false">
+                        <h5>Formulir</h5>
+                    </a>
+                </li>
+                @endcan
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active p-3" id="tabTabel" role="tabpanel" aria-labelledby="tab-tabel">
 
-                        <div class="table-responsive">
-                            <table id="myTable" class="table">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10px">No.</th>
-                                        <th>Nama</th>
-                                        <th>Jabatan.</th>
-                                        <th>Nomor Sk</th>
-                                        @can('update-data', 'delete-data')
-                                            <th style="width: 100px">Opsi</th>
+                    <div class="table-responsive">
+                        <table id="myTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">No.</th>
+                                    <th>Nama</th>
+                                    <th>Jabatan.</th>
+                                    <th>Tempat Lahir</th>
+                                    <th>Tanggal Lahir</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Pendidikan</th>
+                                    <th>Nomor Sk</th>
+                                    <th>Alamat</th>
+                                    @can('update-data', 'delete-data')
+                                    <th style="width: 100px">Opsi</th>
+                                    @endcan
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                $no = 1;
+                                @endphp
+                                @foreach ($staff['data'] as $d)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $d->nama }}</td>
+                                    <td>{{ $d->jabatan }}</td>
+                                    <td>{{ $d->tmpLahir }}</td>
+                                    <td>{{ $d->tglLahir }}</td>
+                                    <td>{{ $d->jk }}</td>
+                                    <td>{{ $d->pendidikan }}</td>
+                                    <td>{{ $d->noSk }}</td>
+                                    <td>{{ $d->alamat }}</td>
+                                    @can('update-data', 'delete-data')
+                                    <td>
+                                        @can('update-data')
+                                        <button type="button" id="btnEdit" data-id="{{ $d->id }}" data-bs-toggle="modal"
+                                            data-bs-target="#modal-univ" class="btn btn-info btn-rounded btn-icon">
+                                            <i class="mdi mdi-pencil"></i></button>
+                                        </button>
                                         @endcan
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $no = 1;
-                                    @endphp
-                                    @foreach ($staff['data'] as $d)
-                                        <tr>
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{ $d->nama }}</td>
-                                            <td>{{ $d->jabatan }}</td>
-                                            <td>{{ $d->noSk }}</td>
-                                            @can('update-data', 'delete-data')
-                                                <td>
-                                                    @can('update-data')
-                                                        <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
-                                                            class="btn btn-sm btn-rounded btn-primary" id="InfoId"
-                                                            target="_blank"><i class="mdi mdi-cloud-download"></i></a>
-                                                    @endcan
-                                                    @can('delete-data')
-                                                        <button data-id="{{ $d->id }}" id="btnHapus" type="button"
-                                                            class="btn btn-sm btn-rounded btn-danger ml-2">
-                                                            <i class="mdi mdi-account-remove"></i>
-                                                        </button>
-                                                    @endcan
-                                                </td>
-                                            @endcan
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                        @can('delete-data')
+                                        <button data-id="{{ $d->id }}" id="btnHapus" type="button"
+                                            class="btn btn-sm btn-rounded btn-danger ml-2">
+                                            <i class="mdi mdi-account-remove"></i>
+                                        </button>
+                                        @endcan
+                                    </td>
+                                    @endcan
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="tab-pane fade p-3" id="tabForm" role="tabpanel" aria-labelledby="tab-form">
-                        <div class="card-body">
-                            <h4 class="card-title">Input Data Staff</h4>
-                            <form id="formSimpan" class="forms-sample">
-                                @csrf
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-3 col-form-label">Nama</label>
-                                    <div class="col-sm-9">
-                                        <input name="nama" type="text" class="form-control costume-outline"
-                                            id="" placeholder="Klik disini">
-                                        <p class="text-danger miniAlert text-capitalize" id="alert-nama"></p>
-                                    </div>
+                </div>
+                <div class="tab-pane fade p-3" id="tabForm" role="tabpanel" aria-labelledby="tab-form">
+                    <div class="card-body">
+                        <h4 class="card-title">Input Data Staff</h4>
+                        <form id="formSimpan" class="forms-sample">
+                            @csrf
+                            <div class="form-group row">
+                                <label for="" class="col-sm-3 col-form-label">Nama</label>
+                                <div class="col-sm-9">
+                                    <input name="nama" type="text" class="form-control costume-outline" id=""
+                                        placeholder="Klik disini">
+                                    <p class="text-danger miniAlert text-capitalize" id="alert-nama"></p>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-3 col-form-label">Jabatan</label>
-                                    <div class="col-sm-9">
-                                        <input name="jabatan" type="text" class="form-control costume-outline"
-                                            id="" placeholder="Klik disini">
-                                        <p class="text-danger miniAlert text-capitalize" id="alert-jabatan"></p>
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-3 col-form-label">Jabatan</label>
+                                <div class="col-sm-9">
+                                    <input name="jabatan" type="text" class="form-control costume-outline" id=""
+                                        placeholder="Klik disini">
+                                    <p class="text-danger miniAlert text-capitalize" id="alert-jabatan"></p>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-3 col-form-label">Tempat Lahir</label>
-                                    <div class="col-sm-9">
-                                        <input name="tmpLahir" type="text" class="form-control costume-outline"
-                                            id="" placeholder="Klik disini">
-                                        <p class="text-danger miniAlert text-capitalize" id="alert-tmpLahir"></p>
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-3 col-form-label">Tempat Lahir</label>
+                                <div class="col-sm-9">
+                                    <input name="tmpLahir" type="text" class="form-control costume-outline" id=""
+                                        placeholder="Klik disini">
+                                    <p class="text-danger miniAlert text-capitalize" id="alert-tmpLahir"></p>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-3 col-form-label">Tanggal Lahir</label>
-                                    <div class="col-sm-9">
-                                        <input name="tglLahir" type="date" class="form-control costume-outline"
-                                            id="">
-                                        <p class="text-danger miniAlert text-capitalize" id="alert-tglLahir"></p>
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-3 col-form-label">Tanggal Lahir</label>
+                                <div class="col-sm-9">
+                                    <input name="tglLahir" type="date" class="form-control costume-outline" id="">
+                                    <p class="text-danger miniAlert text-capitalize" id="alert-tglLahir"></p>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="">Jenis Kelamin</label>
-                                    <div class="col-sm-9">
-                                        <select name="jk" class="form-control costume-outline form-control-sm"
-                                            id="">
-                                            <option selected disabled>Pilih</option>
-                                            <option value="pria">Pria</option>
-                                            <option value="wanita">Wanita</option>
-                                        </select>
-                                        <p class="text-danger miniAlert text-capitalize" id="alert-jk"></p>
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="">Jenis Kelamin</label>
+                                <div class="col-sm-9">
+                                    <select name="jk" class="form-control costume-outline form-control-sm" id="">
+                                        <option selected disabled>Pilih</option>
+                                        <option value="pria">Pria</option>
+                                        <option value="wanita">Wanita</option>
+                                    </select>
+                                    <p class="text-danger miniAlert text-capitalize" id="alert-jk"></p>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="">Pendidikan Terakhir</label>
-                                    <div class="col-sm-9">
-                                        <select name="pendidikan" class="form-control costume-outline form-control-sm"
-                                            id="">
-                                            <option selected disabled>Pilih</option>
-                                            <option value="S3">Sarjana S3</option>
-                                            <option value="S2">Sarjana S2</option>
-                                            <option value="S1">Sarjana S1</option>
-                                            <option value="smk/slta">SMK/Slta Sederajat</option>
-                                        </select>
-                                        <p class="text-danger miniAlert text-capitalize" id="alert-pendidikan"></p>
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="">Pendidikan Terakhir</label>
+                                <div class="col-sm-9">
+                                    <select name="pendidikan" class="form-control costume-outline form-control-sm"
+                                        id="">
+                                        <option selected disabled>Pilih</option>
+                                        <option value="S3">Sarjana S3</option>
+                                        <option value="S2">Sarjana S2</option>
+                                        <option value="S1">Sarjana S1</option>
+                                        <option value="smk/slta">SMK/Slta Sederajat</option>
+                                    </select>
+                                    <p class="text-danger miniAlert text-capitalize" id="alert-pendidikan"></p>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-3 col-form-label">Nomor Sk</label>
-                                    <div class="col-sm-9">
-                                        <input name="noSk" type="number" class="form-control costume-outline"
-                                            id="" placeholder="Klik disini">
-                                        <p class="text-danger miniAlert text-capitalize" id="alert-noSk"></p>
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-3 col-form-label">Nomor Sk</label>
+                                <div class="col-sm-9">
+                                    <input name="noSk" type="text" class="form-control costume-outline" id=""
+                                        placeholder="Klik disini">
+                                    <p class="text-danger miniAlert text-capitalize" id="alert-noSk"></p>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-3 col-form-label">Textarea</label>
-                                    <div class="col-sm-9">
-                                        <textarea name="alamat" class="form-control costume-outline" id="" rows="4"></textarea>
-                                        <p class="text-danger miniAlert text-capitalize" id="alert-alamat"></p>
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-3 col-form-label">Alamat</label>
+                                <div class="col-sm-9">
+                                    <textarea name="alamat" class="form-control costume-outline" id=""
+                                        rows="4"></textarea>
+                                    <p class="text-danger miniAlert text-capitalize" id="alert-alamat"></p>
                                 </div>
-                                <button id="btnSave" type="button" class="btn btn-sm btn-primary mr-2">Submit</button>
-                            </form>
-                        </div>
+                            </div>
+                            <button id="btnSave" type="button" class="btn btn-sm btn-primary mr-2">Submit</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
 @section('script')
-    <script>
-        $(document).ready(function() {
+<script>
+    $(document).ready(function() {
             $('#myTable').DataTable();
             $.ajaxSetup({
                 headers: {
@@ -293,7 +303,7 @@
                         <div class="form-group row mr-2 ml-2">
                             <label for="" class="col-sm-3 col-form-label">Nomor Sk</label>
                             <div class="col-sm-9">
-                                <input value="${data.noSk}" name="noSk" type="number" class="form-control costume-outline"
+                                <input value="${data.noSk}" name="noSk" type="text" class="form-control costume-outline"
                                     id="" placeholder="Klik disini">
                             </div>
                         </div>
@@ -396,5 +406,5 @@
                 }
             })
         })
-    </script>
+</script>
 @endsection
