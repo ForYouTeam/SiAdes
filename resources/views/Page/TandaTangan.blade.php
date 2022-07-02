@@ -1,104 +1,104 @@
 @extends('Layout.Base')
 @section('content')
-    <div class="col-lg-12 grid-margin stretch-card mt-2">
-        <div class="card">
-            <div class="card-header tab-card-header">
-                <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="tab-tabel" data-toggle="tab" href="#tabTabel" role="tab"
-                            aria-controls="Tabel" aria-selected="true">
-                            <h5>Tabel Tanda Tangan</h5>
-                        </a>
-                    </li>
-                    @can('create-data')
-                        <li class="nav-item">
-                            <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab"
-                                aria-controls="Form" aria-selected="false">
-                                <h5>Formulir</h5>
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </div>
-            <div class="card-body">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active p-3" id="tabTabel" role="tabpanel" aria-labelledby="tab-tabel">
+<div class="col-lg-12 grid-margin stretch-card mt-2">
+    <div class="card">
+        <div class="card-header tab-card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="tab-tabel" data-toggle="tab" href="#tabTabel" role="tab"
+                        aria-controls="Tabel" aria-selected="true">
+                        <h5>Tabel Tanda Tangan</h5>
+                    </a>
+                </li>
+                @can('create-data')
+                <li class="nav-item">
+                    <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab" aria-controls="Form"
+                        aria-selected="false">
+                        <h5>Formulir</h5>
+                    </a>
+                </li>
+                @endcan
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active p-3" id="tabTabel" role="tabpanel" aria-labelledby="tab-tabel">
 
-                        <div class="table-responsive">
-                            <table id="myTable" class="table">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10px">No.</th>
-                                        <th>Nama</th>
-                                        <th>Jabatan</th>
-                                        @can('update-data', 'delete-data')
-                                            <th style="width: 100px">Opsi</th>
+                    <div class="table-responsive">
+                        <table id="myTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">No.</th>
+                                    <th>Nama</th>
+                                    <th>Jabatan</th>
+                                    @can('update-data', 'delete-data')
+                                    <th style="width: 100px">Opsi</th>
+                                    @endcan
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                $no = 1;
+                                @endphp
+                                @foreach ($ttd as $d)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $d->nama }}</td>
+                                    <td>{{ $d->jabatan }}</td>
+                                    @can('update-data', 'delete-data')
+                                    <td>
+                                        @can('update-data')
+                                        <button type="button" id="btnEdit" data-id="{{ $d->id }}" data-bs-toggle="modal"
+                                            data-bs-target="#modal-univ" class="btn btn-info btn-rounded btn-icon">
+                                            <i class="mdi mdi-pencil"></i></button>
                                         @endcan
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $no = 1;
-                                    @endphp
-                                    @foreach ($ttd as $d)
-                                        <tr>
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{ $d->nama }}</td>
-                                            <td>{{ $d->jabatan }}</td>
-                                            @can('update-data', 'delete-data')
-                                                <td>
-                                                    @can('update-data')
-                                                        <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
-                                                            class="btn btn-sm btn-rounded btn-primary" id="InfoId"
-                                                            target="_blank"><i class="mdi mdi-cloud-download"></i></a>
-                                                    @endcan
-                                                    @can('delete-data')
-                                                        <button data-id="{{ $d->id }}" id="btnHapus" type="button"
-                                                            class="btn btn-sm btn-rounded btn-danger ml-2">
-                                                            <i class="mdi mdi-account-remove"></i>
-                                                        </button>
-                                                    @endcan
-                                                </td>
-                                            @endcan
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                        @can('delete-data')
+                                        <button data-id="{{ $d->id }}" id="btnHapus" type="button"
+                                            class="btn btn-sm btn-rounded btn-danger ml-2">
+                                            <i class="mdi mdi-account-remove"></i>
+                                        </button>
+                                        @endcan
+                                    </td>
+                                    @endcan
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="tab-pane fade p-3" id="tabForm" role="tabpanel" aria-labelledby="tab-form">
-                        <div class="card-body">
-                            <h4 class="card-title">Input Data Tanda Tangan</h4>
-                            <form id="formSimpan" class="forms-sample">
-                                @csrf
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-3 col-form-label">Nama</label>
-                                    <div class="col-sm-9">
-                                        <input name="nama" type="text" class="form-control costume-outline"
-                                            id="" placeholder="Klik disini">
-                                        <p class="text-danger miniAlert text-capitalize" id="alert-nama"></p>
-                                    </div>
+                </div>
+                <div class="tab-pane fade p-3" id="tabForm" role="tabpanel" aria-labelledby="tab-form">
+                    <div class="card-body">
+                        <h4 class="card-title">Input Data Tanda Tangan</h4>
+                        <form id="formSimpan" class="forms-sample">
+                            @csrf
+                            <div class="form-group row">
+                                <label for="" class="col-sm-3 col-form-label">Nama</label>
+                                <div class="col-sm-9">
+                                    <input name="nama" type="text" class="form-control costume-outline" id=""
+                                        placeholder="Klik disini">
+                                    <p class="text-danger miniAlert text-capitalize" id="alert-nama"></p>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-3 col-form-label">Jabatan</label>
-                                    <div class="col-sm-9">
-                                        <input name="jabatan" type="text" class="form-control costume-outline"
-                                            id="" placeholder="Klik disini">
-                                        <p class="text-danger miniAlert text-capitalize" id="alert-jabatan"></p>
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-3 col-form-label">Jabatan</label>
+                                <div class="col-sm-9">
+                                    <input name="jabatan" type="text" class="form-control costume-outline" id=""
+                                        placeholder="Klik disini">
+                                    <p class="text-danger miniAlert text-capitalize" id="alert-jabatan"></p>
                                 </div>
-                                <button id="btnSave" type="button" class="btn btn-sm btn-primary mr-2">Submit</button>
-                            </form>
-                        </div>
+                            </div>
+                            <button id="btnSave" type="button" class="btn btn-sm btn-primary mr-2">Submit</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
 @section('script')
-    <script>
-        $(document).ready(function() {
+<script>
+    $(document).ready(function() {
             $('#myTable').DataTable();
             $.ajaxSetup({
                 headers: {
@@ -285,5 +285,5 @@
                 }
             })
         })
-    </script>
+</script>
 @endsection

@@ -1,134 +1,134 @@
 @extends('Layout.Base')
 @section('content')
-    <div class="col-lg-12 grid-margin stretch-card mt-2">
-        <div class="card">
-            <div class="card-header tab-card-header">
-                <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="tab-tabel" data-toggle="tab" href="#tabTabel" role="tab"
-                            aria-controls="Tabel" aria-selected="true">
-                            <h5>Tabel History Cetakan</h5>
-                        </a>
-                    </li>
-                    @can('create-data')
-                        <li class="nav-item">
-                            <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab"
-                                aria-controls="Form" aria-selected="false">
-                                <h5>Formulir</h5>
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </div>
-            <div class="card-body">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active p-3" id="tabTabel" role="tabpanel" aria-labelledby="tab-tabel">
+<div class="col-lg-12 grid-margin stretch-card mt-2">
+    <div class="card">
+        <div class="card-header tab-card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="tab-tabel" data-toggle="tab" href="#tabTabel" role="tab"
+                        aria-controls="Tabel" aria-selected="true">
+                        <h5>Tabel History Cetakan</h5>
+                    </a>
+                </li>
+                @can('create-data')
+                <li class="nav-item">
+                    <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab" aria-controls="Form"
+                        aria-selected="false">
+                        <h5>Formulir</h5>
+                    </a>
+                </li>
+                @endcan
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active p-3" id="tabTabel" role="tabpanel" aria-labelledby="tab-tabel">
 
-                        <div class="table-responsive">
-                            <table id="myTable" class="table">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10px">No.</th>
-                                        <th>Penduduk</th>
-                                        <th>Jenis Surat</th>
-                                        <th>Tanda Tangan</th>
-                                        @can('update-data', 'delete-data')
-                                            <th style="width: 100px">Opsi</th>
+                    <div class="table-responsive">
+                        <table id="myTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">No.</th>
+                                    <th>Penduduk</th>
+                                    <th>Jenis Surat</th>
+                                    <th>Tanda Tangan</th>
+                                    @can('update-data', 'delete-data')
+                                    <th style="width: 100px">Opsi</th>
+                                    @endcan
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                $no = 1;
+                                @endphp
+                                @foreach ($data['data'] as $d)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $d->pendudukRole->nama }}</td>
+                                    <td>{{ $d->jenis_surat }}</td>
+                                    <td>{{ $d->ttdRole->nama }}</td>
+                                    @can('update-data', 'delete-data')
+                                    <td>
+                                        @can('update-data')
+                                        <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
+                                            class="btn btn-sm btn-rounded btn-primary" id="InfoId" target="_blank"><i
+                                                class="mdi mdi-cloud-download"></i></a>
                                         @endcan
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $no = 1;
-                                    @endphp
-                                    @foreach ($data['data'] as $d)
-                                        <tr>
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{ $d->pendudukRole->nama }}</td>
-                                            <td>{{ $d->jenis_surat }}</td>
-                                            <td>{{ $d->ttdRole->nama }}</td>
-                                            @can('update-data', 'delete-data')
-                                                <td>
-                                                    @can('update-data')
-                                                        <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
-                                                            class="btn btn-sm btn-rounded btn-primary" id="InfoId"
-                                                            target="_blank"><i class="mdi mdi-cloud-download"></i></a>
-                                                    @endcan
-                                                    @can('delete-data')
-                                                        <button data-id="{{ $d->id }}" id="btnHapus" type="button"
-                                                            class="btn btn-sm btn-rounded btn-danger ml-2">
-                                                            <i class="mdi mdi-account-remove"></i>
-                                                        </button>
-                                                    @endcan
-                                                </td>
-                                            @endcan
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                        @can('delete-data')
+                                        <button data-id="{{ $d->id }}" id="btnHapus" type="button"
+                                            class="btn btn-sm btn-rounded btn-danger ml-2">
+                                            <i class="mdi mdi-account-remove"></i>
+                                        </button>
+                                        @endcan
+                                    </td>
+                                    @endcan
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="tab-pane fade p-3" id="tabForm" role="tabpanel" aria-labelledby="tab-form">
-                        <div class="card-body" style="margin: 70px 100px 50px 100px;">
-                            <h4 class="card-title" style="margin-bottom: 30px;">Cetak Surat</h4>
-                            <hr>
-                            <form id="formSimpan" class="forms-sample">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>Nomor Surat</label>
-                                            <input name="no_surat" type="text"
-                                                class="form-control costume-outline form-control-sm" style="height: 30px;"
-                                                placeholder="Klik Disini">
-                                            <p class="text-danger miniAlert text-capitalize" id="alert-no_surat"></p>
-                                        </div>
+                </div>
+                <div class="tab-pane fade p-3" id="tabForm" role="tabpanel" aria-labelledby="tab-form">
+                    <div class="card-body" style="margin: 70px 100px 50px 100px;">
+                        <h4 class="card-title" style="margin-bottom: 30px;">Cetak Surat</h4>
+                        <hr>
+                        <form id="formSimpan" class="forms-sample">
+                            @csrf
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Nomor Surat</label>
+                                        <input name="no_surat" type="text"
+                                            class="form-control costume-outline form-control-sm" style="height: 30px;"
+                                            placeholder="Klik Disini">
+                                        <p class="text-danger miniAlert text-capitalize" id="alert-no_surat"></p>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <div class="form-group col-md-6">
-                                        <div class="form-group">
-                                            <label for="">Pilih Jenis Surat</label>
-                                            <select name="jenis_surat" id="jenisSurat"
-                                                class="form-control costume-outline form-control-sm">
-                                                <option selected disabled>-Pilih-</option>
-                                                <option value="Domisili">Domisili</option>
-                                                <option value="Pengakuan Warga">Pengakuan Warga</option>
-                                                <option value="Pengantar SKCK">Pengatar SKCK</option>
-                                                <option value="Keterangan kurang Mampu">Keterangan Kurang Mampu</option>
-                                                <option value="Surat Kematian">Surat Kematian</option>
-                                            </select>
-                                        </div>
-                                        <p class="text-danger miniAlert text-capitalize" id="alert-jenis_surat"></p>
+                            </div>
+                            <div class="form-group row">
+                                <div class="form-group col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Pilih Jenis Surat</label>
+                                        <select name="jenis_surat" id="jenisSurat"
+                                            class="form-control costume-outline form-control-sm">
+                                            <option selected disabled>-Pilih-</option>
+                                            <option value="Domisili">Domisili</option>
+                                            <option value="Pengakuan Warga">Pengakuan Warga</option>
+                                            <option value="Pengantar SKCK">Pengatar SKCK</option>
+                                            <option value="Keterangan kurang Mampu">Keterangan Kurang Mampu</option>
+                                            <option value="Surat Kematian">Surat Kematian</option>
+                                        </select>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <div class="form-group">
-                                            <label for="">Pilih Data Penduduk</label>
-                                            <select name="id_penduduk" disabled
-                                                class="form-control costume-outline form-control-sm data-penduduk">
-                                                <option selected disabled>-Pilih-</option>
-                                            </select>
-                                            <p class="text-danger miniAlert text-capitalize" id="alert-id_penduduk"></p>
-                                        </div>
+                                    <p class="text-danger miniAlert text-capitalize" id="alert-jenis_surat"></p>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Pilih Data Penduduk</label>
+                                        <select name="id_penduduk" disabled
+                                            class="form-control costume-outline form-control-sm data-penduduk">
+                                            <option selected disabled>-Pilih-</option>
+                                        </select>
+                                        <p class="text-danger miniAlert text-capitalize" id="alert-id_penduduk"></p>
                                     </div>
                                 </div>
-                                <div id="formTambahan" class="form-group row" style="margin-top: -50px">
+                            </div>
+                            <div id="formTambahan" class="form-group row" style="margin-top: -50px">
 
-                                </div>
-                                <div class="row" id="ttdRoom">
+                            </div>
+                            <div class="row" id="ttdRoom">
 
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
 @section('script')
-    <script>
-        let surat1 = `
+<script>
+    let surat1 = `
             <div class="form-group col-md-6">
                 <div class="form-group">
                     <label for="">Pilih Data Ayah</label>
@@ -404,5 +404,5 @@
                 }
             })
         });
-    </script>
+</script>
 @endsection
