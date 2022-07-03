@@ -80,7 +80,7 @@
         <hr>
         <hr>
         <div class="kopTanggal">
-            <p>Taripa , {{ $data['created_at'] }}</p>
+            <p>Taripa , {{ $data['dateNow'] }}</p>
             <p>Kepada</p>
             <p class="yth">Yth, Kapolres Luwu Timur</p>
             <p>di-</p>
