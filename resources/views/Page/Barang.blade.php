@@ -60,12 +60,12 @@
                                             @can('update-data', 'delete-data')
                                                 <td>
                                                     @can('update-data')
-                                                        <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
-                                                            class="btn btn-sm btn-rounded btn-primary" id="InfoId"
-                                                            target="_blank"><i class="mdi mdi-cloud-download"></i></a>
+                                                        <button data-id="{{ $d->id }}"
+                                                            class="btn btn-sm btn-rounded btn-primary" id="btnEdit"><i
+                                                                class="mdi mdi-pencil"></i></button>
                                                     @endcan
                                                     @can('delete-data')
-                                                        <button data-id="{{ $d->id }}" id="btnHapus" type="button"
+                                                        <button data-id="{{ $d->id }}" id="btnDelete" type="button"
                                                             class="btn btn-sm btn-rounded btn-danger ml-2">
                                                             <i class="mdi mdi-account-remove"></i>
                                                         </button>

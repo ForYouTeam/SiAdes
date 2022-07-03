@@ -50,7 +50,7 @@
                                             @can('update-data', 'delete-data')
                                                 <td>
                                                     @can('update-data')
-                                                        <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
+                                                        <a href="{{ route('export.pdf', $d->id) }}"
                                                             class="btn btn-sm btn-rounded btn-primary" id="InfoId"
                                                             target="_blank"><i class="mdi mdi-cloud-download"></i></a>
                                                     @endcan

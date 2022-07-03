@@ -9,7 +9,6 @@ use App\Models\CetakSuratModel;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class CetakSuratController extends Controller

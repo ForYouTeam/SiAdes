@@ -60,9 +60,9 @@
                                             @can('update-data', 'delete-data')
                                                 <td>
                                                     @can('update-data')
-                                                        <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
-                                                            class="btn btn-sm btn-rounded btn-primary" id="InfoId"
-                                                            target="_blank"><i class="mdi mdi-cloud-download"></i></a>
+                                                        <button data-id="{{ $d->id }}"
+                                                            class="btn btn-sm btn-rounded btn-primary" id="btnEdit"><i
+                                                                class="mdi mdi-pencil"></i></button>
                                                     @endcan
                                                     @can('delete-data')
                                                         <button data-id="{{ $d->id }}" id="btnHapus" type="button"
@@ -388,9 +388,11 @@
                             </div>
                             <div class="row mr-2 ml-2">
                                 <div class="form-group col-6">
-                                <label>Hidup</label>
-                                    <input type="text" class="form-control" id="hidup" name="hidup" value="` + data
-                            .hidup + `">
+                                <label for="">Status</label>
+                                <select name="hidup" class="form-control form-control-sm" id="hidupInput">
+                                    <option value="1">Hidup</option>
+                                    <option value="0">Mati</option>
+                                    </select>
                                 </div>
                                 <div class="form-group col-6">
                                     <label>Keterangan</label>
@@ -402,6 +404,7 @@
                     `);
                         $('#jkUpdate').val(data.jk);
                         $('#agamaUpdate').val(data.agama);
+                        $('#hidupInput').val(data.hidup);
                     },
                     error: function(result) {
                         let data = result.responseJSON
@@ -414,6 +417,7 @@
 
                 });
             });
+
             $('#btnUpdate').on('click', function() {
                 let dataId = $('#pendudukId').val();
                 let url = `{{ config('app.url') }}` + "/penduduk/" + dataId;
@@ -449,9 +453,9 @@
                 });
             });
 
-            $(document).on('click', '#btnDelete', function() {
+            $(document).on('click', '#btnHapus', function() {
                 let dataId = $(this).data('id');
-                let url = `{{ config('app.url') }}` + "/penduduk    /" + dataId;
+                let url = `{{ config('app.url') }}` + "/penduduk/" + dataId;
                 Swal.fire({
                     title: 'Anda Yakin?',
                     text: "Data ini mungkin terhubung ke tabel yang lain!",
