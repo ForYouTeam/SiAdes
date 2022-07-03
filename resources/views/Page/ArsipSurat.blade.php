@@ -40,7 +40,6 @@
                                         <th>Pengirim</th>
                                         <th>Isi Singkat</th>
                                         <th>Keterangan</th>
-                                        <th>File</th>
                                         @can('update-data', 'delete-data')
                                             <th style="width: 100px">Opsi</th>
                                         @endcan
@@ -91,8 +90,7 @@
                                         <th>Perihal</th>
                                         <th>Di Tujukan Kepada</th>
                                         <th>Keterangan</th>
-                                        <th>File</th>
-                                        <th style="width: 100px">Opsi</th>
+                                        <th style="width: 50px">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -111,14 +109,12 @@
                                                 <a href="{{ asset('storage/format_file/' . $d->format_file) }}"
                                                     class="btn btn-sm btn-rounded btn-primary" id="InfoId"
                                                     target="_blank"><i class="mdi mdi-cloud-download"></i></a>
-                                            </td>
-                                            <td>
-                                                @hasrole('super-admin')
+                                                @can('delete-data')
                                                     <button data-id="{{ $d->id }}" id="btnHapus" type="button"
                                                         class="btn btn-sm btn-rounded btn-danger ml-2">
                                                         <i class="mdi mdi-account-remove"></i>
                                                     </button>
-                                                @endhasrole
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

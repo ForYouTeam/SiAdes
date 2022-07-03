@@ -42,6 +42,7 @@ Route::middleware(['auth', 'role:super-admin|admin'])->group(function () {
     Route::prefix('penduduk')->group(function () {
         Route::get('/all/data', [PendudukController::class, 'getAllData']);
         Route::get('/', [PendudukController::class, 'getAllPenduduk'])->middleware('permission:read-data')->name('penduduk.all');
+        Route::get('/{id}', [PendudukController::class, 'getPendudukById']);
         Route::post('/', [PendudukController::class, 'createPenduduk'])->middleware('permission:create-data');
         Route::patch('/{id}', [PendudukController::class, 'updatePenduduk'])->middleware('permission:update-data');
         Route::delete('/{id}', [PendudukController::class, 'deletePenduduk'])->middleware('permission:delete-data');
