@@ -129,7 +129,7 @@
                 <tr>
                     <td style="width: 30%;">Jam</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">{{ date('i:H', strtotime($data['cetaksuratKematianRole']['tgl_kematian']))
+                    <td style="width: 65%;">{{ date('H:i', strtotime($data['cetaksuratKematianRole']['tgl_kematian']))
                         }}</td>
                 </tr>
                 <tr>
