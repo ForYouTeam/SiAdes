@@ -115,7 +115,7 @@
                 <tr>
                     <td style="width: 30%; vertical-align: top;">Alamat</td>
                     <td style="width: 5%; vertical-align: top;">:</td>
-                    <td style="width: 65%;">{{ $data['pendudukRole']['Alamat'] }}</td>
+                    <td style="width: 65%;">{{ $data['pendudukRole']['alamat'] }}</td>
                 </tr>
             </table>
             <p>Berdasarkan atas keterangan dari ahli waris bahwa yang tersebut namanya diatas telah meninggal pada :</p>
@@ -123,12 +123,14 @@
                 <tr>
                     <td style="width: 30%;">Hari/tanggal</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">{{ $data['cetaksuratKematianRole']['tgl_kematian'] }}</td>
+                    <td style="width: 65%;">{{ date('d-m-Y', strtotime(
+                        $data['cetaksuratKematianRole']['tgl_kematian'])) }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Jam</td>
                     <td style="width: 5px;">:</td>
-                    <td style="width: 65%;">{{ $data['cetaksuratKematianRole']['tgl_kematian'] }}</td>
+                    <td style="width: 65%;">{{ date('i:H', strtotime($data['cetaksuratKematianRole']['tgl_kematian']))
+                        }}</td>
                 </tr>
                 <tr>
                     <td style="width: 30%;">Tempat Kematian</td>
