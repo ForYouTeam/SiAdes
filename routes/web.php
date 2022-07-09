@@ -17,6 +17,34 @@ Route::prefix('auth')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 });
 
+Route::middleware(['auth', 'role:super-admin|kades'])->group(function () {
+    Route::prefix('/staff')->group(function () {
+        Route::get('/', [StaffController::class, 'getAllStaff'])->middleware('permission:read-data')->name('staff.all');
+        Route::post('/', [StaffController::class, 'createStaff'])->middleware('permission:create-data');
+        Route::get('/{id}', [StaffController::class, 'getStaffById']);
+        Route::patch('/{id}', [StaffController::class, 'updateStaff'])->middleware('permission:update-data');
+        Route::delete('/{id}', [StaffController::class, 'deleteStaff'])->middleware('permission:delete-data');
+    });
+    // BATASSS
+    Route::prefix('penduduk')->group(function () {
+        Route::get('/all/data', [PendudukController::class, 'getAllData']);
+        Route::get('/', [PendudukController::class, 'getAllPenduduk'])->middleware('permission:read-data')->name('penduduk.all');
+        Route::get('/{id}', [PendudukController::class, 'getPendudukById']);
+        Route::post('/', [PendudukController::class, 'createPenduduk'])->middleware('permission:create-data');
+        Route::patch('/{id}', [PendudukController::class, 'updatePenduduk'])->middleware('permission:update-data');
+        Route::delete('/{id}', [PendudukController::class, 'deletePenduduk'])->middleware('permission:delete-data');
+    });
+    // BATASSS
+    Route::prefix('tanda_tangan')->group(function () {
+        Route::get('/all/data', [TandaTanganController::class, 'getAllData']);
+        Route::get('/{id}', [TandaTanganController::class, 'getTandaTanganById'])->middleware('permission:read-data');
+        Route::get('/', [TandaTanganController::class, 'getAllTandaTangan'])->middleware('permission:read-data')->name('tanda_tangan.all');
+        Route::post('/', [TandaTanganController::class, 'createTandaTangan'])->middleware('permission:create-data');
+        Route::patch('/{id}', [TandaTanganController::class, 'updateTandaTangan'])->middleware('permission:update-data');
+        Route::delete('/{id}', [TandaTanganController::class, 'deleteTandaTangan'])->middleware('permission:delete-data');
+    });
+});
+
 Route::middleware(['auth', 'role:super-admin|admin|kades'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::prefix('barang')->group(function () {
@@ -26,36 +54,13 @@ Route::middleware(['auth', 'role:super-admin|admin|kades'])->group(function () {
         Route::patch('/{id}', [BarangController::class, 'updateBarang'])->middleware('permission:update-data');
         Route::delete('/{id}', [BarangController::class, 'deleteBarang'])->middleware('permission:delete-data');
     });
-});
-
-Route::middleware(['auth', 'role:super-admin|kades'])->group(function () {
-    Route::prefix('/staff')->group(function () {
-        Route::get('/', [StaffController::class, 'getAllStaff'])->middleware('permission:read-data')->name('staff.all');
-        Route::post('/', [StaffController::class, 'createStaff'])->middleware('permission:create-data');
-        Route::get('/{id}', [StaffController::class, 'getStaffById']);
-        Route::patch('/{id}', [StaffController::class, 'updateStaff'])->middleware('permission:update-data');
-        Route::delete('/{id}', [StaffController::class, 'deleteStaff'])->middleware('permission:delete-data');
-    });
-});
-
-Route::middleware(['auth', 'role:super-admin|admin'])->group(function () {
-    Route::prefix('penduduk')->group(function () {
-        Route::get('/all/data', [PendudukController::class, 'getAllData']);
-        Route::get('/', [PendudukController::class, 'getAllPenduduk'])->middleware('permission:read-data')->name('penduduk.all');
-        Route::get('/{id}', [PendudukController::class, 'getPendudukById']);
-        Route::post('/', [PendudukController::class, 'createPenduduk'])->middleware('permission:create-data');
-        Route::patch('/{id}', [PendudukController::class, 'updatePenduduk'])->middleware('permission:update-data');
-        Route::delete('/{id}', [PendudukController::class, 'deletePenduduk'])->middleware('permission:delete-data');
-    });
-});
-
-Route::middleware(['auth', 'role:super-admin|admin'])->group(function () {
+    // BATASSSS
     Route::prefix('cetak')->group(function () {
         Route::get('/', [CetakSuratController::class, 'getAll'])->middleware('permission:read-data')->name('cetak.all');
         Route::post('/', [CetakSuratController::class, 'createCetak'])->middleware('permission:create-data');
         Route::delete('/{id}', [CetakSuratController::class, 'deleteStaff'])->middleware('permission:delete-data');
     });
-
+    // BATASSS
     Route::prefix('arsip_surat')->group(function () {
         Route::get('/', [ArsipSuratController::class, 'getAllArsip'])->middleware('permission:read-data')->name('arsip.all');
         Route::post('/', [ArsipSuratController::class, 'createArsip'])->middleware('permission:create-data');
@@ -63,16 +68,7 @@ Route::middleware(['auth', 'role:super-admin|admin'])->group(function () {
         Route::patch('/{id}', [ArsipSuratController::class, 'updateArsip'])->middleware('permission:update-data');
         Route::delete('/{id}', [ArsipSuratController::class, 'deleteArsip'])->middleware('permission:delete-data');
     });
-
-    Route::prefix('tanda_tangan')->group(function () {
-        Route::get('/all/data', [TandaTanganController::class, 'getAllData']);
-        Route::get('/{id}', [TandaTanganController::class, 'getTandaTanganById'])->middleware('permission:read-data');
-        Route::get('/', [TandaTanganController::class, 'getAllTandaTangan'])->middleware('permission:read-data')->name('tanda_tangan.all');
-        Route::post('/', [TandaTanganController::class, 'createTandaTangan'])->middleware('permission:create-data');
-        Route::patch('/{id}', [TandaTanganController::class, 'updateTandaTangan'])->middleware('permission:update-data');
-        Route::delete('/{id}', [TandaTanganController::class, 'deleteTandaTangan'])->middleware('permission:delete-data');
-    });
-
+    // BATASSS
     Route::get('/exportPdf/{id}', [CetakSuratController::class, 'export'])->middleware('permission:create-data')->name('export.pdf');
 });
 

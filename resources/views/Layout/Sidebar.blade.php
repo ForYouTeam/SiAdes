@@ -29,18 +29,14 @@
                     @hasrole('super-admin|kades')
                         <li class="nav-item"> <a class="nav-link" href="{{ route('staff.all') }}">Data
                                 Staff</a></li>
-                    @endhasrole
-                    @hasrole('super-admin|admin')
                         <li class="nav-item"> <a class="nav-link" href="{{ route('penduduk.all') }}">Data
                                 Penduduk</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('tanda_tangan.all') }}">Data
+                                Tanda Tangan</a></li>
                     @endhasrole
                     @hasrole('super-admin|admin|kades')
                         <li class="nav-item"> <a class="nav-link" href="{{ route('barang.all') }}">Data
                                 Barang</a></li>
-                    @endhasrole
-                    @hasrole('super-admin|admin')
-                        <li class="nav-item"> <a class="nav-link" href="{{ route('tanda_tangan.all') }}">Data
-                                Tanda Tangan</a></li>
                     @endhasrole
 
                 </ul>
@@ -50,7 +46,7 @@
             <p>Apps</p>
             <span></span>
         </li>
-        @hasrole('super-admin|admin')
+        @hasrole('super-admin|admin|kades')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('arsip.all') }}">
                     <i class="mdi mdi-email menu-icon"></i>
