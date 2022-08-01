@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ArsipSuratModel;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ArsipSuratController extends Controller
 {
@@ -27,7 +28,7 @@ class ArsipSuratController extends Controller
     {
         try {
             $fileUpload = $request->file('format_file');
-            $nameFile = $request->no_surat . '-' . $fileUpload->getClientOriginalName();
+            $nameFile = str_replace(['/', '-', ',', '.', ' '], '_', $request->no_surat) . '.' . $fileUpload->getClientOriginalExtension();
 
             $filePath = public_path('storage/format_file/');
             $fileUpload->move($filePath, $nameFile);
