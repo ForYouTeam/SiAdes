@@ -37,7 +37,7 @@
                         <a class="navbar-brand brand-logo-mini" href="#"><img src="../../images/logo-mini.svg"
                                 alt="logo"></a>
                     </div>
-                    <h3 class="font-weight-bold mb-0 d-none d-md-block mt-1">Sistem Informasi Desa</h3>
+                    <h3 class="font-weight-bold mb-0 d-none d-md-block mt-1">{{config('app.name')}}</h3>
                     <ul class="navbar-nav navbar-nav-right">
 
                     </ul>

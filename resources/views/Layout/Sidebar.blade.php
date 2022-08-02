@@ -31,12 +31,14 @@
                                 Staff</a></li>
                         <li class="nav-item"> <a class="nav-link" href="{{ route('penduduk.all') }}">Data
                                 Penduduk</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="{{ route('tanda_tangan.all') }}">Data
-                                Tanda Tangan</a></li>
                     @endhasrole
                     @hasrole('super-admin|admin|kades')
                         <li class="nav-item"> <a class="nav-link" href="{{ route('barang.all') }}">Data
-                                Barang</a></li>
+                                Inventaris</a></li>
+                    @endhasrole
+                    @hasrole('super-admin|kades')
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('tanda_tangan.all') }}">Data
+                        Tanda Tangan</a></li>
                     @endhasrole
 
                 </ul>
