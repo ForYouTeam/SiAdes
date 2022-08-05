@@ -13,7 +13,7 @@
                     <li class="nav-item">
                         <a class="nav-link" id="tab-form" data-toggle="tab" href="#tabForm" role="tab"
                             aria-controls="Form" aria-selected="false">
-                            <h5>Formulir</h5>
+                            <h5>Form</h5>
                         </a>
                     </li>
                 </ul>

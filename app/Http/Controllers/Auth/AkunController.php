@@ -14,7 +14,7 @@ class AkunController extends Controller
     public function getAllAkun()
     {
         try {
-            $akun = User::all();
+            $akun = User::role(array('Admin','Kades'))->get();
         } catch (\Throwable $th) {
             $akun = $th->getMessage();
         }

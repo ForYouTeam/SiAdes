@@ -21,7 +21,7 @@
                     class="d-flex flex-row align-items-center flex-wrap justify-content-md-center justify-content-xl-start py-1">
                     <i class="mdi mdi-email-variant text-white icon-lg"></i>
                     <div class="ml-3 ml-md-0 ml-xl-3">
-                        <h5 class="text-white font-weight-bold">Surat MasuK</h5>
+                        <h5 class="text-white font-weight-bold">Surat Masuk</h5>
                         <h4 class="mt-2 text-white card-text">{{ $data['arsipmasuk'] }}</h4>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                     class="d-flex flex-row align-items-center flex-wrap justify-content-md-center justify-content-xl-start py-1">
                     <i class="mdi mdi-folder-multiple text-white icon-lg"></i>
                     <div class="ml-3 ml-md-0 ml-xl-3">
-                        <h5 class="text-white font-weight-bold">Total Barang</h5>
+                        <h5 class="text-white font-weight-bold">Total Inventaris</h5>
                         <h4 class="mt-2 text-white card-text">{{ $data['barang'] }}</h4>
                     </div>
                 </div>
