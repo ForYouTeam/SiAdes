@@ -37,5 +37,14 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+        $this->renderable(function (\Spatie\Permission\Exceptions\UnauthorizedException $e, $request) {
+            return response()->json([
+                'response' => array(
+                    'icon' => 'warning',
+                    'title' => 'Akses Gagal',
+                    'message' => 'Akun anda tidak punya hak untuk aksi ini',
+                ),
+            ], 403);
+        });
     }
 }
