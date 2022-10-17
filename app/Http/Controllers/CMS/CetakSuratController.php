@@ -133,7 +133,8 @@ class CetakSuratController extends Controller
         $allData = CetakSuratModel::whereId($id)->with('pendudukRole', 'cetaksuratKematianRole', 'ttdRole:id,nama,jabatan', 'ayahRole', 'ibuRole')->first();
 
         // $allData['path'] = env('APP_URL') . '/logoLuwuTimur.png';
-        $allData['path'] = public_path('logoLuwuTimur.png');
+        // $allData['path'] = public_path('logoLuwuTimur.png');
+        $allData['path'] = 'logoLuwuTimur.png';
         $allData['dateNow'] = Carbon::now()->isoFormat('D MMMM Y');
 
         switch ($allData['jenis_surat']) {
